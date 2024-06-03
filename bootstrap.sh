@@ -185,6 +185,11 @@ _install_fonts(){
     tar -zxf fonts/roboto.tgz -C ~/Library/Fonts
 }
 
+_stow_configs() {
+    echo "==> Stowing configs"
+    stow btop cheat git homebrew kitty ncdu pip starship tmux zsh
+}
+
 bootstrap_macos() {
     echo "==> Bootstrapping macOS"
     _sudo_rule
@@ -193,6 +198,7 @@ bootstrap_macos() {
     _install_tmux_plugin_manager
     _install_cheatsheets
     _install_fonts
+    _stow_configs
 }
 
 bootstrap_linux() {
@@ -201,6 +207,7 @@ bootstrap_linux() {
     _install_linux_packages
     _install_tmux_plugin_manager
     _install_cheatsheets
+    _stow_configs
 }
 
 case ${OS_NAME} in
