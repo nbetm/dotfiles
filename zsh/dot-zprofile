@@ -1,0 +1,50 @@
+# shellcheck disable=all
+
+if [[ $OS_NAME == "Darwin" ]]; then
+    # Initiate Homebrew
+    if [[ $OS_ARCH == "arm64" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+
+    # Additional Paths
+    typeset -U path
+    path=(
+        "${HOME}/.local/bin"
+        "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/curl/bin"
+        "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/fzf/bin"
+        $path
+    )
+
+    # FZF
+    export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
+
+elif [[ $OS_NAME = "Linux" ]]; then
+    # Additional Paths
+    typeset -U path
+    path=(
+        "${HOME}/.local/bin"
+        "${HOME}/.fzf/bin"
+        "${HOME}/.pyenv/bin"
+        "/usr/libexec/docker/cli-plugins"
+        $path
+    )
+
+    # FZF
+    export FZF_SHELL_DIR="${HOME}/.fzf/shell"
+
+    # PYENV
+    export PYENV_ROOT="${HOME}/.pyenv"
+
+    # Docker Rootless
+    export DOCKER_HOST=unix:///run/user/1000/docker.sock
+fi

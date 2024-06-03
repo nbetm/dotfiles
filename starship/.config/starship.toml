@@ -1,0 +1,92 @@
+format = """
+$shlvl\
+$kubernetes\
+$hostname\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$docker_context\
+$package\
+$cmake\
+$deno\
+$python\
+$red\
+$terraform\
+$nix_shell\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$custom\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+
+# Inserts a blank line between shell prompts
+# symbols: ΑϹ𝗟𝗣𝗧
+add_newline = true
+
+[character]
+success_symbol = "[❱](bold green)"
+error_symbol = "[❱](bold red)"
+vicmd_symbol = "[❰](bold green)"
+
+[hostname]
+ssh_only = true
+style = "bold green"
+format = "[$hostname]($style) "
+
+[directory]
+style = "bold blue"
+# truncation_symbol = ".../"
+truncation_symbol = "…/"
+truncation_length = 3
+truncate_to_repo = false
+read_only = "  "
+read_only_style = "red"
+
+[git_status]
+style = "bold purple"
+
+[git_branch]
+style = "bold purple"
+symbol = " "
+truncation_symbol = "…"
+truncation_length = 25
+format = "[$symbol$branch]($style) "
+
+[python]
+style = "bold yellow"
+symbol = ""
+format = "[${pyenv_prefix}(${version})( ⟮$virtualenv⟯)]($style) "
+
+[aws]
+style = "bold #d08770"
+symbol = ""
+format = "[$symbol($profile)]($style) "
+
+[terraform]
+style = "bold #8787ff"
+symbol = ""
+format = "[$symbol($workspace)]($style) "
+
+[lua]
+symbol = ""
+format = "[$symbol]($style)"
+disabled = true
+
+[gcloud]
+disabled = true
+
+[docker_context]
+disabled = true

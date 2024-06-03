@@ -1,0 +1,30 @@
+[pull]
+    rebase = false
+
+# [push]
+#     default = matching
+
+[core]
+    # editor = /usr/bin/nvim
+    # editor = /usr/local/bin/code --wait
+    excludesfile = ~/.gitignore
+
+[color]
+    ui = true
+
+[diff]
+    tool = vimdiff
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+# [mergetool "vimdiff"]
+#     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[init]
+    defaultBranch = main
+
+[user]
+	name = Nelson R Monserrate
+	email = nrmonserrate@gmail.com

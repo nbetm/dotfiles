@@ -1,0 +1,252 @@
+# shellcheck disable=all
+
+# ------------------------------------------------------------------------------
+# Options :: https://zsh.sourceforge.io/Doc/Release/Options.html
+# ------------------------------------------------------------------------------
+
+# Navigation
+setopt AUTO_CD                  # Go to folder path without using cd
+
+setopt AUTO_PUSHD               # Push the old directory onto the stack on cd
+setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack
+setopt PUSHD_SILENT             # Do not print the directory stack after pushd or popd
+
+setopt CORRECT                  # Spelling correction
+setopt CDABLE_VARS              # Change directory to a path stored in a variable
+setopt EXTENDED_GLOB            # Use extended globbing syntax
+
+# History command configuration
+setopt EXTENDED_HISTORY         # Write the history file in the ':start:elapsed;command' format
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming history
+setopt HIST_FIND_NO_DUPS        # Do not display duplicates of a line previously found
+setopt HIST_IGNORE_ALL_DUPS     # Delete an old recorded event if a new event is a duplicate
+setopt HIST_IGNORE_DUPS         # Do not record an event that was just recorded again
+setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space
+setopt HIST_SAVE_NO_DUPS        # Do not write a duplicate event to the history file
+setopt HIST_VERIFY              # Do not execute immediately upon history expansion
+setopt SHARE_HISTORY            # Share history between all sessions
+
+# Completion
+setopt MENU_COMPLETE            # Automatically highlight first element of completion menu
+setopt AUTO_LIST                # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
+
+# ------------------------------------------------------------------------------
+# Plugin Manager :: https://github.com/zplug/zplug
+# ------------------------------------------------------------------------------
+
+# Check if zplug is not installed, then init!
+if [[ ! -e "${HOME}/.zplug/init.zsh" ]]; then
+    curl -sL --proto-redir -all,https \
+        https://raw.githubusercontent.com/zplug/installer/master/installer.zsh \
+        | zsh
+fi
+source "${HOME}/.zplug/init.zsh"
+
+# https://www.github.com/zsh-users/zsh-autosuggestions
+# Fish-like fast/unobtrusive autosuggestions for zsh. When you type a command a
+# second time it shows up but is shaded, use the right arrow to fully complete
+# the command
+zplug "zsh-users/zsh-autosuggestions"
+
+# https://www.github.com/zsh-users/zsh-completions
+# Additional completions for common command line tools
+zplug "zsh-users/zsh-completions"
+
+# You can type the beginning of a command and then use arrow keys to filter
+# previous commands in your history that share the same beginning
+# https://www.github.com/zsh-users/zsh-history-substring-search
+zplug "zsh-users/zsh-history-substring-search"
+
+# Quick changing directories, z is a command line tool that allows you to jump
+# quickly to directories that you have visited frequently in the past, or
+# recently
+# https://www.github.com/agkozak/zsh-z
+zplug "agkozak/zsh-z"
+
+# https://www.github.com/zsh-users/zsh-syntax-highlighting
+# Fish shell-like syntax highlighting for Zsh.
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+# Remove --verbose if you find the startup message annoying
+zplug load # --verbose
+
+# ------------------------------------------------------------------------------
+# Emacs Mode
+# ------------------------------------------------------------------------------
+
+# Use `bindkey -e` to use emcas line editing mode
+bindkey -e
+export KEYTIMEOUT=1
+
+# Use vim to edit longer commands
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# Use custom widgets to manipulate backward-delete-word, forward-word and
+# backward-word when it's a path. Remove '/' and ':' from WORDCHARS
+# (A list of non-alphanumeric characters considered part of a word by the line editor.)
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
+my-backward-delete-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    WORDCHARS=${WORDCHARS/:/}
+    WORDCHARS=${WORDCHARS/./}
+    WORDCHARS=${WORDCHARS/-/}
+    zle backward-delete-word
+}
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word
+# option+delete
+bindkey '^[^?' my-backward-delete-word
+
+my-backward-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    WORDCHARS=${WORDCHARS/:/}
+    WORDCHARS=${WORDCHARS/./}
+    WORDCHARS=${WORDCHARS/-/}
+    zle backward-word
+}
+zle -N my-backward-word
+bindkey '^[b' my-backward-word
+
+my-forward-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    WORDCHARS=${WORDCHARS/:/}
+    WORDCHARS=${WORDCHARS/./}
+    WORDCHARS=${WORDCHARS/-/}
+    zle forward-word
+}
+zle -N my-forward-word
+bindkey '^[f' my-forward-word
+
+# ------------------------------------------------------------------------------
+# Miscelaneouns
+# ------------------------------------------------------------------------------
+
+# LS_COLORS
+if [[ -f "${HOME}/.zsh/dir_colors" ]]; then
+    eval $(dircolors -b "${HOME}/.zsh/dir_colors")
+fi
+
+# Load more completions
+if [[ $OS_NAME == "Darwin" ]]; then
+    fpath=(
+        "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+        "${HOMEBREW_PREFIX}/opt/curl/share/zsh/site-functions"
+        $fpath
+    )
+fi
+fpath=("${HOME}/.zsh/completions" $fpath)
+
+# FZF Shell Completion
+source "${FZF_SHELL_DIR}/completion.zsh"
+source "${FZF_SHELL_DIR}/key-bindings.zsh"
+
+# PYENV
+if command -v pyenv &> /dev/null; then
+    eval "$(pyenv init -)"
+
+    if command -v pyenv-virtualenv-init &> /dev/null; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
+fi
+
+# DIRENV
+eval "$(direnv hook zsh)"
+
+# Starship Prompt
+eval "$(starship init zsh)"
+
+# ------------------------------------------------------------------------------
+# zmodules :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html
+# ------------------------------------------------------------------------------
+
+# Should be called before compinit
+zmodload zsh/complist
+zmodload zsh/mapfile
+zmodload zsh/mathfunc
+zmodload zsh/system
+
+# Load all functions (from $fpath files). Needs to come after the $fpath is set!
+autoload -U compaudit compinit; compinit
+
+# Bash Completion Workaround
+autoload -U +X bashcompinit; bashcompinit
+
+# Hashicorp Tools
+complete -o nospace -C terraform terraform
+complete -o nospace -C nomad nomad
+complete -o nospace -C packer packer
+
+# AWS
+complete -C aws_completer aws
+
+# ------------------------------------------------------------------------------
+# zstyles :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fzutil-Module
+#
+# Ztyle pattern
+# :completion:<function>:<completer>:<command>:<argument>:<tag>
+# ------------------------------------------------------------------------------
+
+# Define completers
+zstyle ':completion:*' completer _extensions _complete _approximate
+
+# Complete the alias when _expand_alias is used as a function
+zstyle ':completion:*' complete true
+zle -C alias-expension complete-word _generic
+# bindkey '^Xa' alias-expension
+zstyle ':completion:alias-expension:*' completer _expand_alias
+
+# Autocomplete options for cd instead of directory stack
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' file-sort modification
+
+# Only display some tags for the command cd
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+
+# Colors for files and directory
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Auto-complete will group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' verbose yes
+
+# Required for completion to be in good groups (named after the tags)
+zstyle ':completion:*' group-name ''
+
+# Allow for autocomplete to be case insensitive
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
+
+# SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# ------------------------------------------------------------------------------
+# Misc
+# ------------------------------------------------------------------------------
+
+# Source all files in the include directory
+if [[ -d "${HOME}/.zsh/include" ]]; then
+    for item in "${HOME}"/.zsh/include/*.zsh; do
+        [[ -s $item ]] && source $item
+    done
+fi
