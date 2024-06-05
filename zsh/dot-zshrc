@@ -149,8 +149,7 @@ fi
 fpath=("${HOME}/.zsh/completions" $fpath)
 
 # FZF Shell Completion
-source "${FZF_SHELL_DIR}/completion.zsh"
-source "${FZF_SHELL_DIR}/key-bindings.zsh"
+source <(fzf --zsh)
 
 # PYENV
 if command -v pyenv &> /dev/null; then
