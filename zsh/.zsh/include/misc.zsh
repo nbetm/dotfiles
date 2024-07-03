@@ -41,7 +41,7 @@ alias kssh="kitty +kitten ssh"
 # Tmux
 # alias tmux='[ -z "$TMUX" ] && TERM=xterm-256color tmux'
 alias t='tmux'
-alias tn='tmux new -As'
+alias tns='tmux new -As'
 alias tls='tmux list-sessions'
 alias trw='tmux renamew $(basename $(pwd))'
 
