@@ -187,7 +187,7 @@ _install_fonts(){
 
 _stow_configs() {
     echo "==> Stowing configs"
-    stow btop cheat git homebrew kitty ncdu pip starship tmux zsh
+    stow btop cheat direnv git homebrew kitty ncdu pip starship tmux zsh
 }
 
 bootstrap_macos() {
