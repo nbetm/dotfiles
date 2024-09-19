@@ -69,11 +69,10 @@ if [[ $OS_NAME == "Darwin" ]]; then
 fi
 
 # Python
-alias pvenvrm="find -name .venv -type d -print0 | xargs -0 /bin/rm -fr"
-alias pvrm="find -name .venv -type d -print0 | xargs -0 /bin/rm -fr"
-alias piu="python -m pip install --upgrade pip setuptools wheel"
-alias pi="python -m pip install"
-pir() {
+alias venvrm="find -name .venv -type d -print0 | xargs -0 /bin/rm -fr"
+alias pipu="python -m pip install --upgrade pip setuptools wheel"
+alias pipi="python -m pip install"
+pipr() {
     local _req_file _req_dev_file
 
     _req_file="requirements.txt"
