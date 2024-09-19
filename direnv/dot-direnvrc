@@ -17,8 +17,6 @@ use_python() {
         if ! pyenv versions --bare --skip-envs --skip-aliases | grep -q "^${pyversion}$"; then
             pyenv install "${pyversion}"
         fi
-
-        pyenv shell "${pyversion}"
     fi
 }
 
