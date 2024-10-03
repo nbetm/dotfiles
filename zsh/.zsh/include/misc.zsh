@@ -34,7 +34,7 @@ alias dea='direnv allow'
 # SSH
 alias ssh="TERM=xterm-256color ssh"
 alias ssha="ssh-add -l"
-alias sshar="ssh-add -D && ssh-add ~/.ssh/id_ed25519-nbetm ~/.ssh/id_ed25519-nbetm-a8c ~/.ssh/id_ed25519-nbetm-gh ~/.ssh/id_rsa-emr ~/.ssh/id_rsa-devops ~/.ssh/id_rsa-product"
+alias sshar="ssh-add -D && ssh-add ~/.ssh/id_ed25519-nbetm ~/.ssh/id_ed25519-nbetm-gh ~/.ssh/id_ed25519-rolo-devops-gh"
 alias sshaD="ssh-add -D"
 alias kssh="kitty +kitten ssh"
 
