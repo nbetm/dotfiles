@@ -148,6 +148,9 @@ tfdestroy() {
     fi
 }
 
+# Nomad
+alias nm="nomad"
+
 # Ansible
 alias ans="ansible"
 alias ansp="ansible-playbook --diff"
@@ -161,6 +164,28 @@ else
     alias aws="/usr/local/bin/aws"
     alias aws_completer="/usr/local/bin/aws_completer"
 fi
+
+alias awspu="unset AWS_PROFILE"
+awsl() {
+    local _choice
+
+    _choice=$(sed -nr "s/^\[profile (.+)\]$/\1/p" ~/.aws/config | fzf)
+    if [[ -n "$SSH_TTY" ]]; then
+        aws sso login --no-browser --profile "$_choice"
+    else
+        aws sso login --profile "$_choice"
+    fi
+}
+awsp() {
+    local _choice
+
+    if [[ -f ~/.aws/config ]]; then
+        _choice=$(sed -nr "s/^\[profile (.+)\]$/\1/p" ~/.aws/config | fzf)
+    else
+        _choice="default"
+    fi
+    export AWS_PROFILE="$_choice"
+}
 
 # Xpanes
 alias xpssh="xpanes -s -c 'ssh -o StrictHostKeyChecking=no {}'"

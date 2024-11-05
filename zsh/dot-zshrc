@@ -166,6 +166,11 @@ eval "$(direnv hook zsh)"
 # Starship Prompt
 eval "$(starship init zsh)"
 
+# SkyPilot
+if [[ -f "${HOME}/.sky/.sky-complete.zsh" ]]; then
+    source "${HOME}/.sky/.sky-complete.zsh"
+fi
+
 # ------------------------------------------------------------------------------
 # zmodules :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html
 # ------------------------------------------------------------------------------
