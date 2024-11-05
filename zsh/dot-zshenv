@@ -27,15 +27,25 @@ export HISTFILE="${HOME}/.zsh_history"  # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
-# FZF Color Scheme
-# https://github.com/junegunn/fzf/wiki/Color-schemes#nord
-export FZF_DEFAULT_OPTS='
-  --color=fg:#d8dee9,bg:#2e3440,hl:#a3be8c,fg+:#d8dee9,bg+:#434c5e,hl+:#a3be8c
-  --color=pointer:#bf616a,info:#4c566a,spinner:#4c566a,header:#4c566a,prompt:#81a1c1,marker:#ebcb8b
-  --prompt="❱ "
-  --pointer="❱"
-  --marker="❱"
-'
+## FZF Color Scheme
+## Nord | https://github.com/junegunn/fzf/wiki/Color-schemes#nord
+# export FZF_DEFAULT_OPTS=" \
+#   --color=fg:#d8dee9,bg:#2e3440,hl:#a3be8c,fg+:#d8dee9,bg+:#434c5e,hl+:#a3be8c \
+#   --color=pointer:#bf616a,info:#4c566a,spinner:#4c566a,header:#4c566a,prompt:#81a1c1,marker:#ebcb8b \
+#   --prompt='❱ ' \
+#   --pointer='❱' \
+#   --marker='❱'"
+#
+## Catppuccin - Macchiato | https://github.com/catppuccin/fzf
+export FZF_DEFAULT_OPTS=" \
+    --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+    --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+    --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+    --color=selected-bg:#494d64 \
+    --multi \
+    --prompt='❱ ' \
+    --pointer='❱' \
+    --marker='❱'"
 
 # PDSH
 export PDSH_RCMD_TYPE=ssh
@@ -50,7 +60,7 @@ export AWS_PAGER=""
 
 # PYENV Global Version
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# export PYENV_VERSION="3.9.7"
+export PYENV_VIRTUALENV_INIT=1
 
 # Cheat
 export CHEAT_USE_FZF=true

@@ -175,6 +175,8 @@ awsl() {
     else
         aws sso login --profile "$_choice"
     fi
+
+    export AWS_PROFILE="$_choice"
 }
 awsp() {
     local _choice
