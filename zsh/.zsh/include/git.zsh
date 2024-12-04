@@ -60,7 +60,10 @@ alias gcsS='git show --pretty=short --show-signature'
 alias gcl='git-commit-lost'
 alias gcy='git cherry --verbose --abbrev'
 alias gcY='git cherry --verbose'
-alias gch="git rev-parse HEAD | tr -d '\n'"
+
+# Rev-parse (rp)
+alias grpL="git rev-parse HEAD | tr -d '\n'"
+alias grpS="git rev-parse HEAD | cut -c1-7 | tr -d '\n'"
 
 # Conflict (C)
 alias gCl='git --no-pager diff --name-only --diff-filter=U'

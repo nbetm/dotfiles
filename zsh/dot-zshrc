@@ -151,14 +151,8 @@ fpath=("${HOME}/.zsh/completions" $fpath)
 # FZF Shell Completion
 source <(fzf --zsh)
 
-# PYENV
-if command -v pyenv &> /dev/null; then
-    eval "$(pyenv init -)"
-
-    if command -v pyenv-virtualenv-init &> /dev/null; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-fi
+# uv Shell Completion
+eval "$(uv generate-shell-completion zsh)"
 
 # DIRENV
 eval "$(direnv hook zsh)"

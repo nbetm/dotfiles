@@ -2,6 +2,7 @@
 
 # XDG
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_BIN_HOME="${XDG_CONFIG_HOME}/local/bin"
 export XDG_DATA_HOME="${XDG_CONFIG_HOME}/local/share"
 export XDG_CACHE_HOME="${XDG_CONFIG_HOME}/cache"
 
@@ -57,10 +58,6 @@ export AWS_SDK_LOAD_CONFIG=true
 # AWS CLI no pager
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html
 export AWS_PAGER=""
-
-# PYENV Global Version
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_VIRTUALENV_INIT=1
 
 # Cheat
 export CHEAT_USE_FZF=true

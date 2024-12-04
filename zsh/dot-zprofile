@@ -12,6 +12,7 @@ if [[ $OS_NAME == "Darwin" ]]; then
     typeset -U path
     path=(
         "${HOME}/.local/bin"
+        "$XDG_BIN_HOME"
         "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/curl/bin"
         "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
@@ -33,17 +34,14 @@ elif [[ $OS_NAME = "Linux" ]]; then
     typeset -U path
     path=(
         "${HOME}/.local/bin"
+        "$XDG_BIN_HOME"
         "${HOME}/.fzf/bin"
-        "${HOME}/.pyenv/bin"
         "/usr/libexec/docker/cli-plugins"
         $path
     )
 
     # FZF
     export FZF_SHELL_DIR="${HOME}/.fzf/shell"
-
-    # PYENV
-    export PYENV_ROOT="${HOME}/.pyenv"
 
     # Docker Rootless
     export DOCKER_HOST=unix:///run/user/1000/docker.sock
