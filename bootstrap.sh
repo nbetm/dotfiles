@@ -137,7 +137,7 @@ _install_linux_packages() {
 
     # starship
     echo "==> Installing package: starship"
-    bash -c "$(curl -fsSL https://starship.rs/install.sh)"
+    curl -fsSL https://starship.rs/install.sh | sh
 
     # aws cli
     echo "==> Installing package: aws-cli"
