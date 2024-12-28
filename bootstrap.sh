@@ -176,6 +176,10 @@ _install_cheatsheets() {
     fi
 }
 
+_install_uv() {
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+}
+
 _install_fonts(){
     echo "==> Setting up fonts"
     tar -zxf fonts/iosevka-n-fixed.tgz -C ~/Library/Fonts
@@ -199,6 +203,7 @@ bootstrap_macos() {
     _install_homebrew_packages
     _install_tmux_plugin_manager
     _install_cheatsheets
+    _install_uv
     _install_fonts
     _stow_configs
 }
@@ -209,6 +214,7 @@ bootstrap_linux() {
     _install_linux_packages
     _install_tmux_plugin_manager
     _install_cheatsheets
+    _install_uv
     _stow_configs
 }
 
