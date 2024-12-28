@@ -114,6 +114,14 @@ _install_linux_packages() {
     sudo chmod +x /usr/local/bin/ncdu
     rm -rf /tmp/ncdu.tar.gz /tmp/ncdu
 
+    # gitui
+    echo "==> Installing package: gitui"
+    curl -fsSL https://github.com/extrawurst/gitui/releases/download/v0.26.3/gitui-linux-x86_64.tar.gz -o /tmp/gitui.tar.gz
+    tar -xzf /tmp/gitui.tar.gz -C /tmp
+    sudo cp /tmp/gitui /usr/local/bin/gitui
+    sudo chmod +x /usr/local/bin/gitui
+    rm -rf /tmp/gitui.tar.gz /tmp/gitui
+
     # nvim
     local _custom_nvim_path=/usr/local/bin/nvim
     echo "==> Installing package: nvim"
