@@ -117,7 +117,7 @@ _install_linux_packages() {
     # nvim
     local _custom_nvim_path=/usr/local/bin/nvim
     echo "==> Installing package: nvim"
-    curl -fsSL https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage -o /tmp/nvim.appimage
+    curl -fsSL https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage -o /tmp/nvim.appimage
     sudo chmod +x /tmp/nvim.appimage
     sudo cp /tmp/nvim.appimage "$_custom_nvim_path"
     rm -rf /tmp/nvim.appimage
