@@ -61,3 +61,6 @@ export AWS_PAGER=""
 
 # Cheat
 export CHEAT_USE_FZF=true
+
+# Google Cloud SDK
+export CLOUDSDK_PYTHON="${HOME}/.local/bin/python3.11"

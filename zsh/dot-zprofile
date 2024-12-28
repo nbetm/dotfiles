@@ -13,6 +13,7 @@ if [[ $OS_NAME == "Darwin" ]]; then
     path=(
         "${HOME}/.local/bin"
         "$XDG_BIN_HOME"
+        "${XDG_DATA_HOME}/google-cloud-sdk/bin"
         "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/curl/bin"
         "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
@@ -35,6 +36,7 @@ elif [[ $OS_NAME = "Linux" ]]; then
     path=(
         "${HOME}/.local/bin"
         "$XDG_BIN_HOME"
+        "${XDG_DATA_HOME}/google-cloud-sdk/bin"
         "${HOME}/.fzf/bin"
         "/usr/libexec/docker/cli-plugins"
         $path
