@@ -1,0 +1,12 @@
+font-family = Iosevka N Term
+font-size = 14
+# font-thicken = true
+adjust-cell-height = 1
+
+theme = catppuccin-macchiato
+
+shell-integration = zsh
+shell-integration-features = true
+cursor-style = block
+
+keybind = super+backspace=text:\x15
