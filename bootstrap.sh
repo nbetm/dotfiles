@@ -160,9 +160,9 @@ _install_linux_packages() {
 
 _install_tmux_plugin_manager() {
     echo "==> Setting up tmux plugin manager"
-    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-        mkdir -p "$HOME/.tmux/plugins/tpm"
-        git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+    if [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ]; then
+        mkdir -p "$XDG_CONFIG_HOME/tmux/plugins/tpm"
+        git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME/tmux/plugins/tpm"
     fi
 }
 
