@@ -150,12 +150,6 @@ _install_linux_packages() {
         popd
     fi
     ~/.fzf/install --bin
-
-    # pyenv
-    echo "==> Installing package: pyenv"
-    if [ ! -d "$HOME/.pyenv" ]; then
-        bash -c "$(curl -fsSL https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer)"
-    fi
 }
 
 _install_tmux_plugin_manager() {
