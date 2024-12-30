@@ -9,4 +9,7 @@ shell-integration = zsh
 shell-integration-features = true
 cursor-style = block
 
+quick-terminal-position = top
+
 keybind = super+backspace=text:\x15
+keybind = global:super+shift+space=toggle_quick_terminal
