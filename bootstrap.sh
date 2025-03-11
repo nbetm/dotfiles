@@ -166,7 +166,17 @@ _install_linux_packages() {
     unzip /tmp/yazi.zip
     sudo cp /tmp/yazi-x86_64-unknown-linux-gnu/ya* /usr/local/bin
     popd
-    rm -fr /tmp/yazi.zip /tmp/yazi-x86_64-unknown-linux-gnu
+    rm -fr /tmp/yazi*
+
+    # bat
+    local _bat_version=0.25.0
+    echo "==> Installing package: bat"
+    curl -fsSL https://github.com/sharkdp/bat/releases/download/v${_bat_version}/bat-v${_bat_version}-i686-unknown-linux-gnu.tar.gz \
+        -o /tmp/bat-${_bat_version}.tar.gz
+    tar -xzf /tmp/bat-${_bat_version}.tar.gz -C /tmp
+    sudo cp /tmp/bat-v${_bat_version}-i686-unknown-linux-gnu/bat /usr/local/bin/bat
+    sudo cp /tmp/bat-v${_bat_version}-i686-unknown-linux-gnu/bat.1 /usr/local/share/man/man1/bat.1
+    sudo rm -fr /tmp/bat*
 }
 
 _install_tmux_plugin_manager() {
@@ -202,7 +212,7 @@ _install_fonts(){
 
 _stow_configs() {
     echo "==> Stowing configs"
-    stow btop cheat direnv ghostty git gitui homebrew kitty ncdu pip starship tmux yazi zsh
+    stow bat btop cheat direnv ghostty git gitui homebrew kitty ncdu pip starship tmux yazi zsh
 }
 
 bootstrap_macos() {
