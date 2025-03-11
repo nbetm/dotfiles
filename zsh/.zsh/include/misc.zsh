@@ -48,6 +48,7 @@ alias twr='tmux renamew $(basename $(pwd))'
 # vim/nvim
 alias vim='nvim'
 alias vi='nvim'
+alias v="NVIM_APPNAME=vnext nvim"
 
 # Homebrew
 if [[ $OS_NAME == "Darwin" ]]; then
