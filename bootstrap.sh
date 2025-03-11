@@ -158,6 +158,15 @@ _install_linux_packages() {
         popd
     fi
     ~/.fzf/install --bin
+
+    # yazi
+    echo "==> Installing package: yazi"
+    curl -fsSL https://github.com/sxyazi/yazi/releases/download/v25.3.2/yazi-x86_64-unknown-linux-gnu.zip -o /tmp/yazi.zip
+    pushd /tmp
+    unzip /tmp/yazi.zip
+    sudo cp /tmp/yazi-x86_64-unknown-linux-gnu/ya* /usr/local/bin
+    popd
+    rm -fr /tmp/yazi.zip /tmp/yazi-x86_64-unknown-linux-gnu
 }
 
 _install_tmux_plugin_manager() {
@@ -193,7 +202,7 @@ _install_fonts(){
 
 _stow_configs() {
     echo "==> Stowing configs"
-    stow btop cheat direnv ghostty git gitui homebrew kitty ncdu pip starship tmux zsh
+    stow btop cheat direnv ghostty git gitui homebrew kitty ncdu pip starship tmux yazi zsh
 }
 
 bootstrap_macos() {
