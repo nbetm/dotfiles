@@ -40,7 +40,7 @@ layout_activate() {
     fi
 }
 
-# https://github.com/direnv/direnv/wiki/Python#uv
+# Python environment management using uv (https://github.com/astral-sh/uv)
 layout_uv() {
     if [[ -d ".venv" ]]; then
         VIRTUAL_ENV="$(pwd)/.venv"

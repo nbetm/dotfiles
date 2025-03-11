@@ -151,8 +151,9 @@ fpath=("${HOME}/.zsh/completions" $fpath)
 # FZF Shell Completion
 source <(fzf --zsh)
 
-# uv Shell Completion
+# ruff and uv Shell Completion
 eval "$(uv generate-shell-completion zsh)"
+eval "$(ruff generate-shell-completion zsh)"
 
 # DIRENV
 eval "$(direnv hook zsh)"
