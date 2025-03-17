@@ -18,6 +18,9 @@ alias df='df -h -P'
 # History
 alias history='history -i'
 
+# bat vs cat
+alias cat='bat'
+
 # grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
