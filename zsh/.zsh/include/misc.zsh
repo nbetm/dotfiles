@@ -35,11 +35,12 @@ alias de='direnv'
 alias dea='direnv allow'
 
 # SSH
-alias ssh="TERM=xterm-256color ssh"
+alias ssh="TERM=xterm-256color /usr/bin/ssh"
 alias ssha="ssh-add -l"
-alias sshar="ssh-add -D && ssh-add ~/.ssh/id_ed25519-nbetm ~/.ssh/id_ed25519-nbetm-gh ~/.ssh/id_ed25519-rolo-devops-gh"
+alias sshar="ssh-add -D && ssh-add ~/.ssh/id_ed25519-nbetm ~/.ssh/id_ed25519-nbetm-gh"
 alias sshaD="ssh-add -D"
 alias kssh="kitty +kitten ssh"
+alias gssh="TERM=xterm-ghostty /usr/bin/ssh"
 
 # Tmux
 # alias tmux='[ -z "$TMUX" ] && TERM=xterm-256color tmux'
