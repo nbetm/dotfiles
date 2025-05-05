@@ -19,7 +19,7 @@ _print_usage() {
 
 _sudo_rule() {
     # check if sudo is installed
-    if ! type sudo > /dev/null; then
+    if ! type sudo >/dev/null; then
         >&2 echo "ERROR: sudo is not installed"
         exit 1
     fi
@@ -107,25 +107,28 @@ _install_linux_packages() {
     sudo apt-get clean
 
     # ncdu
+    local _ncdu_version=2.3
     echo "==> Installing package: ncdu"
-    curl -fsSL https://dev.yorhel.nl/download/ncdu-2.3-linux-x86_64.tar.gz -o /tmp/ncdu.tar.gz
+    curl -fsSL https://dev.yorhel.nl/download/ncdu-${_ncdu_version}-linux-x86_64.tar.gz -o /tmp/ncdu.tar.gz
     tar -xzf /tmp/ncdu.tar.gz -C /tmp
     sudo cp /tmp/ncdu /usr/local/bin/ncdu
     sudo chmod +x /usr/local/bin/ncdu
     rm -rf /tmp/ncdu.tar.gz /tmp/ncdu
 
     # gitui
+    local _gitui_version=0.26.3
     echo "==> Installing package: gitui"
-    curl -fsSL https://github.com/extrawurst/gitui/releases/download/v0.26.3/gitui-linux-x86_64.tar.gz -o /tmp/gitui.tar.gz
+    curl -fsSL https://github.com/extrawurst/gitui/releases/download/v${_gitui_version}/gitui-linux-x86_64.tar.gz -o /tmp/gitui.tar.gz
     tar -xzf /tmp/gitui.tar.gz -C /tmp
     sudo cp /tmp/gitui /usr/local/bin/gitui
     sudo chmod +x /usr/local/bin/gitui
     rm -rf /tmp/gitui.tar.gz /tmp/gitui
 
     # nvim
+    local _nvim_version=0.11.1
     local _custom_nvim_path=/usr/local/bin/nvim
     echo "==> Installing package: nvim"
-    curl -fsSL https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage -o /tmp/nvim.appimage
+    curl -fsSL https://github.com/neovim/neovim/releases/download/v${_nvim_version}/nvim-linux-x86_64.appimage -o /tmp/nvim.appimage
     sudo chmod +x /tmp/nvim.appimage
     sudo cp /tmp/nvim.appimage "$_custom_nvim_path"
     rm -rf /tmp/nvim.appimage
@@ -150,7 +153,8 @@ _install_linux_packages() {
 
     # fzf
     echo "==> Installing package: fzf"
-    if [ -d "$HOME/.fzf" ]; then
+    if [ ! -d "$HOME/.fzf" ]; then
+        mkdir -p "$HOME/.fzf"
         git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
     else
         pushd "$HOME/.fzf"
@@ -160,11 +164,12 @@ _install_linux_packages() {
     ~/.fzf/install --bin
 
     # yazi
+    local _yazi_version=25.3.2
     echo "==> Installing package: yazi"
-    curl -fsSL https://github.com/sxyazi/yazi/releases/download/v25.3.2/yazi-x86_64-unknown-linux-gnu.zip -o /tmp/yazi.zip
+    curl -fsSL https://github.com/sxyazi/yazi/releases/download/v${_yazi_version}/yazi-x86_64-unknown-linux-gnu.zip -o /tmp/yazi.zip
     pushd /tmp
     unzip /tmp/yazi.zip
-    sudo cp /tmp/yazi-x86_64-unknown-linux-gnu/ya* /usr/local/bin
+    sudo cp /tmp/yazi-x86_64-unknown-linux-gnu/{ya,yazi} /usr/local/bin
     popd
     rm -fr /tmp/yazi*
 
@@ -199,7 +204,7 @@ _install_uv() {
     curl -LsSf https://astral.sh/uv/install.sh | sh
 }
 
-_install_fonts(){
+_install_fonts() {
     echo "==> Setting up fonts"
     tar -zxf fonts/iosevka-n-fixed.tgz -C ~/Library/Fonts
     tar -zxf fonts/iosevka-n-quasi-proportional.tgz -C ~/Library/Fonts
@@ -238,18 +243,18 @@ bootstrap_linux() {
 }
 
 case ${OS_NAME} in
-    Darwin)
-        bootstrap_macos
-        ;;
-    Linux)
-        if [[ "${OS_ARCH}" != "x86_64" ]]; then
-            >&2 echo "ERROR: Unsupported OS and Arch: ${OS_NAME}-${OS_ARCH}"
-            exit 1
-        fi
-        bootstrap_linux
-        ;;
-    *)
-        >&2 echo "ERROR: Unsupported OS: ${OS_NAME}"
+Darwin)
+    bootstrap_macos
+    ;;
+Linux)
+    if [[ "${OS_ARCH}" != "x86_64" ]]; then
+        >&2 echo "ERROR: Unsupported OS and Arch: ${OS_NAME}-${OS_ARCH}"
         exit 1
-        ;;
+    fi
+    bootstrap_linux
+    ;;
+*)
+    >&2 echo "ERROR: Unsupported OS: ${OS_NAME}"
+    exit 1
+    ;;
 esac
