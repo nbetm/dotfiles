@@ -25,3 +25,10 @@ creds.json
 
 # Direnv
 .envrc
+
+# AI
+.aider*
+CONVENTIONS*.md
+.rules
+.*rules
+.github/copilot-instructions.md

@@ -1,16 +1,21 @@
 font-family = Iosevka N Term
 font-size = 14
-# font-thicken = true
-adjust-cell-height = 1
+font-thicken = true
+font-thicken-strength = 0
+adjust-cell-height = 2
+# background-opacity = 0.8
 
-theme = catppuccin-macchiato
+theme = nord
+
+title = " "
+macos-titlebar-proxy-icon = hidden
 
 shell-integration = zsh
 shell-integration-features = true
 cursor-style = block
 
 quick-terminal-position = top
-unfocused-split-opacity = 0.85
+unfocused-split-opacity = 0.90
 
 keybind = super+backspace=text:\x15
 keybind = global:super+shift+space=toggle_quick_terminal

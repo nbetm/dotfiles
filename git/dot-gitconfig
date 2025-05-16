@@ -46,10 +46,10 @@
     diffFilter = delta --color-only
 
 [include]
-    path = ~/.config/delta/themes/catppuccin.gitconfig
+    path = ~/.config/delta/themes.gitconfig
 
 [delta]
-    features = catppuccin-macchiato
+    features = nord
     navigate = true  # use n and N to move between diff sections
     dark = true      # or light = true, or omit for auto-detection
     line-numbers = true
