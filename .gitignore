@@ -1,6 +1,8 @@
 .idea/**
 
+*.log
+
 zsh/.zsh/cache/**
 zsh/.zsh/include/_*.zsh
 
-*.log
+tmux/.config/tmux/plugins/**
