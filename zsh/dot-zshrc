@@ -35,50 +35,43 @@ setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
 # Plugin Manager :: https://github.com/zplug/zplug
 # ------------------------------------------------------------------------------
 
-# Check if zplug is not installed, then init!
-if [[ ! -e "${HOME}/.zplug/init.zsh" ]]; then
-    curl -sL --proto-redir -all,https \
-        https://raw.githubusercontent.com/zplug/installer/master/installer.zsh \
-        | zsh
-fi
-source "${HOME}/.zplug/init.zsh"
+# Check if Zinit is not installed, then init!
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
 # https://www.github.com/zsh-users/zsh-autosuggestions
 # Fish-like fast/unobtrusive autosuggestions for zsh. When you type a command a
 # second time it shows up but is shaded, use the right arrow to fully complete
 # the command
-zplug "zsh-users/zsh-autosuggestions"
+zi light zsh-users/zsh-autosuggestions
 
 # https://www.github.com/zsh-users/zsh-completions
 # Additional completions for common command line tools
-zplug "zsh-users/zsh-completions"
+zi light zsh-users/zsh-completions
 
+# https://www.github.com/zsh-users/zsh-history-substring-search
 # You can type the beginning of a command and then use arrow keys to filter
 # previous commands in your history that share the same beginning
-# https://www.github.com/zsh-users/zsh-history-substring-search
-zplug "zsh-users/zsh-history-substring-search"
+zi snippet OMZ::plugins/git/git.plugin.zsh
+zi load zsh-users/zsh-history-substring-search
 
+# https://www.github.com/agkozak/zsh-z
 # Quick changing directories, z is a command line tool that allows you to jump
 # quickly to directories that you have visited frequently in the past, or
 # recently
-# https://www.github.com/agkozak/zsh-z
-zplug "agkozak/zsh-z"
+zi load agkozak/zsh-z
 
 # https://www.github.com/zsh-users/zsh-syntax-highlighting
 # Fish shell-like syntax highlighting for Zsh.
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-# Remove --verbose if you find the startup message annoying
-zplug load # --verbose
+zi light zsh-users/zsh-syntax-highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor)
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=red"
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=#81a1c1"
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
 
 # ------------------------------------------------------------------------------
 # Emacs Mode
@@ -149,23 +142,14 @@ if [[ $OS_NAME == "Darwin" ]]; then
 fi
 fpath=("${HOME}/.zsh/completions" $fpath)
 
-# FZF Shell Completion
+# FZF Shell
 source <(fzf --zsh)
-
-# ruff and uv Shell Completion
-eval "$(uv generate-shell-completion zsh)"
-eval "$(ruff generate-shell-completion zsh)"
 
 # DIRENV
 eval "$(direnv hook zsh)"
 
 # Starship Prompt
 eval "$(starship init zsh)"
-
-# SkyPilot
-if [[ -f "${HOME}/.sky/.sky-complete.zsh" ]]; then
-    source "${HOME}/.sky/.sky-complete.zsh"
-fi
 
 # ------------------------------------------------------------------------------
 # zmodules :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html
@@ -190,6 +174,16 @@ complete -o nospace -C packer packer
 
 # AWS
 complete -C aws_completer aws
+
+# ruff and uv Shell Completion
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+eval "$(ruff generate-shell-completion zsh)"
+
+# SkyPilot
+if [[ -f "${HOME}/.sky/.sky-complete.zsh" ]]; then
+    source "${HOME}/.sky/.sky-complete.zsh"
+fi
 
 # ------------------------------------------------------------------------------
 # zstyles :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fzutil-Module
@@ -250,3 +244,5 @@ if [[ -d "${HOME}/.zsh/include" ]]; then
         [[ -s $item ]] && source $item
     done
 fi
+
+# vim: ft=zsh

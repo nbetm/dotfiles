@@ -11,7 +11,6 @@ if [[ $OS_NAME == "Darwin" ]]; then
     # Additional Paths
     typeset -U path
     path=(
-        "${HOME}/.local/bin"
         "$XDG_BIN_HOME"
         "${XDG_DATA_HOME}/google-cloud-sdk/bin"
         "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
@@ -34,7 +33,6 @@ elif [[ $OS_NAME = "Linux" ]]; then
     # Additional Paths
     typeset -U path
     path=(
-        "${HOME}/.local/bin"
         "$XDG_BIN_HOME"
         "${XDG_DATA_HOME}/google-cloud-sdk/bin"
         "${HOME}/.fzf/bin"
@@ -48,3 +46,5 @@ elif [[ $OS_NAME = "Linux" ]]; then
     # Docker Rootless
     export DOCKER_HOST=unix:///run/user/1000/docker.sock
 fi
+
+# vim: ft=zsh

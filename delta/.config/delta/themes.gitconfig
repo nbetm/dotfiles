@@ -28,3 +28,5 @@
         bold yellow => syntax "#5d5a53"
     # Should match the name of the bat theme
     syntax-theme = Nord
+
+# vim: ft=conf

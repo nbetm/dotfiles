@@ -22,3 +22,5 @@ keybind = global:super+shift+space=toggle_quick_terminal
 
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
+
+# vim: ft=conf

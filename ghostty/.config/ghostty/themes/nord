@@ -21,3 +21,5 @@ cursor-text = #3b4252
 selection-background = #4c566a
 selection-foreground = #d8dee9
 split-divider-color = #434c5e
+
+# vim: ft=conf

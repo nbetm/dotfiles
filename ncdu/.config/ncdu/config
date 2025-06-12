@@ -9,3 +9,5 @@
 
 # Set color scheme to dark
 --color dark
+
+# vim: ft=conf

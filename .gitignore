@@ -2,3 +2,5 @@
 
 zsh/.zsh/cache/**
 zsh/.zsh/include/_*.zsh
+
+*.log
