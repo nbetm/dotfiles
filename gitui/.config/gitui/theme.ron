@@ -1,1 +1,23 @@
-catppuccin-macchiato.ron
+(
+    selected_tab: Some("Reset"),
+    command_fg: Some("#d8dee9"),
+    selection_bg: Some("#3b4252"),
+    selection_fg: Some("#d8dee9"),
+    cmdbar_bg: Some("#2e3440"),
+    cmdbar_extra_lines_bg: Some("#2e3440"),
+    disabled_fg: Some("#616e88"),
+    diff_line_add: Some("#a3be8c"),
+    diff_line_delete: Some("#bf616a"),
+    diff_file_added: Some("#a3be8c"),
+    diff_file_removed: Some("#bf616a"),
+    diff_file_moved: Some("#d08770"),
+    diff_file_modified: Some("#ebcb8b"),
+    commit_hash: Some("#a3be8c"),
+    commit_time: Some("#81a1c1"),
+    commit_author: Some("#88c0d0"),
+    danger_fg: Some("#bf616a"),
+    push_gauge_bg: Some("#81a1c1"),
+    push_gauge_fg: Some("#2e3440"),
+    tag_fg: Some("#b48ead"),
+    branch_fg: Some("#b48ead")
+)
