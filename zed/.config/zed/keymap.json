@@ -1,0 +1,27 @@
+[
+  {
+    "bindings": {
+      "alt-cmd-j": "workspace::ToggleRightDock",
+      "alt-cmd-i": "agent::ToggleFocus",
+      "shift-cmd-j": "workspace::ToggleBottomDock",
+      "shift-cmd-i": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // behave like ghostty, kitty, etc...
+      "cmd-d": "pane::SplitVertical",
+      "shift-cmd-d": "pane::SplitHorizontal",
+      "alt-cmd-left": "workspace::ActivatePaneLeft",
+      "alt-cmd-down": "workspace::ActivatePaneDown",
+      "alt-cmd-up": "workspace::ActivatePaneUp",
+      "alt-cmd-right": "workspace::ActivatePaneRight",
+      "ctrl-cmd-left": null,
+      "ctrl-cmd-down": "vim::ResizePaneDown",
+      "ctrl-cmd-up": "vim::ResizePaneUp",
+      "ctrl-cmd-right": null,
+      "shift-cmd-enter": "workspace::ToggleZoom"
+    }
+  }
+]

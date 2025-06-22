@@ -1,6 +1,9 @@
 .idea/**
+*.log
+
+zed/.config/zed/conversations/**
+zed/.config/zed/embeddings/**
+zed/.config/zed/prompts/**
 
 zsh/.zsh/cache/**
 zsh/.zsh/include/_*.zsh
-
-*.log
