@@ -45,10 +45,22 @@ source "${ZINIT_HOME}/zinit.zsh"
 # second time it shows up but is shaded, use the right arrow to fully complete
 # the command
 zi light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#616e88"
 
 # https://www.github.com/zsh-users/zsh-completions
 # Additional completions for common command line tools
 zi light zsh-users/zsh-completions
+
+# https://www.github.com/zsh-users/zsh-syntax-highlighting
+# Fish shell-like syntax highlighting for Zsh.
+zi light zsh-users/zsh-syntax-highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor)
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=red"
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=#81a1c1"
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
 
 # https://www.github.com/zsh-users/zsh-history-substring-search
 # You can type the beginning of a command and then use arrow keys to filter
@@ -61,17 +73,6 @@ zi load zsh-users/zsh-history-substring-search
 # quickly to directories that you have visited frequently in the past, or
 # recently
 zi load agkozak/zsh-z
-
-# https://www.github.com/zsh-users/zsh-syntax-highlighting
-# Fish shell-like syntax highlighting for Zsh.
-zi light zsh-users/zsh-syntax-highlighting
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor)
-ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=red"
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=#81a1c1"
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
 
 # ------------------------------------------------------------------------------
 # Emacs Mode

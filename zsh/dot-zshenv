@@ -29,14 +29,13 @@ export HISTSIZE=10000                  # Maximum events for internal history
 export SAVEHIST=10000                  # Maximum events in history file
 
 # FZF Color Scheme
-# Nord | https://github.com/junegunn/fzf/wiki/Color-schemes#nord
-export FZF_DEFAULT_OPTS=" \
-  --color=fg:#d8dee9,bg:#2e3440,hl:#a3be8c,fg+:#d8dee9,bg+:#434c5e,hl+:#a3be8c \
-  --color=pointer:#bf616a,info:#4c566a,spinner:#4c566a,header:#4c566a,prompt:#81a1c1,marker:#ebcb8b \
-  --color=selected-bg:#434c5e
-  --prompt='❱ ' \
-  --pointer='❱' \
-  --marker='❱'"
+export FZF_DEFAULT_OPTS='
+    --color=fg:#d8dee9,fg+:#d8dee9,bg:#2e3440,bg+:#3b4252
+    --color=hl:#88c0d0,hl+:#88c0d0,info:#616e88,marker:#b48ead
+    --color=prompt:#a3be8c,spinner:#ebcb8b,pointer:#88c0d0,header:#81a1c1
+    --color=border:#3b4252,label:#d8dee9,query:#d8dee9
+    --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
+    --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
 
 # PDSH
 export PDSH_RCMD_TYPE=ssh
