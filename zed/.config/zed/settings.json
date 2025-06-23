@@ -23,7 +23,9 @@
         "dock": "bottom",
         "font_family": "Iosevka N Term",
         "font_size": 14,
-        "line_height": "standard"
+        "line_height": "standard",
+        "cursor_shape": "bar",
+        "cursor_blink": true
     },
     "features": {
         "edit_prediction_provider": "zed"

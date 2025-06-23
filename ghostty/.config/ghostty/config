@@ -12,7 +12,7 @@ macos-titlebar-proxy-icon = hidden
 
 shell-integration = zsh
 shell-integration-features = true
-cursor-style = block
+cursor-style = bar
 
 quick-terminal-position = top
 unfocused-split-opacity = 0.90

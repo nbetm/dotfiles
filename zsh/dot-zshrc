@@ -55,7 +55,7 @@ zi light zsh-users/zsh-completions
 # Fish shell-like syntax highlighting for Zsh.
 zi light zsh-users/zsh-syntax-highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern)
 ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=red"
 ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
 ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
