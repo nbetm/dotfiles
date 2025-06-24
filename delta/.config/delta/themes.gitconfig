@@ -12,7 +12,7 @@
     line-numbers-plus-style = bold "#a3be8c"
     line-numbers-left-style = "#4c566a"
     line-numbers-right-style = "#4c566a"
-    line-numbers-zero-style = "#616e88"
+    line-numbers-zero-style = "#4c566a"
     # 25% red (#bf616a) 75% base (#2e3440)
     minus-emph-style = bold syntax "#523f4b"
     # 10% red (#bf616a) 90% base (#2e3440)
