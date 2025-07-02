@@ -27,8 +27,10 @@ creds.json
 .envrc
 
 # AI
-.aider*
-CONVENTIONS*.md
-.rules
 .*rules
+.aider*
+.claude/**
 .github/copilot-instructions.md
+.rules
+CLAUDE.md
+CONVENTIONS*.md

@@ -46,7 +46,6 @@ $swift\
 $terraform\
 $typst\
 $vlang\
-$vagrant\
 $zig\
 $buf\
 $nix_shell\
@@ -79,77 +78,147 @@ $character"""
 add_newline = true
 
 # Color palette
-palette = "nord"
+palette = "nord_deep"
 
-# ❱ ❯ ❭ ⟩ ⟫
+# Disable the package module, hiding it from the prompt completely
+[package]
+symbol = "󰋘 "
+format = "[$symbol$version]($style) "
+style = "bold nord_mist"
+# disabled = true
+
 [character]
-success_symbol = "[❱](nord14)"
-error_symbol = "[❱](nord11)"
-vimcmd_symbol = "[❰](nord14)"
+success_symbol = "[❱](bold nord_green)"
+error_symbol = "[❱](bold nord_red)"
+vimcmd_symbol = "[❰](bold nord_green)"
 
 [hostname]
 ssh_only = true
-style = "nord14"
+style = "nord_green"
 format = "[$hostname]($style) "
 
 [directory]
-style = "bold nord9"
+style = "bold nord_blue"
 truncation_symbol = "‥/"
 truncation_length = 3
 truncate_to_repo = false
 read_only = "  "
-read_only_style = "nord11"
-
-[git_status]
-style = "bold nord15"
+read_only_style = "nord_red"
 
 [git_branch]
-style = "bold nord15"
+style = "bold nord_magenta"
 symbol = " "
 truncation_symbol = "‥"
 truncation_length = 25
 format = "[$symbol$branch]($style) "
 
-[python]
-style = "bold nord13"
-symbol = ""
-format = "[${pyenv_prefix}(${version})( ⟮$virtualenv⟯)]($style) "
+[git_status]
+style = "bold nord_magenta"
+format = "([⟮$all_status$ahead_behind⟯]($style) )"
+ahead = "↑"
+behind = "↓"
+conflicted = "≠"
+deleted = "✘"
+diverged = "↕"
+modified = "!"
+renamed = "≫"
+staged = "✚"
+stashed = "Ֆ"
+untracked = "?"
 
+# symbols: 󰛸 󰅟 󰒍 󰹻 󰇅 󰢤 󰖟 󰆼 󰡨 󰅭
 [aws]
-style = "bold nord12"
-symbol = ""
-format = "[$symbol($profile)]($style) "
+style = "bold nord_orange"
+format = "[$symbol($profile)( ⟮$region⟯)]($style) "
+symbol = "󰛸 "
+[aws.region_aliases]
+us-east-1 = "ue1"
+us-east-2 = "ue2"
+us-west-1 = "uw1"
+us-west-2 = "uw2"
+eu-west-1 = "euw1"
+eu-west-2 = "euw2"
+eu-west-3 = "euw3"
+eu-central-1 = "ec1"
+ca-central-1 = "cc1"
+
+[gcloud]
+style = "bold nord_navy"
+symbol = "󰛸 "
+format = "[$symbol($project)(⟮$region⟯)]($style) "
+detect_env_vars = ["CLOUDSDK_ACTIVE_CONFIG_NAME"]
+[gcloud.project_aliases]
+sacred-reactor-416022 = "px-dev"
+[gcloud.region_aliases]
+europe-central2 = "ec2"
+europe-north1 = "en1"
+europe-north2 = "en2"
+europe-southwest1 = "se1"
+europe-west1 = "ew1"
+europe-west10 = "ew10"
+europe-west12 = "ew12"
+europe-west2 = "ew2"
+europe-west3 = "ew3"
+europe-west4 = "ew4"
+europe-west6 = "ew6"
+europe-west8 = "ew8"
+europe-west9 = "ew9"
+northamerica-northeast1 = "na1"
+northamerica-northeast2 = "na2"
+northamerica-south1 = "ns1"
+us-central1 = "uc1"
+us-east1 = "ue1"
+us-east4 = "ue4"
+us-east5 = "ue5"
+us-south1 = "us1"
+us-west1 = "uw1"
+us-west2 = "uw2"
+us-west3 = "uw3"
+us-west4 = "uw4"
+
+[python]
+style = "bold nord_yellow"
+symbol = "󰌠 "
+format = "[$symbol(${version})(⟮$virtualenv⟯)]($style) "
+pyenv_version_name = false
 
 [terraform]
-style = "bold #9999ed"
-symbol = ""
+style = "bold nord_lavender"
+symbol = "󱁢 "
 format = "[$symbol($workspace)]($style) "
 
 [lua]
-symbol = ""
-format = "[$symbol]($style)"
-disabled = true
+style = "bold nord_yellow"
+symbol = "󰢱 "
+format = "[$symbol($version)]($style) "
 
-[gcloud]
-disabled = true
+[nix_shell]
+symbol = "󱄅 "
+format = "[$symbol$state(⟮$name⟯)]($style) "
 
 [docker_context]
-disabled = true
+symbol = "󰡨 "
+format = "[$symbol$context]($style) "
+# disabled = true
 
-[palettes.nord]
-nord0 = "#2e3440"
-nord1 = "#3b4252"
-nord2 = "#434c5e"
-nord3 = "#4c566a"
-nord4 = "#d8dee9"
-nord5 = "#e5e9f0"
-nord6 = "#eceff4"
-nord7 = "#8fbcbb"
-nord8 = "#88c0d0"
-nord9 = "#81a1c1"
-nord10 = "#5e81ac"
-nord11 = "#bf616a"
-nord12 = "#d08770"
-nord13 = "#ebcb8b"
-nord14 = "#a3be8c"
-nord15 = "#b48ead"
+[palettes.nord_deep]
+nord_base = "#262c36"
+nord_surface = "#2e3440"
+nord_border = "#3b4252"
+nord_focus = "#434c5e"
+nord_muted = "#4c566a"
+nord_dim = "#7a8490"
+nord_mist = "#c0c8d8"
+nord_text = "#d0d7e4"
+nord_light = "#d8dee9"
+nord_bright = "#e5e9f0"
+nord_aqua = "#8fbcbb"
+nord_cyan = "#88c0d0"
+nord_blue = "#81a1c1"
+nord_navy = "#5e81ac"
+nord_red = "#bf616a"
+nord_orange = "#d08770"
+nord_yellow = "#ebcb8b"
+nord_green = "#a3be8c"
+nord_magenta = "#b48ead"
+nord_lavender = "#9d91c7"

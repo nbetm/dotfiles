@@ -5,7 +5,7 @@ palette = 3=#ebcb8b
 palette = 4=#81a1c1
 palette = 5=#b48ead
 palette = 6=#88c0d0
-palette = 7=#e5e9f0
+palette = 7=#d8dee9
 palette = 8=#4c566a
 palette = 9=#bf616a
 palette = 10=#a3be8c
@@ -13,13 +13,13 @@ palette = 11=#ebcb8b
 palette = 12=#81a1c1
 palette = 13=#b48ead
 palette = 14=#8fbcbb
-palette = 15=#eceff4
-background = #2e3440
-foreground = #d8dee9
-cursor-color = #d8dee9
+palette = 15=#e5e9f0
+background = #262c36
+foreground = #d0d7e4
+cursor-color = #d0d7e4
 cursor-text = #3b4252
 selection-background = #4c566a
-selection-foreground = #d8dee9
+selection-foreground = #d0d7e4
 split-divider-color = #434c5e
 
 # vim: ft=conf

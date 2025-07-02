@@ -1,11 +1,11 @@
+theme = nord-deep
+
 font-family = Iosevka N Term
 font-size = 14
 font-thicken = true
 font-thicken-strength = 0
 adjust-cell-height = 2
 # background-opacity = 0.8
-
-theme = nord
 
 title = " "
 macos-titlebar-proxy-icon = hidden
@@ -19,6 +19,7 @@ unfocused-split-opacity = 0.90
 
 keybind = super+backspace=text:\x15
 keybind = global:super+shift+space=toggle_quick_terminal
+keybind = shift+enter=text:\n
 
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
