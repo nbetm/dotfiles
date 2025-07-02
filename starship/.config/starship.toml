@@ -1,155 +1,198 @@
-# Editor completions
+# Editor Completions
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Prompt format
-format = """
-$hostname\
-$shlvl\
-$singularity\
-$kubernetes\
-$directory\
-$vcsh\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$docker_context\
-$package\
-$cmake\
-$dart\
-$elixir\
-$erlang\
-$gleam\
-$golang\
-$guix_shell\
-$haskell\
-$haxe\
-$helm\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$opa\
-$pulumi\
-$purescript\
-$python\
-$quarto\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$solidity\
-$swift\
-$terraform\
-$typst\
-$vlang\
-$vagrant\
-$zig\
-$buf\
-$nix_shell\
-$conda\
-$meson\
-$spack\
-$memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$nats\
-$direnv\
-$env_var\
-$crystal\
-$custom\
-$sudo\
-$cmd_duration\
-$line_break\
-$jobs\
-$battery\
-$time\
-$status\
-$os\
-$container\
-$shell\
-$character"""
+# Prompt Format
+format = "$all"
 
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Color palette
-palette = "nord"
+# Color Palette
+palette = "nord_deep"
 
-# ❱ ❯ ❭ ⟩ ⟫
+# Modules Settings
 [character]
-success_symbol = "[❱](nord14)"
-error_symbol = "[❱](nord11)"
-vimcmd_symbol = "[❰](nord14)"
+success_symbol = "[❱](bold nord_green)"
+error_symbol = "[❱](bold nord_red)"
+vimcmd_symbol = "[❰](bold nord_green)"
+
+[username]
+disabled = true
 
 [hostname]
 ssh_only = true
-style = "nord14"
+style = "bold nord_green"
 format = "[$hostname]($style) "
 
 [directory]
-style = "bold nord9"
+style = "bold nord_blue"
 truncation_symbol = "‥/"
 truncation_length = 3
 truncate_to_repo = false
 read_only = "  "
-read_only_style = "nord11"
-
-[git_status]
-style = "bold nord15"
+read_only_style = "nord_red"
 
 [git_branch]
-style = "bold nord15"
+style = "bold nord_magenta"
 symbol = " "
 truncation_symbol = "‥"
 truncation_length = 25
 format = "[$symbol$branch]($style) "
 
-[python]
-style = "bold nord13"
-symbol = ""
-format = "[${pyenv_prefix}(${version})( ⟮$virtualenv⟯)]($style) "
+[git_state]
+style = "bold nord_magenta"
+format = "⟮[$state( $progress_current/$progress_total)]($style)⟯ "
 
-[aws]
-style = "bold nord12"
-symbol = ""
-format = "[$symbol($profile)]($style) "
+[git_status]
+style = "bold nord_magenta"
+format = "([⟮$all_status$ahead_behind⟯]($style) )"
+ahead = "↑"
+behind = "↓"
+conflicted = "≠"
+deleted = "✘"
+diverged = "↕"
+modified = "!"
+renamed = "≫"
+staged = "✚"
+stashed = "Ֆ"
+untracked = "?"
+
+[package]
+symbol = "󰋘 "
+format = "[$symbol$version]($style) "
+style = "bold nord_mist"
+
+[python]
+style = "bold nord_yellow"
+symbol = "󰌠 "
+format = "[$symbol(${version})( ⟮$virtualenv⟯)]($style) "
+pyenv_version_name = false
 
 [terraform]
-style = "bold #9999ed"
-symbol = ""
+style = "bold nord_lavender"
+symbol = "󱁢 "
 format = "[$symbol($workspace)]($style) "
 
 [lua]
-symbol = ""
-format = "[$symbol]($style)"
+style = "bold nord_yellow"
+symbol = "󰢱 "
+format = "[$symbol($version)]($style) "
+
+[rust]
+style = "bold nord_yellow"
+symbol = "󱘗 "
+format = "[$symbol($version)]($style) "
+
+[nodejs]
+style = "bold nord_green"
+symbol = "󰌞 "
+format = "[$symbol($version)]($style) "
 disabled = true
 
-[gcloud]
+[vagrant]
+style = "bold nord_cyan"
+symbol = "󰒓 "
+format = "[$symbol($version)]($style) "
 disabled = true
+
+[nix_shell]
+style = "bold nord_aqua"
+symbol = "󱄅 "
+format = "[$symbol$state( ⟮$name⟯)]($style) "
 
 [docker_context]
-disabled = true
+style = "bold nord_blue"
+symbol = "󰡨 "
+format = "[$symbol$context]($style) "
 
-[palettes.nord]
-nord0 = "#2e3440"
-nord1 = "#3b4252"
-nord2 = "#434c5e"
-nord3 = "#4c566a"
-nord4 = "#d8dee9"
-nord5 = "#e5e9f0"
-nord6 = "#eceff4"
-nord7 = "#8fbcbb"
-nord8 = "#88c0d0"
-nord9 = "#81a1c1"
-nord10 = "#5e81ac"
-nord11 = "#bf616a"
-nord12 = "#d08770"
-nord13 = "#ebcb8b"
-nord14 = "#a3be8c"
-nord15 = "#b48ead"
+# symbols: 󰛸 󰅟 󰒍 󰹻 󰇅 󰢤 󰖟 󰆼 󰡨 󰅭
+[aws]
+style = "bold nord_orange"
+format = "[$symbol($profile)( ⟮$region⟯)]($style) "
+symbol = "󰛸 "
+[aws.region_aliases]
+us-east-1 = "ue1"
+us-east-2 = "ue2"
+us-west-1 = "uw1"
+us-west-2 = "uw2"
+eu-west-1 = "euw1"
+eu-west-2 = "euw2"
+eu-west-3 = "euw3"
+eu-central-1 = "ec1"
+ca-central-1 = "cc1"
+
+[gcloud]
+style = "bold nord_navy"
+symbol = "󰛸 "
+format = "[$symbol($project)( ⟮$region⟯)]($style) "
+detect_env_vars = ["CLOUDSDK_ACTIVE_CONFIG_NAME"]
+[gcloud.project_aliases]
+sacred-reactor-416022 = "px-dev"
+[gcloud.region_aliases]
+europe-central2 = "ec2"
+europe-north1 = "en1"
+europe-north2 = "en2"
+europe-southwest1 = "se1"
+europe-west1 = "ew1"
+europe-west10 = "ew10"
+europe-west12 = "ew12"
+europe-west2 = "ew2"
+europe-west3 = "ew3"
+europe-west4 = "ew4"
+europe-west6 = "ew6"
+europe-west8 = "ew8"
+europe-west9 = "ew9"
+northamerica-northeast1 = "na1"
+northamerica-northeast2 = "na2"
+northamerica-south1 = "ns1"
+us-central1 = "uc1"
+us-east1 = "ue1"
+us-east4 = "ue4"
+us-east5 = "ue5"
+us-south1 = "us1"
+us-west1 = "uw1"
+us-west2 = "uw2"
+us-west3 = "uw3"
+us-west4 = "uw4"
+
+[os.symbols]
+Android = "󰀲 "
+Arch = "󰣇 "
+CentOS = "󱄚 "
+Debian = "󰣚 "
+Fedora = "󰣛 "
+FreeBSD = "󰣠 "
+Gentoo = "󰣨 "
+Linux = "󰌽 "
+Macos = "󰀵 "
+Manjaro = "󱘊 "
+Mint = "󰣭 "
+NixOS = "󱄅 "
+Raspbian = "󰐿 "
+Redhat = "󱄛 "
+RedHatEnterprise = "󱄛 "
+RockyLinux = "󱄛 "
+Ubuntu = "󰕈 "
+Windows = "󰖳 "
+
+[palettes.nord_deep]
+nord_base = "#262c36"
+nord_surface = "#2e3440"
+nord_border = "#3b4252"
+nord_focus = "#434c5e"
+nord_muted = "#4c566a"
+nord_dim = "#7a8490"
+nord_mist = "#c0c8d8"
+nord_text = "#d0d7e4"
+nord_light = "#d8dee9"
+nord_bright = "#e5e9f0"
+nord_aqua = "#8fbcbb"
+nord_cyan = "#88c0d0"
+nord_blue = "#81a1c1"
+nord_navy = "#5e81ac"
+nord_red = "#bf616a"
+nord_orange = "#d08770"
+nord_yellow = "#ebcb8b"
+nord_green = "#a3be8c"
+nord_magenta = "#b48ead"
+nord_lavender = "#9d91c7"

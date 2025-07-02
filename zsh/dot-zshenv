@@ -28,12 +28,12 @@ export HISTFILE="${HOME}/.zsh_history" # History filepath
 export HISTSIZE=10000                  # Maximum events for internal history
 export SAVEHIST=10000                  # Maximum events in history file
 
-# FZF Color Scheme
+# FZF Color Scheme | Nord Deep
 export FZF_DEFAULT_OPTS='
-    --color=fg:#d8dee9,fg+:#d8dee9,bg:#2e3440,bg+:#3b4252
-    --color=hl:#88c0d0,hl+:#88c0d0,info:#616e88,marker:#b48ead
+    --color=fg:#d0d7e4,fg+:#d0d7e4,bg:#262c36,bg+:#3b4252
+    --color=hl:#88c0d0,hl+:#88c0d0,info:#7a8490,marker:#b48ead
     --color=prompt:#a3be8c,spinner:#ebcb8b,pointer:#88c0d0,header:#81a1c1
-    --color=border:#3b4252,label:#d8dee9,query:#d8dee9
+    --color=border:#3b4252,label:#d0d7e4,query:#d0d7e4
     --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
     --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
 

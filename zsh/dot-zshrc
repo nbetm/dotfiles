@@ -45,7 +45,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # second time it shows up but is shaded, use the right arrow to fully complete
 # the command
 zi light zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#616e88"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4c566a"
 
 # https://www.github.com/zsh-users/zsh-completions
 # Additional completions for common command line tools
