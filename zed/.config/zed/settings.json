@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "project_panel": {
-        "hide_gitignore": false,
+        "hide_gitignore": true,
         "folder_icons": true
     },
     "edit_predictions": {
@@ -96,7 +96,6 @@
         "Shell Script": [
             "**/completions/_*",
             "**/zsh/**/dot-z*",
-            "dir_colors",
             "dot-direnvrc"
         ],
         "tmux": [
@@ -152,7 +151,7 @@
         },
         "tmux": {
             "tab_size": 2
-        },
+        }
     },
     "lsp": {
         "pyright": {

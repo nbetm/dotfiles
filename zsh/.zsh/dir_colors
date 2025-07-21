@@ -150,16 +150,27 @@ OTHER_WRITABLE        01;04;34
 .msi 01;35
 .rpm 01;35
 
-# Encryption | bold-magenta
+# Encryption/Security | bold-magenta
 .aes 01;35
 .asc 01;35
 .enc 01;35
 .gpg 01;35
 .pgp 01;35
+.p12 01;35
+.pfx 01;35
+.pem 01;35
+.crt 01;35
+.cer 01;35
+.key 01;35
+.pub 01;35
 
 # Databases | bold-magenta
-.db     01;35
-.sqlite 01;35
+.accdb   01;35
+.db      01;35
+.dbf     01;35
+.mdb     01;35
+.sqlite  01;35
+.sqlite3 01;35
 
 # Unimportant | dim-italic-white
 *#        02;03;37

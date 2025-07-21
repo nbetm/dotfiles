@@ -8,6 +8,12 @@
         }
     },
     {
+        "context": "ProjectPanel && not_editing",
+        "bindings": {
+            ".": "project_panel::ToggleHideGitIgnore"
+        }
+    },
+    {
         "context": "Terminal",
         "bindings": {
             // behave like ghostty, kitty, etc...

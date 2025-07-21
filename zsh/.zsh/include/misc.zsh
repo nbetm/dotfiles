@@ -50,9 +50,10 @@ alias tsl='tmux list-sessions'
 alias twr='tmux renamew $(basename $(pwd))'
 
 # vim/nvim
-alias vim='nvim'
+alias v='nvim'
 alias vi='nvim'
-alias v="NVIM_APPNAME=vnext nvim"
+alias vim='nvim'
+alias vn="NVIM_APPNAME=vnext nvim"
 
 # Homebrew
 if [[ $OS_NAME == "Darwin" ]]; then
@@ -282,5 +283,9 @@ uv-python-symlinks() {
 }
 
 # Claude Code
-alias claude="/Users/nbetm/.claude/local/claude"
 alias c="/Users/nbetm/.claude/local/claude"
+alias claude="/Users/nbetm/.claude/local/claude"
+
+# Yazi
+alias y=yazi
+alias yz=yazi

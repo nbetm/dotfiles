@@ -662,7 +662,7 @@
                     "title": {
                         "color": "#88c0d0",
                         "font_style": null,
-                        "font_weight": 700
+                        "font_weight": null
                     },
                     "type": {
                         "color": "#8fbcbb",
