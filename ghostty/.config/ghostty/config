@@ -1,3 +1,5 @@
+# vim: set ft=conf :
+
 theme = nord-deep
 
 font-family = Iosevka N Term
@@ -23,5 +25,3 @@ keybind = shift+enter=text:\n
 
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
-
-# vim: ft=conf

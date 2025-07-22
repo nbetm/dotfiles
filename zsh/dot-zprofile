@@ -1,3 +1,4 @@
+# vim: set ft=zsh :
 # shellcheck disable=all
 
 if [[ $OS_NAME == "Darwin" ]]; then
@@ -46,5 +47,3 @@ elif [[ $OS_NAME = "Linux" ]]; then
     # Docker Rootless
     export DOCKER_HOST=unix:///run/user/1000/docker.sock
 fi
-
-# vim: ft=zsh

@@ -50,11 +50,11 @@
 
 [delta]
     features = nord-deep
-    navigate = true  # use n and N to move between diff sections
-    dark = true      # or light = true, or omit for auto-detection
+    navigate = true
+    dark = true
     line-numbers = true
     hyperlinks = true
-    hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+    hyperlinks-file-link-format = "zed://file/{path}:{line}"
     side-by-side = false
 
 [pull]

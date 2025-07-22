@@ -1,4 +1,5 @@
 #compdef docker dockerd
+# vim: set ft=zsh sw=4 ts=4 et :
 #
 # zsh completion for docker (http://docker.com)
 #
@@ -3114,11 +3115,3 @@ _dockerd() {
 }
 
 _docker "$@"
-
-# Local Variables:
-# mode: Shell-Script
-# sh-indentation: 4
-# indent-tabs-mode: nil
-# sh-basic-offset: 4
-# End:
-# vim: ft=zsh sw=4 ts=4 et

@@ -1,3 +1,5 @@
+# vim: set ft=conf :
+
 # Always enable extended mode
 -e
 
@@ -9,5 +11,3 @@
 
 # Set color scheme to dark
 --color dark
-
-# vim: ft=conf

@@ -1,3 +1,5 @@
+# vim: set ft=conf :
+
 [delta "nord-deep"]
     blame-palette = "#262c36 #2e3440 #3b4252 #434c5e #4c566a"
     dark = true
@@ -28,5 +30,3 @@
         bold yellow => syntax "#59564f"
     # Should match the name of the bat theme
     syntax-theme = nord-deep
-
-# vim: ft=conf

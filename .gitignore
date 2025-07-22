@@ -11,3 +11,4 @@ zsh/.zsh/include/_*.zsh
 claude/
 
 .vscode/
+.zed/

@@ -9,9 +9,9 @@ Thumbs.db
 log/**
 *.log
 
-# VSCode
-.vscode
-terraform-ls.tf
+# IDEs
+.vscode/**
+.zed/**
 
 # General
 .idea/**

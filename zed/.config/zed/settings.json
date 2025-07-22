@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "project_panel": {
-        "hide_gitignore": true,
+        "hide_gitignore": false,
         "folder_icons": true
     },
     "edit_predictions": {
@@ -91,16 +91,6 @@
         "terraform": true,
         "toml": true,
         "zig": true
-    },
-    "file_types": {
-        "Shell Script": [
-            "**/completions/_*",
-            "**/zsh/**/dot-z*",
-            "dot-direnvrc"
-        ],
-        "tmux": [
-            "**/tmux/**/*.conf"
-        ]
     },
     "formatter": "auto",
     "format_on_save": "language_server",

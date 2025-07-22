@@ -1,3 +1,4 @@
+# vim: set ft=zsh :
 # shellcheck disable=all
 
 # ------------------------------------------------------------------------------
@@ -245,5 +246,3 @@ if [[ -d "${HOME}/.zsh/include" ]]; then
         [[ -s $item ]] && source $item
     done
 fi
-
-# vim: ft=zsh
