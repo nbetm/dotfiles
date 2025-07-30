@@ -1,5 +1,4 @@
 .idea/
-*.log
 
 zed/.config/zed/conversations/**
 zed/.config/zed/embeddings/**

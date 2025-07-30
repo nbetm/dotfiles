@@ -6,22 +6,18 @@ Thumbs.db
 *~
 
 # Log Files
-log/**
+log/
+logs/
 *.log
+*.log.*
 
 # IDEs
-.vscode/**
-.zed/**
+.vscode
+.zed
 
 # General
-.idea/**
+.idea
 creds.json
-
-# Python
-*.pyc
-
-# Terraform
-*.tfplan
 
 # Direnv
 .envrc
@@ -29,8 +25,10 @@ creds.json
 # AI
 .*rules
 .aider*
-.claude/**
+.claude
 .github/copilot-instructions.md
 .rules
 CLAUDE.md
 CONVENTIONS*.md
+checkpoint.md
+handoff.md
