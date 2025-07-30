@@ -8,7 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "project_panel": {
-        "hide_gitignore": false,
+        "hide_gitignore": true,
         "folder_icons": true
     },
     "edit_predictions": {
@@ -64,20 +64,6 @@
     "collaboration_panel": {
         "dock": "left"
     },
-    "ssh_connections": [
-        {
-            "host": "aphrodite",
-            "projects": [
-                {
-                    "paths": [
-                        "/home/nbetm/work/elvex/api",
-                        "/home/nbetm/work/elvex/iac",
-                        "/home/nbetm/work/px/px"
-                    ]
-                }
-            ]
-        }
-    ],
     "icon_theme": "Zed (Default)",
     "theme": "Nord Deep",
     "telemetry": {
@@ -141,6 +127,10 @@
         },
         "tmux": {
             "tab_size": 2
+        },
+        "Markdown": {
+            "format_on_save": "prettier",
+            "allow_rewrap": "anywhere"
         }
     },
     "lsp": {

@@ -1,16 +1,30 @@
 [
     {
         "bindings": {
-            "alt-cmd-j": "workspace::ToggleRightDock",
-            "alt-cmd-i": "agent::ToggleFocus",
-            "shift-cmd-j": "workspace::ToggleBottomDock",
+            // "alt-cmd-j": "workspace::ToggleRightDock",
+            // "alt-cmd-i": "agent::ToggleFocus",
+            // "shift-cmd-j": "workspace::ToggleBottomDock",
             "shift-cmd-i": "terminal_panel::ToggleFocus"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "ctrl-w V": "workspace::NewFileSplitVertical",
+            "ctrl-w S": "workspace::NewFileSplitHorizontal"
         }
     },
     {
         "context": "ProjectPanel && not_editing",
         "bindings": {
-            ".": "project_panel::ToggleHideGitIgnore"
+            "s": null,
+            "%": null,
+            ".": "project_panel::ToggleHideGitIgnore",
+            "H": "project_panel::ToggleHideGitIgnore",
+            "o": "project_panel::Open",
+            "n": "project_panel::NewFile",
+            "cmd+delete": "project_panel::Trash",
+            "shift+delete": "project_panel::Delete"
         }
     },
     {
@@ -27,7 +41,16 @@
             "ctrl-cmd-down": "vim::ResizePaneDown",
             "ctrl-cmd-up": "vim::ResizePaneUp",
             "ctrl-cmd-right": null,
-            "shift-cmd-enter": "workspace::ToggleZoom"
+            "shift-cmd-enter": "workspace::ToggleZoom",
+            "cmd-1": null,
+            "cmd-2": null,
+            "cmd-3": null,
+            "cmd-4": null,
+            "cmd-5": null,
+            "cmd-6": null,
+            "cmd-7": null,
+            "cmd-8": null,
+            "cmd-9": null
         }
     }
 ]
