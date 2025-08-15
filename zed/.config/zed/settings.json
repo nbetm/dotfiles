@@ -8,11 +8,11 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "project_panel": {
-        "hide_gitignore": true,
+        "hide_gitignore": false,
         "folder_icons": true
     },
     "edit_predictions": {
-        "mode": "eager",
+        "mode": "subtle",
         "copilot": {
             "proxy": null,
             "proxy_no_verify": null,
@@ -80,6 +80,13 @@
     },
     "formatter": "auto",
     "format_on_save": "language_server",
+    "file_types": {
+        "Shell Script": [
+            ".env",
+            ".env.*",
+            ".envrc"
+        ]
+    },
     "languages": {
         "Python": {
             "language_servers": [

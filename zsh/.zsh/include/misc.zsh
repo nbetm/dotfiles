@@ -283,8 +283,8 @@ uv-python-symlinks() {
 }
 
 # Claude Code
-alias c="/Users/nbetm/.claude/local/claude"
-alias claude="/Users/nbetm/.claude/local/claude"
+alias c="${HOME}/.claude/local/claude"
+alias claude="${HOME}/.claude/local/claude"
 
 # Yazi
 alias y=yazi
