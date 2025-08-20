@@ -57,21 +57,25 @@ alias vn="NVIM_APPNAME=vnext nvim"
 
 # Homebrew
 if [[ $OS_NAME == "Darwin" ]]; then
-    alias bupd='brew update'
-    alias bupdate='brew update'
-    alias bupg='brew upgrade --greedy-auto-updates'
-    alias bupgrade='brew upgrade --greedy-auto-updates'
-    alias bcl='brew cleanup'
-    alias bclean='brew cleanup'
-    alias bcleanup='brew cleanup'
+    alias bupd="brew update"
+    alias bupdate="brew update"
+    alias bupg="brew upgrade --greedy-auto-updates"
+    alias bupgrade="brew upgrade --greedy-auto-updates"
+    alias bclean="brew cleanup"
+    alias bcleanup="brew cleanup"
 
-    alias bb='brew bundle --global'
-    alias bbd='/bin/rm -f $HOME/._Brewfile && brew bundle dump --cask --formula --tap --file $HOME/._Brewfile && sort -o $HOME/._Brewfile{,}'
-    alias bbdump='/bin/rm -f $HOME/._Brewfile && brew bundle dump --cask --formula --tap --file $HOME/._Brewfile && sort -o $HOME/._Brewfile{,}'
-    alias bbc='brew bundle check --global'
-    alias bbcheck='brew bundle check --global'
-    alias bbi='brew bundle install --global'
-    alias bbinstall='brew bundle install --global'
+    # Homebrew Bundle
+    alias bb="brew bundle --global"
+    alias bbd="brew bundle dump --global --force --all"
+    alias bbdump="brew bundle dump --global --force --all"
+    alias bbc="brew bundle check --global"
+    alias bbcheck="brew bundle check --global"
+    alias bbi="brew bundle install --global"
+    alias bbinstall="brew bundle install --global"
+    alias bbupg="brew bundle upgrade --global"
+    alias bbupgrade="brew bundle upgrade --global"
+    alias bbclean="brew bundle cleanup --global"
+    alias bbcleanup="brew bundle cleanup --global"
 fi
 
 # Python
