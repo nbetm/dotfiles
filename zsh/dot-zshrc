@@ -138,7 +138,6 @@ if [[ $OS_NAME == "Darwin" ]]; then
     fpath=(
         "${HOMEBREW_PREFIX}/share/zsh/site-functions"
         "${HOMEBREW_PREFIX}/opt/curl/share/zsh/site-functions"
-        "/opt/vagrant/embedded/gems/gems/vagrant-2.4.7/contrib/zsh"
         $fpath
     )
 fi
