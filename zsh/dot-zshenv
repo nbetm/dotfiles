@@ -60,3 +60,6 @@ export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p
 
 # Zinit
 export ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+
+# Libvirt
+export LIBVIRT_DEFAULT_URI=qemu:///system
