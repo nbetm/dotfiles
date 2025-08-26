@@ -1,0 +1,112 @@
+# Python
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+auto-format = true
+formatter = { command = "ruff", args = [
+    "format",
+    "--stdin-filename",
+    "dummy.py",
+    "-",
+] }
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config.python.analysis]
+diagnosticMode = "openFilesOnly"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+# Bash/Shell
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server"]
+auto-format = true
+formatter = { command = "shfmt", args = ["-i", "4", "-"] }
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.bash-language-server]
+command = "bash-language-server"
+args = ["start"]
+
+[language-server.bash-language-server.config]
+bashIde.shellcheckPath = "shellcheck"
+
+# JSON
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+auto-format = true
+formatter = { command = "jq", args = ["--indent", "4", "."] }
+indent = { tab-width = 4, unit = "    " }
+
+# JSONC (JSON with Comments) - prettier handles comments better
+[[language]]
+name = "jsonc"
+language-servers = ["vscode-json-language-server"]
+auto-format = true
+formatter = { command = "prettier", args = [
+    "--parser",
+    "json",
+    "--tab-width",
+    "4",
+] }
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+# YAML
+[[language]]
+name = "yaml"
+language-servers = ["yaml-language-server"]
+auto-format = true
+formatter = { command = "yq", args = ["."] }
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.yaml-language-server]
+command = "yaml-language-server"
+args = ["--stdio"]
+
+# TOML
+[[language]]
+name = "toml"
+language-servers = ["taplo"]
+auto-format = true
+formatter = { command = "taplo", args = ["format", "-"] }
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.taplo]
+command = "taplo"
+args = ["lsp", "stdio"]
+
+# Jinja2 templates
+[[language]]
+name = "jinja"
+language-servers = ["jinja-lsp"]
+auto-format = false
+
+[language-server.jinja-lsp]
+command = "jinja-lsp"
+args = []
+
+# Markdown
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+auto-format = true
+formatter = { command = "prettier", args = [
+    "--parser",
+    "markdown",
+    "--prose-wrap",
+    "preserve",
+] }
+
+[language-server.marksman]
+command = "marksman"
+args = ["server"]

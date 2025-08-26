@@ -264,6 +264,11 @@
                         "font_style": null,
                         "font_weight": null
                     },
+                    "diff.delta": {
+                        "color": "#ebcb8b",
+                        "font_style": null,
+                        "font_weight": null
+                    },
                     "diff.minus": {
                         "color": "#bf616a",
                         "font_style": null,

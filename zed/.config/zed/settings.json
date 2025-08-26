@@ -22,6 +22,7 @@
     },
     "helix_mode": true,
     "agent_font_size": 18,
+    "buffer_line_height": "standard",
     "ui_font_family": "Iosevka N Quasi-Proportional",
     "ui_font_size": 16,
     "buffer_font_family": "Iosevka N",
