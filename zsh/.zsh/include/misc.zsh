@@ -1,58 +1,67 @@
 # shellcheck disable=all
 
 # Directories Listings
-alias ls='ls --color=auto'
-alias ll='ls --all --human-readable --classify -l'
-alias l1='ls --almost-all -1'
-alias lw='l1 | wc -l'
-alias l='ll'
+alias ls="ls --color=auto"
+alias ll="ls --all --human-readable --classify -l"
+alias l1="ls --almost-all -1"
+alias lw="l1 | wc -l"
+alias l="ll"
 
 # Verbose/Interactive File Operations
-alias cp='cp -v -i'
-alias mv='mv -v -i'
-alias rm='rm -v -i'
+alias cp="cp -v -i"
+alias mv="mv -v -i"
+alias rm="rm -v -i"
 
 # File System Listings
-alias df='df -h -P'
+alias df="df -h -P"
 
 # History
-alias history='history -i'
+alias history="history -i"
 
 # bat vs cat
-alias cat='bat'
+alias cat="bat"
 
 # grep
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 
 # sudo
-alias s='sudo'
-alias ssu='sudo su -'
+alias s="sudo"
+alias ssu="sudo su -"
 
 # Direnv
-alias de='direnv'
-alias dea='direnv allow'
+alias de="direnv"
+alias dea="direnv allow"
 
 # SSH
-alias ssh="TERM=xterm-256color /usr/bin/ssh"
+ssh() {
+    # Always override TERM for SSH, even in tmux Remote servers often don't have
+    # tmux-* terminfo entries
+
+    if [[ -n "$KITTY_PID" ]]; then
+        # Kitty kitten handles terminfo deployment automatically
+        kitty +kitten ssh "$@"
+    else
+        # Fallback - use widely compatible TERM
+        TERM=xterm-256color command ssh "$@"
+    fi
+}
+alias gssh="TERM=xterm-ghostty command ssh"
 alias ssha="ssh-add -l"
 alias sshar="ssh-add -D && ssh-add ~/.ssh/id_ed25519-nbetm ~/.ssh/id_ed25519-nbetm-gh"
 alias sshaD="ssh-add -D"
-alias kssh="kitty +kitten ssh"
-alias gssh="TERM=xterm-ghostty /usr/bin/ssh"
 
 # Tmux
-# alias tmux='[ -z "$TMUX" ] && TERM=xterm-256color tmux'
-alias t='tmux'
-alias tsn='tmux new -As'
-alias tsl='tmux list-sessions'
+alias t="tmux"
+alias tsn="tmux new -As"
+alias tsl="tmux list-sessions"
 alias twr='tmux renamew $(basename $(pwd))'
 
 # vim/nvim
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
 alias vn="NVIM_APPNAME=vnext nvim"
 
 # Homebrew
@@ -224,7 +233,7 @@ sslinfo() {
 # alternatives:
 #   msgcat --color=test
 colortest() {
-    T='gYw' # The test text
+    T="gYw" # The test text
     echo -e "\n                 40m     41m     42m     43m     44m     45m     46m     47m"
     for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' \
         '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' \
@@ -251,8 +260,8 @@ uv-python-symlinks() {
     for ITEM in "${UVDIR}"/*; do
         BASEITEM=$(basename "${ITEM}")
 
-        FULLVERSION=$(echo "${BASEITEM}" | cut -d'-' -f 2)
-        MINORVERSION=$(echo "${FULLVERSION}" | rev | cut -f 2- -d '.' | rev)
+        FULLVERSION=$(echo "${BASEITEM}" | cut -d "-" -f 2)
+        MINORVERSION=$(echo "${FULLVERSION}" | rev | cut -f 2- -d "." | rev)
         DEST="${LOCALBIN}/python${MINORVERSION}"
 
         if [[ -L "${DEST}" ]]; then

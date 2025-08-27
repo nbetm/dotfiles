@@ -194,46 +194,46 @@ fi
 # ------------------------------------------------------------------------------
 
 # Define completers
-zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ":completion:*" completer _extensions _complete _approximate
 
 # Complete the alias when _expand_alias is used as a function
-zstyle ':completion:*' complete true
+zstyle ":completion:*" complete true
 zle -C alias-expension complete-word _generic
-# bindkey '^Xa' alias-expension
-zstyle ':completion:alias-expension:*' completer _expand_alias
+# bindkey "^Xa" alias-expension
+zstyle ":completion:alias-expension:*" completer _expand_alias
 
 # Autocomplete options for cd instead of directory stack
-zstyle ':completion:*' complete-options true
-zstyle ':completion:*' file-sort modification
+zstyle ":completion:*" complete-options true
+zstyle ":completion:*" file-sort modification
 
 # Only display some tags for the command cd
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ":completion:*:*:cd:*" tag-order local-directories directory-stack path-directories
 
 # Colors for files and directory
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+# zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS}
+zstyle ":completion:*:*:*:*:default" list-colors ${(s.:.)LS_COLORS}
 
 # Auto-complete will group matches and describe.
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%d'
-zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*' verbose yes
+zstyle ":completion:*:*:*:*:*" menu select
+zstyle ":completion:*:matches" group "yes"
+zstyle ":completion:*:options" description "yes"
+zstyle ":completion:*:options" auto-description "%d"
+zstyle ":completion:*:corrections" format "%F{green}-- %d (errors: %e) --%f"
+zstyle ":completion:*:descriptions" format "%F{yellow}-- %d --%f"
+zstyle ":completion:*:messages" format "%F{purple} -- %d --%f"
+zstyle ":completion:*:warnings" format "%F{red}-- no matches found --%f"
+zstyle ":completion:*:default" list-prompt "%S%M matches%s"
+zstyle ":completion:*" format "%F{yellow}-- %d --%f"
+zstyle ":completion:*" verbose yes
 
 # Required for completion to be in good groups (named after the tags)
-zstyle ':completion:*' group-name ''
+zstyle ":completion:*" group-name ""
 
 # Allow for autocomplete to be case insensitive
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|?=** r:|?=**'
+zstyle ":completion:*" matcher-list "" "m:{[:lower:][:upper:]}={[:upper:][:lower:]}" "+l:|?=** r:|?=**"
 
 # SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+zstyle -e ":completion:*:(ssh|scp|sftp|rsh|rsync):hosts" hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # ------------------------------------------------------------------------------
 # Misc
