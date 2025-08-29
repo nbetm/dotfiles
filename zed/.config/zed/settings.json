@@ -135,6 +135,10 @@
         "tmux": {
             "tab_size": 2
         },
+        "YAML": {
+            "format_on_save": "language_server",
+            "tab_size": 2
+        },
         "Markdown": {
             "format_on_save": "prettier",
             "allow_rewrap": "anywhere"
