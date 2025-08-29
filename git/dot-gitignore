@@ -31,7 +31,7 @@ creds.json
 .claude
 .github/copilot-instructions.md
 .rules
-CLAUDE.md
+CLAUDE*.md
 CONVENTIONS*.md
 checkpoint.md
 handoff.md
