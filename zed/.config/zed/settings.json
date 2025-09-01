@@ -20,7 +20,7 @@
         },
         "enabled_in_text_threads": false
     },
-    "vim_mode": true,
+    "helix_mode": true,
     "agent_font_size": 18,
     "ui_font_family": "Iosevka N Quasi-Proportional",
     "ui_font_size": 16,

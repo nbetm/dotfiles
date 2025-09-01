@@ -1,1 +1,36 @@
-color cursor 0 2 dim
+# Nord Deep Theme
+# Matching: GitUI/LazyGit/Delta/Git
+
+# Cursor and selection
+color cursor white black
+color status cyan default
+color title-focus white black bold
+color title-blur white default dim
+
+# Commit info
+color id green default
+color commit green default
+color author cyan default
+color date blue default
+
+# Main view branch and tag colors
+color main-head magenta default bold
+color main-remote magenta default
+color main-tracked magenta default bold
+color main-tag magenta default bold
+color main-local-tag magenta default
+color main-ref magenta default
+color main-other magenta default
+
+# Diff colors
+color diff-add green default
+color diff-del red default
+color diff-header yellow default
+color diff-chunk magenta default
+color diff-add-highlight green black
+color diff-del-highlight red black
+
+# Tree and file colors
+color file white default
+color directory blue default bold
+color file-size white default

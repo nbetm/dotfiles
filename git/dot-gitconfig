@@ -57,6 +57,20 @@
     hyperlinks-file-link-format = "zed://file/{path}:{line}"
     side-by-side = false
 
+[color.status]
+    added = "green normal bold"
+    updated = "green normal bold"
+    changed = "yellow normal bold"
+    untracked = "red normal bold"
+    branch = "magenta normal bold"
+    nobranch = "normal normal bold"
+    unmerged = "red normal bold"
+
+[color.branch]
+    current = "magenta normal bold"
+    local = "white normal"
+    remote = "cyan normal"
+
 [pull]
     rebase = false
 

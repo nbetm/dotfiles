@@ -1,16 +1,14 @@
 /* Nord Deep */
 
 :root {
-    --nord-base: #262c36;
+    /* Nord Deep Palette*/
+    --nord-base: #212732;
     --nord-surface: #2e3440;
-    --nord-border: #3b4252;
-    --nord-focus: #434c5e;
-    --nord-muted: #4c566a;
-    --nord-dim: #7a8490;
-    --nord-mist: #c0c8d8;
-    --nord-text: #d0d7e4;
-    --nord-light: #d8dee9;
-    --nord-bright: #e5e9f0;
+    --nord-selection: #3b4252;
+    --nord-border: #434c5e;
+    --nord-dim: #798094;
+    --nord-text: #b8c5d1;
+    --nord-bright: #d4dce6;
     --nord-aqua: #8fbcbb;
     --nord-cyan: #88c0d0;
     --nord-blue: #81a1c1;
@@ -20,9 +18,8 @@
     --nord-yellow: #ebcb8b;
     --nord-green: #a3be8c;
     --nord-magenta: #b48ead;
-    --nord-lavender: #9d91c7;
 
-    --font-size: 16;
+    --font-size: 16px;
     --font-weight: normal;
     --font: Iosevka N Quasi-Proportional;
 }
@@ -48,7 +45,7 @@
 }
 
 #vimium-hint-marker-container div span.matchingCharacter {
-    color: var(--nord-muted);
+    color: var(--nord-base);
 }
 
 /* vomnibar */
@@ -145,7 +142,7 @@
 }
 
 #vomnibar li.selected {
-    background-color: var(--nord-border);
+    background-color: var(--nord-selection);
 }
 
 /* search/find hud */
@@ -170,7 +167,7 @@ div#hud-container #search-area {
 }
 
 ::selection {
-    background-color: var(--nord-border) !important;
+    background-color: var(--nord-selection) !important;
     color: var(--nord-text) !important;
 }
 
@@ -187,12 +184,12 @@ body.vimium-body button,
 body.vimium-body footer,
 body.vimium-body textarea,
 body.vimium-body input {
-    scrollbar-color: var(--nord-muted) var(--nord-border);
+    scrollbar-color: var(--nord-border) var(--nord-selection);
     background-color: var(--nord-surface);
 }
 
 body.vimium-body #wrapper .example {
-    color: var(--nord-mist);
+    color: var(--nord-text);
 }
 
 body.vimium-body a {
@@ -201,7 +198,7 @@ body.vimium-body a {
 
 body.vimium-body input,
 body.vimium-body button {
-    border-color: var(--nord-base);
+    border-color: var(--nord-border);
 }
 
 body.vimium-body button:focus {
@@ -232,12 +229,12 @@ body.vimium-body button:focus {
 }
 
 #dialog a#close:hover {
-    color: var(--nord-border);
+    color: var(--nord-selection);
 }
 
 #dialog .key,
 body.vimium-body .key {
     color: var(--nord-text);
     background: var(--nord-surface);
-    border-color: var(--nord-focus);
+    border-color: var(--nord-border);
 }

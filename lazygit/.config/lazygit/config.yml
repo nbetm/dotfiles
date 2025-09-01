@@ -3,30 +3,32 @@
 gui:
   authorColors:
     "Nelson R Monserrate": "#88c0d0"
-    "*": "#81a1c1"
+    "*": "#88c0d0"
+  branchColorPatterns:
+    "^.+$": "#b48ead"
   theme:
     activeBorderColor:
       - "#88c0d0"
     inactiveBorderColor:
-      - "#4c566a"
+      - "#3b4252"
     searchingActiveBorderColor:
       - "#ebcb8b"
       - bold
     optionsTextColor:
-      - "#c0c8d8"
+      - "#b8c5d1"
     selectedLineBgColor:
       - "#3b4252"
     inactiveViewSelectedLineBgColor:
       - "#2e3440"
     cherryPickedCommitFgColor:
-      - "#d0d7e4"
+      - "#212732"
     cherryPickedCommitBgColor:
-      - "#434c5e"
+      - "#d08770"
     markedBaseCommitFgColor:
-      - "#262c36"
+      - "#212732"
     markedBaseCommitBgColor:
       - "#ebcb8b"
     unstagedChangesColor:
-      - "#bf616a"
+      - "#ebcb8b"
     defaultFgColor:
-      - "#d0d7e4"
+      - "#b8c5d1"
