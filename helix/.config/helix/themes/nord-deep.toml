@@ -1,0 +1,268 @@
+# Nord Deep theme for Helix
+# An arctic, north-bluish color palette taken to deeper depths
+
+# Syntax highlighting ---------------------------------------------------------
+
+"attribute" = "nord-text"
+
+"boolean" = "nord-blue"
+
+"character" = "nord-navy"
+"character.special" = "nord-orange"
+
+"comment" = "nord-dim"
+"comment.doc" = "nord-dim"
+"comment.documentation" = "nord-dim"
+"comment.error" = "nord-red"
+"comment.hint" = "nord-navy"
+"comment.note" = "nord-dim"
+"comment.todo" = "nord-orange"
+"comment.warning" = "nord-yelly"
+
+"concept" = "nord-navy"
+
+"constant" = "nord-text"
+"constant.builtin" = "nord-blue"
+"constant.macro" = "nord-text"
+
+"constructor" = "nord-aqua"
+
+"decorator" = "nord-text"
+
+"diff.delta" = "nord-yellow"
+"diff.minus" = "nord-red"
+"diff.plus" = "nord-green"
+
+"embedded" = "nord-cyan"
+
+"emphasis" = { fg = "nord-bright", modifiers = ["italic"] }
+"emphasis.strong" = { fg = "nord-bright", modifiers = ["bold"] }
+
+"enum" = "nord-aqua"
+
+"field" = "nord-yellow"
+
+"function" = "nord-cyan"
+"function.builtin" = "nord-cyan"
+"function.call" = "nord-cyan"
+"function.decorator" = "nord-cyan"
+"function.macro" = "nord-cyan"
+"function.method" = "nord-cyan"
+"function.method.call" = "nord-cyan"
+"function.method.private" = "nord-cyan"
+"function.special" = "nord-cyan"
+"function.special.definition" = "nord-cyan"
+
+"keyword" = "nord-blue"
+"keyword.conditional" = "nord-blue"
+"keyword.conditional.ternary" = "nord-blue"
+"keyword.control.conditional" = "nord-blue"
+"keyword.coroutine" = "nord-blue"
+"keyword.debug" = "nord-blue"
+"keyword.directive" = "nord-blue"
+"keyword.directive.define" = "nord-blue"
+"keyword.exception" = "nord-blue"
+"keyword.export" = "nord-blue"
+"keyword.function" = "nord-blue"
+"keyword.import" = "nord-blue"
+"keyword.modifier" = "nord-blue"
+"keyword.operator" = "nord-blue"
+"keyword.repeat" = "nord-blue"
+"keyword.return" = "nord-blue"
+"keyword.type" = "nord-blue"
+
+"label" = "nord-blue"
+
+"link_text" = "nord-cyan"
+"link_uri" = "nord-cyan"
+
+"module" = "nord-text"
+
+"namespace" = "nord-text"
+
+"number" = "nord-magenta"
+"number.float" = "nord-magenta"
+
+"operator" = "nord-blue"
+
+"parameter" = "nord-text"
+
+"parent" = "nord-navy"
+
+"property" = "nord-aqua"
+"property.json_key" = "nord-aqua"
+
+"punctuation" = "nord-text"
+"punctuation.bracket" = "nord-blue"
+"punctuation.delimiter" = "nord-blue"
+"punctuation.list_marker" = "nord-text"
+"punctuation.special" = "nord-blue"
+"punctuation.special.symbol" = "nord-blue"
+
+"special" = "nord-cyan"
+
+"string" = "nord-green"
+"string.doc" = "nord-green"
+"string.documentation" = "nord-green"
+"string.escape" = "nord-yellow"
+"string.regex" = "nord-yellow"
+"string.regexp" = "nord-yellow"
+"string.special" = "nord-green"
+"string.special.path" = "nord-green"
+"string.special.symbol" = "nord-green"
+"string.special.url" = "nord-cyan"
+
+"symbol" = "nord-magenta"
+
+"tag" = "nord-blue"
+"tag.attribute" = "nord-blue"
+"tag.builtin" = "nord-blue"
+"tag.delimiter" = "nord-blue"
+"tag.doctype" = "nord-navy"
+
+"text" = "nord-text"
+"text.literal" = "nord-aqua"
+
+"title" = "nord-cyan"
+
+"type" = "nord-aqua"
+"type.builtin" = "nord-aqua"
+"type.class.definition" = "nord-aqua"
+"type.definition" = "nord-aqua"
+"type.enum.variant" = "nord-aqua"
+"type.interface" = "nord-aqua"
+"type.super" = "nord-aqua"
+
+"variable" = "nord-text"
+"variable.builtin" = "nord-text"
+"variable.member" = "nord-text"
+"variable.other.member" = "nord-text"
+"variable.other.member.private" = { fg = "nord-text", modifiers = ["italic"] }
+"variable.parameter" = "nord-text"
+"variable.special" = "nord-text"
+
+"variant" = "nord-aqua"
+
+"markup.bold" = { fg = "nord-bright", modifiers = ["bold"] }
+"markup.heading.1" = "nord-cyan"
+"markup.heading.2" = "nord-blue"
+"markup.heading.3" = "nord-navy"
+"markup.heading.4" = "nord-aqua"
+"markup.heading.5" = "nord-cyan"
+"markup.heading.6" = "nord-blue"
+"markup.heading.completion" = "nord-cyan"
+"markup.italic" = { fg = "nord-bright", modifiers = ["italic"] }
+"markup.link.text" = "nord-cyan"
+"markup.link.url" = { fg = "nord-cyan", modifiers = ["underlined"] }
+"markup.list" = "nord-text"
+"markup.list.checked" = "nord-green"
+"markup.list.unchecked" = "nord-subtle"
+"markup.quote" = "nord-magenta"
+"markup.raw" = "nord-green"
+"markup.raw.inline.completion" = "nord-green"
+
+error = "nord-red"
+warning = "nord-yellow"
+info = "nord-navy"
+hint = "nord-navy"
+
+rainbow = [
+    "nord-red",
+    "nord-orange",
+    "nord-yellow",
+    "nord-green",
+    "nord-cyan",
+    "nord-blue",
+]
+
+# UI --------------------------------------------------------------------------
+
+"ui.background" = { fg = "nord-text", bg = "nord-base" }
+"ui.background.separator" = { fg = "nord-text" }
+
+"ui.linenr" = { fg = "nord-subtle" }
+"ui.linenr.selected" = { fg = "nord-text" }
+
+"ui.statusline" = { fg = "nord-text", bg = "nord-elevated" }
+"ui.statusline.separator" = { fg = "nord-text" }
+"ui.statusline.inactive" = { fg = "nord-dim", bg = "nord-elevated" }
+"ui.statusline.normal" = { fg = "nord-base", bg = "nord-cyan" }
+"ui.statusline.insert" = { fg = "nord-base", bg = "nord-green" }
+"ui.statusline.select" = { fg = "nord-base", bg = "nord-aqua" }
+"ui.popup" = { fg = "nord-text", bg = "nord-surface" }
+"ui.popup.info" = { fg = "nord-text", bg = "nord-surface" }
+"ui.picker.header.column" = { fg = "nord-text", modifiers = ["bold"] }
+"ui.help" = { fg = "nord-text", bg = "nord-surface" }
+"ui.window" = { fg = "nord-elevated" }
+
+"ui.bufferline" = { fg = "nord-text", bg = "nord-surface" }
+"ui.bufferline.active" = { fg = "nord-text", bg = "nord-base" }
+"ui.bufferline.background" = { bg = "nord-elevated" }
+
+"ui.text" = "nord-text"
+"ui.text.focus" = { fg = "nord-text", bg = "nord-elevated" }
+"ui.text.info" = { fg = "nord-text" }
+"ui.text.inactive" = { fg = "nord-dim" }
+"ui.text.directory" = { fg = "nord-blue" }
+
+"ui.virtual" = "nord-dim"
+"ui.virtual.ruler" = { bg = "nord-surface" }
+"ui.virtual.indent-guide" = "nord-surface"
+"ui.virtual.inlay-hint" = { fg = "nord-dim", modifiers = ["italic"] }
+"ui.virtual.jump-label" = { fg = "nord-cyan", modifiers = ["bold"] }
+
+"ui.cursor" = { fg = "nord-base", bg = "nord-bright" }
+"ui.cursor.primary" = { fg = "nord-base", bg = "nord-bright" }
+"ui.cursor.match" = { bg = "nord-elevated" }
+"ui.selection" = { bg = "nord-elevated" }
+"ui.cursorline.primary" = { bg = "nord-surface" }
+
+"ui.cursor.primary.normal" = { fg = "nord-base", bg = "nord-bright" }
+"ui.cursor.primary.insert" = { fg = "nord-base", bg = "nord-green" }
+"ui.cursor.primary.select" = { fg = "nord-base", bg = "nord-blue" }
+
+"ui.cursor.normal" = { fg = "nord-base", bg = "nord-bright" }
+"ui.cursor.insert" = { fg = "nord-base", bg = "nord-green" }
+"ui.cursor.select" = { fg = "nord-base", bg = "nord-blue" }
+
+# "ui.highlight" = { bg = "nord-cyan", modifiers = ["bold"] }
+
+"ui.menu" = { fg = "nord-text", bg = "nord-surface" }
+"ui.menu.selected" = { fg = "nord-cyan", bg = "nord-elevated" }
+
+"ui.picker.header" = { fg = "nord-text", modifiers = ["bold"] }
+"ui.picker.header.column.active" = { fg = "nord-cyan", modifiers = ["bold"] }
+"ui.gutter" = { fg = "nord-subtle" }
+"ui.gutter.selected" = { fg = "nord-text" }
+"ui.virtual.wrap" = "nord-dim"
+"ui.virtual.inlay-hint.parameter" = { fg = "nord-dim", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.type" = { fg = "nord-dim", modifiers = ["italic"] }
+"ui.menu.scroll" = { fg = "nord-cyan", bg = "nord-surface" }
+"ui.selection.primary" = { bg = "nord-elevated" }
+"ui.cursorcolumn.primary" = { bg = "nord-surface" }
+"ui.cursorcolumn.secondary" = { bg = "nord-surface" }
+
+"diagnostic.error" = { underline = { color = "nord-red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "nord-yellow", style = "curl" } }
+"diagnostic.info" = { underline = { color = "nord-navy", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "nord-navy", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { fg = "nord-dim", modifiers = ["crossed_out"] }
+
+[palette]
+nord-base = "#212732"
+nord-surface = "#2e3440"
+nord-elevated = "#3b4252"
+nord-subtle = "#434c5e"
+nord-dim = "#798094"
+nord-text = "#b8c5d1"
+nord-bright = "#d4dce6"
+nord-aqua = "#8fbcbb"
+nord-cyan = "#88c0d0"
+nord-blue = "#81a1c1"
+nord-navy = "#5e81ac"
+nord-red = "#bf616a"
+nord-orange = "#d08770"
+nord-yellow = "#ebcb8b"
+nord-green = "#a3be8c"
+nord-magenta = "#b48ead"
