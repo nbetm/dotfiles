@@ -1,32 +1,27 @@
 # vim: set ft=conf :
 
 [delta "nord-deep"]
-    blame-palette = "#262c36 #2e3440 #3b4252 #434c5e #4c566a"
+    blame-palette = "#212732 #2e3440 #3b4252 #434c5e #b8c5d1"
     dark = true
-    commit-decoration-style = "#4c566a" bold box ul
-    file-decoration-style = "#4c566a"
-    file-style = "#d0d7e4"
-    hunk-header-decoration-style = "#4c566a" box ul
+    commit-decoration-style = "#3b4252" bold box ul
+    file-decoration-style = "#3b4252"
+    file-style = "#b8c5d1"
+    hunk-header-decoration-style = "#3b4252" box ul
     hunk-header-file-style = bold
-    hunk-header-line-number-style = bold "#c0c8d8"
+    hunk-header-line-number-style = bold "#b8c5d1"
     hunk-header-style = file line-number syntax
     line-numbers-minus-style = bold "#bf616a"
     line-numbers-plus-style = bold "#a3be8c"
-    line-numbers-left-style = "#4c566a"
-    line-numbers-right-style = "#4c566a"
-    line-numbers-zero-style = "#4c566a"
-    # 10% green (#a3be8c) 90% base (#262c36)
-    plus-style = syntax "#333b3f"
-    # 20% green (#a3be8c) 80% base (#262c36)
-    plus-emph-style = bold syntax "#3f4947"
-    # 10% red (#bf616a) 90% base (#262c36)
-    minus-style = syntax "#35313b"
-    # 20% red (#bf616a) 80% base (#262c36)
-    minus-emph-style = bold syntax "#453740"
-    map-styles = \
-        bold purple => syntax "#4f4856", \
-        bold blue => syntax "#404d5c", \
-        bold cyan => syntax "#425661", \
-        bold yellow => syntax "#59564f"
+    line-numbers-left-style = "#434c5e"
+    line-numbers-right-style = "#434c5e"
+    line-numbers-zero-style = "#434c5e"
+    # 10% green (#a3be8c) 90% base (#212732)
+    plus-style = syntax "#2e363b"
+    # 20% green (#a3be8c) 80% base (#212732)
+    plus-emph-style = bold syntax "#3b4544"
+    # 10% red (#bf616a) 90% base (#212732)
+    minus-style = syntax "#302c37"
+    # 20% red (#bf616a) 80% base (#212732)
+    minus-emph-style = bold syntax "#40323d"
     # Should match the name of the bat theme
     syntax-theme = nord-deep

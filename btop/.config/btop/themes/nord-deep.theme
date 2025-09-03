@@ -11,10 +11,10 @@
 
 # Main background, empty for terminal default, need to be empty if you want
 # transparent background
-theme[main_bg]="#262c36"
+theme[main_bg]="#212732"
 
 # Main text color
-theme[main_fg]="#d0d7e4"
+theme[main_fg]="#b8c5d1"
 
 # Title color for boxes
 theme[title]="#81a1c1"
@@ -26,10 +26,10 @@ theme[hi_fg]="#88c0d0"
 theme[selected_bg]="#3b4252"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#d8dee9"
+theme[selected_fg]="#d4dce6"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#4c566a"
+theme[inactive_fg]="#434c5e"
 
 # Misc colors for processes box including mini cpu graphs, details memory graph
 # and details status text
@@ -60,34 +60,32 @@ theme[cpu_start]="#8fbcbb"
 theme[cpu_mid]="#88c0d0"
 theme[cpu_end]="#81a1c1"
 
-# Mem/Disk free meter
+# Mem/Disk free meter - calm green to cyan gradient
 theme[free_start]="#a3be8c"
 theme[free_mid]="#88c0d0"
-theme[free_end]="#d8dee9"
-theme[free_mid]="#88c0d0"
-theme[free_end]="#d8dee9"
+theme[free_end]="#8fbcbb"
 
 # Mem/Disk cached meter
 theme[cached_start]="#81a1c1"
 theme[cached_mid]="#88c0d0"
-theme[cached_end]="#d8dee9"
+theme[cached_end]="#d4dce6"
 
-# Mem/Disk available meter
+# Mem/Disk available meter - aqua frost gradient
 theme[available_start]="#8fbcbb"
 theme[available_mid]="#88c0d0"
-theme[available_end]="#d8dee9"
+theme[available_end]="#81a1c1"
 
-# Mem/Disk used meter
-theme[used_start]="#ebcb8b"
-theme[used_mid]="#d08770"
-theme[used_end]="#bf616a"
+# Mem/Disk used meter - neutral progression from cyan to blue
+theme[used_start]="#88c0d0"
+theme[used_mid]="#81a1c1"
+theme[used_end]="#5e81ac"
 
-# Download graph colors
+# Download graph colors - green to cyan gradient
 theme[download_start]="#a3be8c"
 theme[download_mid]="#88c0d0"
-theme[download_end]="#d8dee9"
+theme[download_end]="#8fbcbb"
 
-# Upload graph colors
+# Upload graph colors - blue frost gradient
 theme[upload_start]="#81a1c1"
 theme[upload_mid]="#88c0d0"
-theme[upload_end]="#d8dee9"
+theme[upload_end]="#8fbcbb"

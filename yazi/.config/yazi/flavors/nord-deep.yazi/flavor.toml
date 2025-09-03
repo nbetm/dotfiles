@@ -7,61 +7,61 @@ preview_hovered = { underline = true }
 find_keyword = { fg = "#d08770", bold = true, italic = true, underline = true }
 find_position = { fg = "#b48ead", bg = "reset", bold = true, italic = true }
 
-marker_copied = { fg = "#262c36", bg = "#a3be8c" }
-marker_cut = { fg = "#262c36", bg = "#bf616a" }
-marker_marked = { fg = "#262c36", bg = "#8fbcbb" }
-marker_selected = { fg = "#262c36", bg = "#ebcb8b" }
+marker_copied = { fg = "#212732", bg = "#a3be8c" }
+marker_cut = { fg = "#212732", bg = "#bf616a" }
+marker_marked = { fg = "#212732", bg = "#8fbcbb" }
+marker_selected = { fg = "#212732", bg = "#ebcb8b" }
 
-count_copied = { fg = "#262c36", bg = "#a3be8c" }
-count_cut = { fg = "#262c36", bg = "#bf616a" }
-count_selected = { fg = "#262c36", bg = "#ebcb8b" }
+count_copied = { fg = "#212732", bg = "#a3be8c" }
+count_cut = { fg = "#212732", bg = "#bf616a" }
+count_selected = { fg = "#212732", bg = "#ebcb8b" }
 
 border_symbol = "│"
 border_style = { fg = "#3b4252" }
 
 [tabs]
 tab_active = { reversed = true }
-tab_inactive = { fg = "#c0c8d8" }
+tab_inactive = { fg = "#b8c5d1" }
 tab_width = 1
 
 [mode]
-normal_main = { fg = "#262c36", bg = "#88c0d0" }
-normal_alt = { fg = "#d0d7e4", bg = "#3b4252" }
+normal_main = { fg = "#212732", bg = "#88c0d0" }
+normal_alt = { fg = "#b8c5d1", bg = "#3b4252" }
 
-select_main = { fg = "#262c36", bg = "#8fbcbb" }
-select_alt = { fg = "#d0d7e4", bg = "#3b4252" }
+select_main = { fg = "#212732", bg = "#8fbcbb" }
+select_alt = { fg = "#b8c5d1", bg = "#3b4252" }
 
-unset_main = { fg = "#262c36", bg = "#bf616a" }
-unset_alt = { fg = "#d0d7e4", bg = "#3b4252" }
+unset_main = { fg = "#212732", bg = "#bf616a" }
+unset_alt = { fg = "#b8c5d1", bg = "#3b4252" }
 
 [status]
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
-progress_label = { fg = "#d0d7e4", bold = true }
+progress_label = { fg = "#b8c5d1", bold = true }
 progress_normal = { fg = "#88c0d0", bg = "#434c5e" }
 progress_error = { fg = "#bf616a", bg = "#434c5e" }
 
-perm_type = { fg = "#d0d7e4" }
-perm_read = { fg = "#d0d7e4" }
-perm_write = { fg = "#d0d7e4" }
-perm_exec = { fg = "#d0d7e4" }
-perm_sep = { fg = "#d0d7e4" }
+perm_type = { fg = "#b8c5d1" }
+perm_read = { fg = "#b8c5d1" }
+perm_write = { fg = "#b8c5d1" }
+perm_exec = { fg = "#b8c5d1" }
+perm_sep = { fg = "#b8c5d1" }
 
 [input]
 border = { fg = "#3b4252" }
-title = { fg = "#d0d7e4" }
-value = { fg = "#d0d7e4" }
+title = { fg = "#b8c5d1" }
+value = { fg = "#b8c5d1" }
 selected = { reversed = true }
 
 [pick]
 border = { fg = "#3b4252" }
 active = { fg = "#88c0d0", bold = true }
-inactive = { fg = "#7a8490" }
+inactive = { fg = "#798094" }
 
 [confirm]
 border = { fg = "#3b4252" }
-title = { fg = "#d0d7e4" }
+title = { fg = "#b8c5d1" }
 content = {}
 list = {}
 btn_yes = { reversed = true }
@@ -72,13 +72,13 @@ border = { fg = "#3b4252" }
 
 [tasks]
 border = { fg = "#3b4252" }
-title = { fg = "#d0d7e4" }
+title = { fg = "#b8c5d1" }
 hovered = { fg = "#b48ead", underline = true }
 
 [which]
 mask = { bg = "#2e3440" }
 cand = { fg = "#81a1c1" }
-rest = { fg = "#5a6470" }
+rest = { fg = "#798094" }
 desc = { fg = "#b48ead" }
 separator = " -> "
 separator_style = { fg = "#434c5e" }
@@ -87,7 +87,7 @@ separator_style = { fg = "#434c5e" }
 on = { fg = "#81a1c1" }
 run = { fg = "#b48ead" }
 hovered = { reversed = true, bold = true }
-footer = { fg = "#262c36", bg = "#d0d7e4" }
+footer = { fg = "#212732", bg = "#b8c5d1" }
 
 [notify]
 title_info = { fg = "#81a1c1" }
@@ -124,7 +124,7 @@ rules = [
     { name = "*.{doc,docx,dot,dotx,epub,mkd,odg,odp,ods,odt,otg,otp,ots,ott,pdf,ppt,pptx,rst,rtf,tex,xls,xlsx}", fg = "#a3be8c" },
 
     # Unimportant
-    { name = "*.{bak,dist,ds_store,off,old,orig,backup,log,swo,swp}", fg = "#7a8490" },
+    { name = "*.{bak,dist,ds_store,off,old,orig,backup,log,swo,swp}", fg = "#798094" },
 
     # Exec
     { name = "*", is = "exec", fg = "#88c0d0", bold = true },
@@ -143,10 +143,10 @@ rules = [
     { name = "*", is = "char", fg = "#ebcb8b", bg = "#81a1c1", bold = true },
 
     # Sticky
-    { name = "*", is = "sticky", fg = "#d8dee9", bg = "#81a1c1", bold = true, underline = true },
+    { name = "*", is = "sticky", fg = "#d4dce6", bg = "#81a1c1", bold = true, underline = true },
 
     # Fallback (files and directories)
-    { name = "*", fg = "#d0d7e4" },
+    { name = "*", fg = "#b8c5d1" },
     { name = "*/", fg = "#81a1c1" },
 ]
 
