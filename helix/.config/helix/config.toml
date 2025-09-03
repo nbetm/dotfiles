@@ -1,15 +1,24 @@
+# Settings --------------------------------------------------------------------
 theme = "nord-deep"
 
 [editor]
-cursorline = true
+# bufferline = "multiple"
 color-modes = true
-rulers = [80, 120]
 completion-replace = true
-bufferline = "multiple"
-# line-number = "relative"
+cursorline = false
+end-of-line-diagnostics = "hint"
+idle-timeout = 0
+line-number = "relative"
+popup-border = "all"
+rulers = [80, 120]
 shell = ["zsh", "-c"]
 trim-trailing-whitespace = true
-popup-border = "all"
+true-color = true
+default-yank-register = "+"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "disable"
 
 [editor.lsp]
 display-inlay-hints = true
@@ -20,6 +29,7 @@ normal = "block"
 select = "underline"
 
 [editor.indent-guides]
+character = "╎"
 render = true
 skip-levels = 1
 
@@ -27,6 +37,124 @@ skip-levels = 1
 hidden = true
 
 [editor.whitespace.render]
-tab = "all"
 nbsp = "all"
 nnbsp = "all"
+tab = "all"
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner",
+  "version-control",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+center = ["file-name"]
+right = [
+  "file-type",
+  "file-encoding",
+  "diagnostics",
+  "position-percentage",
+  "position",
+]
+
+# Keybindings -----------------------------------------------------------------
+
+[keys.normal]
+# No more fighting with the cursor!
+esc = ["collapse_selection", "keep_primary_selection"]
+
+# Nice to have
+C-o = ":config-open"
+C-r = ":config-reload"
+"Meta-/" = "toggle_comments"
+"Meta-a" = "select_all"
+"Meta-A-j" = ["copy_selection_on_next_line"]
+"Meta-A-k" = ["copy_selection_on_prev_line"]
+"Meta-o" = "file_explorer"
+"Meta-p" = "file_picker"
+"Meta-r" = ":reload"
+"Meta-R" = ":reload-all"
+"Meta-s" = ":write"
+"Meta-S" = ":write-all"
+"Meta-S-j" = ["extend_to_file_end"]
+"Meta-S-k" = ["extend_to_file_start"]
+"Meta-Z" = ["redo", "collapse_selection"]
+"Meta-z" = ["undo", "collapse_selection"]
+"S-A-j" = [
+  "extend_to_line_bounds",
+  "yank",
+  "paste_clipboard_after",
+  "collapse_selection",
+]
+"S-A-k" = [
+  "extend_to_line_bounds",
+  "yank",
+  "paste_clipboard_before",
+  "collapse_selection",
+]
+"space" = { q = ":quit", Q = ":quit!" }
+
+# Vim-like
+"$" = "goto_line_end"
+"%" = "match_brackets"
+"[" = { b = "goto_previous_buffer" }
+"]" = { b = "goto_next_buffer" }
+"^" = "goto_first_nonwhitespace"
+"{" = ["goto_prev_paragraph", "collapse_selection"]
+"}" = ["goto_next_paragraph", "collapse_selection"]
+0 = "goto_line_start"
+D = ["select_mode", "extend_to_line_end", "yank", "delete_selection"]
+G = "goto_file_end"
+p = ["paste_clipboard_after", "collapse_selection"]
+P = ["paste_clipboard_before", "collapse_selection"]
+u = ["undo", "collapse_selection"]
+V = ["select_mode", "extend_to_line_bounds"]
+Y = ["select_mode", "extend_to_line_end", "yank", "collapse_selection"]
+"*" = [
+  "move_char_right",
+  "move_prev_word_start",
+  "move_next_word_end",
+  "search_selection",
+  "search_next",
+]
+"#" = [
+  "move_char_right",
+  "move_prev_word_start",
+  "move_next_word_end",
+  "search_selection",
+  "search_prev",
+]
+
+[keys.insert]
+# No more fighting with the cursor!
+esc = ["collapse_selection", "normal_mode"]
+
+# Nice to have
+"Meta-o" = "file_explorer"
+"Meta-p" = "file_picker"
+"Meta-Z" = ["redo", "collapse_selection"]
+"Meta-z" = ["undo", "collapse_selection"]
+
+[keys.select]
+# No more fighting with the cursor!
+esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+
+# Nice to have
+"Meta-/" = "toggle_comments"
+"Meta-a" = "select_all"
+
+# Vim-like
+"$" = "goto_line_end"
+"%" = "match_brackets"
+"^" = "goto_first_nonwhitespace"
+"{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
+"}" = ["extend_to_line_bounds", "goto_next_paragraph"]
+0 = "goto_line_start"
+D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
+G = ["extend_to_file_end"]
+P = "paste_clipboard_before"
+p = "replace_selections_with_clipboard"
+u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
+U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
+y = ["yank", "flip_selections", "collapse_selection", "normal_mode"]

@@ -7,173 +7,82 @@
 
 "boolean" = "nord-blue"
 
-"character" = "nord-navy"
-"character.special" = "nord-orange"
-
-"comment" = "nord-dim"
-"comment.doc" = "nord-dim"
-"comment.documentation" = "nord-dim"
-"comment.error" = "nord-red"
-"comment.hint" = "nord-navy"
-"comment.note" = "nord-dim"
-"comment.todo" = "nord-orange"
-"comment.warning" = "nord-yelly"
-
-"concept" = "nord-navy"
-
-"constant" = "nord-text"
-"constant.builtin" = "nord-blue"
-"constant.macro" = "nord-text"
+"type" = "nord-aqua"
+"type.builtin" = "nord-aqua"
+"type.enum.variant" = "nord-aqua"
+"type.parameter" = "nord-aqua"
 
 "constructor" = "nord-aqua"
 
-"decorator" = "nord-text"
+"constant" = "nord-text"
+"constant.builtin" = "nord-blue"
+"constant.character" = "nord-yellow"
+"constant.numeric" = "nord-magenta"
+
+"string" = "nord-green"
+"string.regexp" = "nord-yellow"
+"string.special" = "nord-green"
+"string.special.url" = "nord-cyan"
+
+"comment" = "nord-dim"
+
+"variable" = "nord-text"
+"variable.builtin" = "nord-text"
+"variable.other.member" = "nord-text"
+"variable.other.member.private" = { fg = "nord-text", modifiers = ["italic"] }
+"variable.parameter" = "nord-text"
+
+"label" = "nord-blue"
+
+"operator" = "nord-blue"
+
+"function" = "nord-cyan"
+"function.builtin" = "nord-cyan"
+"function.macro" = "nord-cyan"
+"function.method" = "nord-cyan"
+"function.method.private" = { fg = "nord-cyan", modifiers = ["italic"] }
+"function.special" = "nord-cyan"
+
+"tag" = "nord-blue"
+"tag.builtin" = "nord-blue"
+
+"punctuation" = "nord-text"
+"punctuation.bracket" = "nord-blue"
+"punctuation.delimiter" = "nord-blue"
+"punctuation.special" = "nord-blue"
+
+"keyword" = "nord-blue"
+"keyword.control" = "nord-blue"
+"keyword.directive" = "nord-blue"
+"keyword.function" = "nord-blue"
+"keyword.operator" = "nord-blue"
+"keyword.storage" = "nord-blue"
+
+"namespace" = "nord-text"
+
+"special" = "nord-cyan"
 
 "diff.delta" = "nord-yellow"
 "diff.minus" = "nord-red"
 "diff.plus" = "nord-green"
 
-"embedded" = "nord-cyan"
-
-"emphasis" = { fg = "nord-bright", modifiers = ["italic"] }
-"emphasis.strong" = { fg = "nord-bright", modifiers = ["bold"] }
-
-"enum" = "nord-aqua"
-
-"field" = "nord-yellow"
-
-"function" = "nord-cyan"
-"function.builtin" = "nord-cyan"
-"function.call" = "nord-cyan"
-"function.decorator" = "nord-cyan"
-"function.macro" = "nord-cyan"
-"function.method" = "nord-cyan"
-"function.method.call" = "nord-cyan"
-"function.method.private" = "nord-cyan"
-"function.special" = "nord-cyan"
-"function.special.definition" = "nord-cyan"
-
-"keyword" = "nord-blue"
-"keyword.conditional" = "nord-blue"
-"keyword.conditional.ternary" = "nord-blue"
-"keyword.control.conditional" = "nord-blue"
-"keyword.coroutine" = "nord-blue"
-"keyword.debug" = "nord-blue"
-"keyword.directive" = "nord-blue"
-"keyword.directive.define" = "nord-blue"
-"keyword.exception" = "nord-blue"
-"keyword.export" = "nord-blue"
-"keyword.function" = "nord-blue"
-"keyword.import" = "nord-blue"
-"keyword.modifier" = "nord-blue"
-"keyword.operator" = "nord-blue"
-"keyword.repeat" = "nord-blue"
-"keyword.return" = "nord-blue"
-"keyword.type" = "nord-blue"
-
-"label" = "nord-blue"
-
-"link_text" = "nord-cyan"
-"link_uri" = "nord-cyan"
-
-"module" = "nord-text"
-
-"namespace" = "nord-text"
-
-"number" = "nord-magenta"
-"number.float" = "nord-magenta"
-
-"operator" = "nord-blue"
-
-"parameter" = "nord-text"
-
-"parent" = "nord-navy"
-
-"property" = "nord-aqua"
-"property.json_key" = "nord-aqua"
-
-"punctuation" = "nord-text"
-"punctuation.bracket" = "nord-blue"
-"punctuation.delimiter" = "nord-blue"
-"punctuation.list_marker" = "nord-text"
-"punctuation.special" = "nord-blue"
-"punctuation.special.symbol" = "nord-blue"
-
-"special" = "nord-cyan"
-
-"string" = "nord-green"
-"string.doc" = "nord-green"
-"string.documentation" = "nord-green"
-"string.escape" = "nord-yellow"
-"string.regex" = "nord-yellow"
-"string.regexp" = "nord-yellow"
-"string.special" = "nord-green"
-"string.special.path" = "nord-green"
-"string.special.symbol" = "nord-green"
-"string.special.url" = "nord-cyan"
-
-"symbol" = "nord-magenta"
-
-"tag" = "nord-blue"
-"tag.attribute" = "nord-blue"
-"tag.builtin" = "nord-blue"
-"tag.delimiter" = "nord-blue"
-"tag.doctype" = "nord-navy"
-
-"text" = "nord-text"
-"text.literal" = "nord-aqua"
-
-"title" = "nord-cyan"
-
-"type" = "nord-aqua"
-"type.builtin" = "nord-aqua"
-"type.class.definition" = "nord-aqua"
-"type.definition" = "nord-aqua"
-"type.enum.variant" = "nord-aqua"
-"type.interface" = "nord-aqua"
-"type.super" = "nord-aqua"
-
-"variable" = "nord-text"
-"variable.builtin" = "nord-text"
-"variable.member" = "nord-text"
-"variable.other.member" = "nord-text"
-"variable.other.member.private" = { fg = "nord-text", modifiers = ["italic"] }
-"variable.parameter" = "nord-text"
-"variable.special" = "nord-text"
-
-"variant" = "nord-aqua"
-
-"markup.bold" = { fg = "nord-bright", modifiers = ["bold"] }
-"markup.heading.1" = "nord-cyan"
-"markup.heading.2" = "nord-blue"
-"markup.heading.3" = "nord-navy"
-"markup.heading.4" = "nord-aqua"
+"markup.heading.1" = "nord-red"
+"markup.heading.2" = "nord-orange"
+"markup.heading.3" = "nord-yellow"
+"markup.heading.4" = "nord-green"
 "markup.heading.5" = "nord-cyan"
 "markup.heading.6" = "nord-blue"
-"markup.heading.completion" = "nord-cyan"
-"markup.italic" = { fg = "nord-bright", modifiers = ["italic"] }
+"markup.bold" = { fg = "nord-text", modifiers = ["bold"] }
+"markup.italic" = { fg = "nord-text", modifiers = ["italic"] }
+"markup.link.label" = { fg = "nord-cyan", modifiers = ["underlined"] }
 "markup.link.text" = "nord-cyan"
 "markup.link.url" = { fg = "nord-cyan", modifiers = ["underlined"] }
 "markup.list" = "nord-text"
 "markup.list.checked" = "nord-green"
 "markup.list.unchecked" = "nord-subtle"
 "markup.quote" = "nord-magenta"
-"markup.raw" = "nord-green"
-"markup.raw.inline.completion" = "nord-green"
-
-error = "nord-red"
-warning = "nord-yellow"
-info = "nord-navy"
-hint = "nord-navy"
-
-rainbow = [
-    "nord-red",
-    "nord-orange",
-    "nord-yellow",
-    "nord-green",
-    "nord-cyan",
-    "nord-blue",
-]
+"markup.raw" = "nord-aqua"
+"markup.strikethrough" = { fg = "nord-text", modifiers = ["crossed_out"] }
 
 # UI --------------------------------------------------------------------------
 
@@ -184,70 +93,73 @@ rainbow = [
 "ui.linenr.selected" = { fg = "nord-text" }
 
 "ui.statusline" = { fg = "nord-text", bg = "nord-elevated" }
-"ui.statusline.separator" = { fg = "nord-text" }
-"ui.statusline.inactive" = { fg = "nord-dim", bg = "nord-elevated" }
-"ui.statusline.normal" = { fg = "nord-base", bg = "nord-cyan" }
-"ui.statusline.insert" = { fg = "nord-base", bg = "nord-green" }
+"ui.statusline.inactive" = { fg = "nord-dim", bg = "nord-surface" }
+"ui.statusline.insert" = { fg = "nord-base", bg = "nord-cyan" }
+"ui.statusline.normal" = { fg = "nord-base", bg = "nord-text" }
 "ui.statusline.select" = { fg = "nord-base", bg = "nord-aqua" }
-"ui.popup" = { fg = "nord-text", bg = "nord-surface" }
-"ui.popup.info" = { fg = "nord-text", bg = "nord-surface" }
-"ui.picker.header.column" = { fg = "nord-text", modifiers = ["bold"] }
-"ui.help" = { fg = "nord-text", bg = "nord-surface" }
-"ui.window" = { fg = "nord-elevated" }
+"ui.statusline.separator" = { fg = "nord-text" }
 
-"ui.bufferline" = { fg = "nord-text", bg = "nord-surface" }
-"ui.bufferline.active" = { fg = "nord-text", bg = "nord-base" }
-"ui.bufferline.background" = { bg = "nord-elevated" }
-
-"ui.text" = "nord-text"
-"ui.text.focus" = { fg = "nord-text", bg = "nord-elevated" }
-"ui.text.info" = { fg = "nord-text" }
-"ui.text.inactive" = { fg = "nord-dim" }
-"ui.text.directory" = { fg = "nord-blue" }
-
-"ui.virtual" = "nord-dim"
-"ui.virtual.ruler" = { bg = "nord-surface" }
-"ui.virtual.indent-guide" = "nord-surface"
-"ui.virtual.inlay-hint" = { fg = "nord-dim", modifiers = ["italic"] }
-"ui.virtual.jump-label" = { fg = "nord-cyan", modifiers = ["bold"] }
-
-"ui.cursor" = { fg = "nord-base", bg = "nord-bright" }
-"ui.cursor.primary" = { fg = "nord-base", bg = "nord-bright" }
-"ui.cursor.match" = { bg = "nord-elevated" }
-"ui.selection" = { bg = "nord-elevated" }
-"ui.cursorline.primary" = { bg = "nord-surface" }
-
-"ui.cursor.primary.normal" = { fg = "nord-base", bg = "nord-bright" }
-"ui.cursor.primary.insert" = { fg = "nord-base", bg = "nord-green" }
-"ui.cursor.primary.select" = { fg = "nord-base", bg = "nord-blue" }
-
-"ui.cursor.normal" = { fg = "nord-base", bg = "nord-bright" }
-"ui.cursor.insert" = { fg = "nord-base", bg = "nord-green" }
-"ui.cursor.select" = { fg = "nord-base", bg = "nord-blue" }
-
-# "ui.highlight" = { bg = "nord-cyan", modifiers = ["bold"] }
-
-"ui.menu" = { fg = "nord-text", bg = "nord-surface" }
+"ui.menu" = { fg = "nord-text", bg = "nord-base" }
+"ui.menu.scroll" = { fg = "nord-subtle" }
 "ui.menu.selected" = { fg = "nord-cyan", bg = "nord-elevated" }
 
-"ui.picker.header" = { fg = "nord-text", modifiers = ["bold"] }
-"ui.picker.header.column.active" = { fg = "nord-cyan", modifiers = ["bold"] }
-"ui.gutter" = { fg = "nord-subtle" }
-"ui.gutter.selected" = { fg = "nord-text" }
-"ui.virtual.wrap" = "nord-dim"
+"ui.popup" = { fg = "nord-dim", bg = "nord-base" }
+"ui.popup.info" = { fg = "nord-dim", bg = "nord-base" }
+
+"ui.help" = { fg = "nord-dim", bg = "nord-base" }
+"ui.window" = { fg = "nord-elevated" }
+
+"ui.bufferline" = { fg = "nord-dim", bg = "nord-surface" }
+"ui.bufferline.active" = { fg = "nord-text", bg = "nord-base" }
+"ui.bufferline.background" = { bg = "nord-surface" }
+
+"ui.text" = "nord-text"
+"ui.text.directory" = { fg = "nord-blue" }
+"ui.text.focus" = { fg = "nord-text", bg = "nord-elevated" }
+"ui.text.inactive" = { fg = "nord-dim" }
+"ui.text.info" = { fg = "nord-text" }
+
+"ui.virtual" = "nord-dim"
+"ui.virtual.indent-guide" = "nord-elevated"
+"ui.virtual.inlay-hint" = { fg = "nord-dim", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.parameter" = { fg = "nord-dim", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "nord-dim", modifiers = ["italic"] }
-"ui.menu.scroll" = { fg = "nord-cyan", bg = "nord-surface" }
-"ui.selection.primary" = { bg = "nord-elevated" }
+"ui.virtual.jump-label" = { fg = "nord-cyan", modifiers = ["bold"] }
+"ui.virtual.ruler" = { bg = "#282e39" }
+"ui.virtual.wrap" = "nord-dim"
+
+"ui.cursor" = { fg = "nord-base", bg = "nord-text" }
+"ui.cursor.match" = { bg = "nord-subtle" }
+
 "ui.cursorcolumn.primary" = { bg = "nord-surface" }
 "ui.cursorcolumn.secondary" = { bg = "nord-surface" }
 
-"diagnostic.error" = { underline = { color = "nord-red", style = "curl" } }
-"diagnostic.warning" = { underline = { color = "nord-yellow", style = "curl" } }
-"diagnostic.info" = { underline = { color = "nord-navy", style = "curl" } }
-"diagnostic.hint" = { underline = { color = "nord-navy", style = "curl" } }
-"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"ui.cursorline.primary" = { bg = "nord-cursorline" }
+"ui.cursorline.secondary" = { bg = "nord-cursorline" }
+
+"ui.selection" = { bg = "nord-elevated" }
+"ui.selection.primary" = { bg = "nord-elevated" }
+
+"ui.highlight" = { bg = "nord-cursorline" }
+
+"ui.picker.header" = { fg = "nord-text", modifiers = ["bold"] }
+"ui.picker.header.column" = { fg = "nord-text", modifiers = ["bold"] }
+"ui.picker.header.column.active" = { fg = "nord-cyan", modifiers = ["bold"] }
+
+"ui.gutter" = { fg = "nord-subtle" }
+"ui.gutter.selected" = { fg = "nord-text" }
+
 "diagnostic.deprecated" = { fg = "nord-dim", modifiers = ["crossed_out"] }
+"diagnostic.error" = { underline = { color = "nord-red", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "nord-navy", style = "curl" } }
+"diagnostic.info" = { underline = { color = "nord-navy", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.warning" = { underline = { color = "nord-yellow", style = "curl" } }
+
+error = "nord-red"
+warning = "nord-yellow"
+info = "nord-navy"
+hint = "nord-navy"
 
 [palette]
 nord-base = "#212732"
@@ -266,3 +178,6 @@ nord-orange = "#d08770"
 nord-yellow = "#ebcb8b"
 nord-green = "#a3be8c"
 nord-magenta = "#b48ead"
+
+# Additional colors
+nord-cursorline = "#333a48" # 3b4252b3 over 212732
