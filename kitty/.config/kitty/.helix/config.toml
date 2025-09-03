@@ -1,0 +1,10 @@
+[editor]
+rulers = []
+gutters = []
+
+[keys.normal]
+q = ":quit!"
+"space" = { q = ":quit!", Q = ":quit!" }
+
+[keys.select]
+y = ["yank_to_clipboard", ":quit!"]

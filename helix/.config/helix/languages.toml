@@ -1,13 +1,15 @@
+# Defaults: https://github.com/helix-editor/helix/blob/master/languages.toml
+
 # Python
 [[language]]
 name = "python"
 language-servers = ["pyright", "ruff"]
 auto-format = true
 formatter = { command = "ruff", args = [
-    "format",
-    "--stdin-filename",
-    "dummy.py",
-    "-",
+  "format",
+  "--stdin-filename",
+  "dummy.py",
+  "-",
 ] }
 
 [language-server.pyright]
@@ -50,10 +52,10 @@ name = "jsonc"
 language-servers = ["vscode-json-language-server"]
 auto-format = true
 formatter = { command = "prettier", args = [
-    "--parser",
-    "json",
-    "--tab-width",
-    "4",
+  "--parser",
+  "json",
+  "--tab-width",
+  "4",
 ] }
 indent = { tab-width = 4, unit = "    " }
 
@@ -101,12 +103,16 @@ name = "markdown"
 language-servers = ["marksman"]
 auto-format = true
 formatter = { command = "prettier", args = [
-    "--parser",
-    "markdown",
-    "--prose-wrap",
-    "preserve",
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "preserve",
 ] }
 
 [language-server.marksman]
 command = "marksman"
 args = ["server"]
+
+[[language]]
+name = "ini"
+indent = { tab-width = 2, unit = "  " }

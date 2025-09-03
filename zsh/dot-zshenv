@@ -12,8 +12,8 @@ export OS_NAME=$(uname -s) # Darwin, Linux
 export OS_ARCH=$(uname -m) # x86_64, arm64
 
 # Editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="hx"
+export VISUAL="hx"
 export PAGER="less"
 
 # You may need to manually set your language environment
@@ -35,7 +35,6 @@ export FZF_DEFAULT_OPTS='
     --color=hl:#88c0d0,hl+:#88c0d0,info:#798094,marker:#b48ead
     --color=prompt:#a3be8c,spinner:#ebcb8b,pointer:#88c0d0,header:#81a1c1
     --color=border:#3b4252,label:#b8c5d1,query:#b8c5d1
-    --color=border:#434c5e,label:#b8c5d1,query:#b8c5d1
     --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
     --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
 
@@ -64,3 +63,6 @@ export ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 
 # Libvirt
 export LIBVIRT_DEFAULT_URI=qemu:///system
+
+# Enforce Truecolor on Terminal
+export COLORTERM=truecolor
