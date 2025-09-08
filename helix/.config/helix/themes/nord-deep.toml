@@ -16,6 +16,7 @@
 
 "constant" = "nord-text"
 "constant.builtin" = "nord-blue"
+"constant.language" = "nord-blue"
 "constant.character" = "nord-yellow"
 "constant.numeric" = "nord-magenta"
 

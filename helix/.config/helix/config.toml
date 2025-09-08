@@ -7,7 +7,6 @@ color-modes = true
 completion-replace = true
 cursorline = false
 end-of-line-diagnostics = "hint"
-idle-timeout = 0
 line-number = "relative"
 popup-border = "all"
 rulers = [80, 120]
@@ -93,7 +92,8 @@ C-r = ":config-reload"
   "paste_clipboard_before",
   "collapse_selection",
 ]
-"space" = { q = ":quit", Q = ":quit!" }
+"space" = { n = ":new", q = ":quit", Q = ":quit!", w = ":write" }
+"C-w" = { n = { n = ":new" } }
 
 # Vim-like
 "$" = "goto_line_end"
