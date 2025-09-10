@@ -20,6 +20,7 @@ cursor-line = "error"
 other-lines = "disable"
 
 [editor.lsp]
+auto-signature-help = false
 display-inlay-hints = true
 
 [editor.cursor-shape]
@@ -66,6 +67,7 @@ esc = ["collapse_selection", "keep_primary_selection"]
 # Nice to have
 C-o = ":config-open"
 C-r = ":config-reload"
+C-w = { c = ":buffer-close", C = ":buffer-close!", n = { n = ":new" } }
 "Meta-/" = "toggle_comments"
 "Meta-a" = "select_all"
 "Meta-A-j" = ["copy_selection_on_next_line"]
@@ -92,8 +94,6 @@ C-r = ":config-reload"
   "paste_clipboard_before",
   "collapse_selection",
 ]
-"space" = { n = ":new", q = ":quit", Q = ":quit!", w = ":write" }
-"C-w" = { n = { n = ":new" } }
 
 # Vim-like
 "$" = "goto_line_end"
@@ -125,6 +125,14 @@ Y = ["select_mode", "extend_to_line_end", "yank", "collapse_selection"]
   "search_selection",
   "search_prev",
 ]
+
+[keys.normal.space]
+n = ":new"
+q = ":quit"
+Q = ":quit!"
+R = ":reload-all"
+w = ":write"
+W = ":write!"
 
 [keys.insert]
 # No more fighting with the cursor!

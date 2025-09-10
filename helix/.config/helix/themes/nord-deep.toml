@@ -29,7 +29,7 @@
 
 "variable" = "nord-text"
 "variable.builtin" = "nord-text"
-"variable.other.member" = "nord-text"
+"variable.other.member" = "nord-aqua"
 "variable.other.member.private" = { fg = "nord-text", modifiers = ["italic"] }
 "variable.parameter" = "nord-text"
 
@@ -129,8 +129,17 @@
 "ui.virtual.ruler" = { bg = "#282e39" }
 "ui.virtual.wrap" = "nord-dim"
 
-"ui.cursor" = { fg = "nord-base", bg = "nord-text" }
-"ui.cursor.match" = { bg = "nord-subtle" }
+"ui.cursor" = { bg = "nord-elevated" }
+"ui.cursor.primary" = { fg = "nord-base", bg = "nord-text" }
+"ui.cursor.match" = { fg = "nord-orange", modifiers = ["bold"] }
+
+"ui.cursor.primary.normal" = { fg = "nord-base", bg = "nord-text" }
+"ui.cursor.primary.insert" = { fg = "nord-base", bg = "nord-text" }
+"ui.cursor.primary.select" = { fg = "nord-base", bg = "nord-text" }
+
+"ui.cursor.normal" = { fg = "nord-base", bg = "nord-dim" }
+"ui.cursor.insert" = { fg = "nord-base", bg = "nord-dim" }
+"ui.cursor.select" = { fg = "nord-base", bg = "nord-dim" }
 
 "ui.cursorcolumn.primary" = { bg = "nord-surface" }
 "ui.cursorcolumn.secondary" = { bg = "nord-surface" }
@@ -157,10 +166,10 @@
 "diagnostic.unnecessary" = { modifiers = ["dim"] }
 "diagnostic.warning" = { underline = { color = "nord-yellow", style = "curl" } }
 
-error = "nord-red"
-warning = "nord-yellow"
-info = "nord-navy"
-hint = "nord-navy"
+error = { fg = "nord-red", modifiers = ["italic"] }
+warning = { fg = "nord-yellow", modifiers = ["italic"] }
+info = { fg = "nord-navy", modifiers = ["italic"] }
+hint = { fg = "nord-navy", modifiers = ["italic"] }
 
 [palette]
 nord-base = "#212732"
