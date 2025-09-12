@@ -69,12 +69,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
 zi snippet OMZ::plugins/git/git.plugin.zsh
 zi load zsh-users/zsh-history-substring-search
 
-# https://www.github.com/agkozak/zsh-z
-# Quick changing directories, z is a command line tool that allows you to jump
-# quickly to directories that you have visited frequently in the past, or
-# recently
-zi load agkozak/zsh-z
-
 # ------------------------------------------------------------------------------
 # Emacs Mode
 # ------------------------------------------------------------------------------
@@ -185,6 +179,9 @@ eval "$(ruff generate-shell-completion zsh)"
 if [[ -f "${HOME}/.sky/.sky-complete.zsh" ]]; then
     source "${HOME}/.sky/.sky-complete.zsh"
 fi
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # ------------------------------------------------------------------------------
 # zstyles :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fzutil-Module

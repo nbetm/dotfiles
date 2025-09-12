@@ -75,8 +75,8 @@ if [[ $OS_NAME == "Darwin" ]]; then
 
     # Homebrew Bundle
     alias bb="brew bundle --global"
-    alias bbd="brew bundle dump --global --force --all"
-    alias bbdump="brew bundle dump --global --force --all"
+    alias bbd="brew bundle dump --global --brews --taps --casks --no-vscode --force"
+    alias bbdump="brew bundle dump --global --brews --taps --casks --no-vscode --force"
     alias bbc="brew bundle check --global"
     alias bbcheck="brew bundle check --global"
     alias bbi="brew bundle install --global"
