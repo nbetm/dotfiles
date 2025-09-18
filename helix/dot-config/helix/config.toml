@@ -5,8 +5,8 @@ theme = "nord-deep"
 # bufferline = "multiple"
 color-modes = true
 completion-replace = true
-cursorline = false
-end-of-line-diagnostics = "hint"
+cursorline = true
+end-of-line-diagnostics = "disable"
 line-number = "relative"
 popup-border = "all"
 rulers = [80, 120]
@@ -16,8 +16,9 @@ true-color = true
 default-yank-register = "+"
 
 [editor.inline-diagnostics]
-cursor-line = "error"
+cursor-line = "hint"
 other-lines = "disable"
+prefix-len = 2
 
 [editor.lsp]
 auto-signature-help = false

@@ -3,6 +3,7 @@
 # Python
 [[language]]
 name = "python"
+rulers = [88, 120]
 language-servers = ["pyright", "ruff"]
 auto-format = true
 formatter = { command = "ruff", args = [
