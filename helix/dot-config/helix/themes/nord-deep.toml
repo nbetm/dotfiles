@@ -126,7 +126,7 @@
 "ui.virtual.inlay-hint.parameter" = { fg = "nord-dim", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "nord-dim", modifiers = ["italic"] }
 "ui.virtual.jump-label" = { fg = "nord-cyan", modifiers = ["bold"] }
-"ui.virtual.ruler" = { bg = "#282e39" }
+"ui.virtual.ruler" = { bg = "nord-cursorline" }
 "ui.virtual.wrap" = "nord-dim"
 
 "ui.cursor" = { bg = "nord-elevated" }
@@ -150,7 +150,7 @@
 "ui.selection" = { bg = "nord-elevated" }
 "ui.selection.primary" = { bg = "nord-elevated" }
 
-"ui.highlight" = { bg = "nord-cursorline" }
+"ui.highlight" = { bg = "nord-elevated" }
 
 "ui.picker.header" = { fg = "nord-text", modifiers = ["bold"] }
 "ui.picker.header.column" = { fg = "nord-text", modifiers = ["bold"] }
@@ -190,4 +190,4 @@ nord-green = "#a3be8c"
 nord-magenta = "#b48ead"
 
 # Additional colors
-nord-cursorline = "#333a48" # 3b4252b3 over 212732
+nord-cursorline = "#282e39" # nord-surface 50% over base - for subtle guides

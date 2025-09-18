@@ -91,9 +91,9 @@ rules.
 
 ### Transparency and Layering
 
-- **Subtle highlights:** Use transparency like `#3b4252b3` (70% opacity) for
-  active lines
-- **Fallback option:** Blended result `#333948` when transparency unavailable
+- **Subtle highlights:** Use transparency like `#2e344080` (50% opacity) for
+  active lines, wrap guides, indent guides, etc...
+- **Fallback option:** Blended result `#282e39` when transparency unavailable
 - **Alternative:** Use intermediate colors like `nord-surface` for middle ground
 
 ### Implementation Examples
@@ -105,7 +105,7 @@ rules.
   "editor.background": "#212732", // Primary workspace
   "panel.background": "#2e3440", // Elevated panels
   "status_bar.background": "#3b4252", // Interactive chrome
-  "editor.active_line.background": "#3b4252b3", // Subtle highlight
+  "editor.active_line.background": "#2e344080", // Subtle highlight
   "tab.inactive_background": "#2e3440", // Secondary surfaces
   "pane_group.border": "#3b4252", // Structural separation
 }
