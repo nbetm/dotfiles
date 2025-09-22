@@ -17,6 +17,11 @@ shell-integration-features = true
 cursor-style = bar
 
 quick-terminal-position = top
+quick-terminal-size = "50%,60%"
+quick-terminal-autohide = true
+
+mouse-hide-while-typing = true
+
 unfocused-split-opacity = 0.90
 
 keybind = super+backspace=text:\x15
