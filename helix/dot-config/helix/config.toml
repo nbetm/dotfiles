@@ -66,11 +66,10 @@ right = [
 esc = ["collapse_selection", "keep_primary_selection"]
 
 # Nice to have
-C-o = ":config-open"
+"C-," = ":config-open"
 C-r = ":config-reload"
 C-w = { c = ":buffer-close", C = ":buffer-close!", n = { n = ":new" } }
 "Meta-/" = "toggle_comments"
-"Meta-a" = "select_all"
 "Meta-A-j" = ["copy_selection_on_next_line"]
 "Meta-A-k" = ["copy_selection_on_prev_line"]
 "Meta-o" = "file_explorer"
@@ -81,8 +80,8 @@ C-w = { c = ":buffer-close", C = ":buffer-close!", n = { n = ":new" } }
 "Meta-S" = ":write-all"
 "Meta-S-j" = ["extend_to_file_end"]
 "Meta-S-k" = ["extend_to_file_start"]
-"Meta-Z" = ["redo", "collapse_selection"]
 "Meta-z" = ["undo", "collapse_selection"]
+"Meta-Z" = ["redo", "collapse_selection"]
 "S-A-j" = [
   "extend_to_line_bounds",
   "yank",
@@ -110,6 +109,7 @@ G = "goto_file_end"
 p = ["paste_clipboard_after", "collapse_selection"]
 P = ["paste_clipboard_before", "collapse_selection"]
 u = ["undo", "collapse_selection"]
+U = ["redo", "collapse_selection"]
 V = ["select_mode", "extend_to_line_bounds"]
 Y = ["select_mode", "extend_to_line_end", "yank", "collapse_selection"]
 "*" = [
@@ -142,8 +142,8 @@ esc = ["collapse_selection", "normal_mode"]
 # Nice to have
 "Meta-o" = "file_explorer"
 "Meta-p" = "file_picker"
-"Meta-Z" = ["redo", "collapse_selection"]
 "Meta-z" = ["undo", "collapse_selection"]
+"Meta-Z" = ["redo", "collapse_selection"]
 
 [keys.select]
 # No more fighting with the cursor!
@@ -151,7 +151,6 @@ esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
 
 # Nice to have
 "Meta-/" = "toggle_comments"
-"Meta-a" = "select_all"
 
 # Vim-like
 "$" = "goto_line_end"
@@ -162,8 +161,8 @@ esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
 0 = "goto_line_start"
 D = ["extend_to_line_bounds", "delete_selection", "normal_mode"]
 G = ["extend_to_file_end"]
-P = "paste_clipboard_before"
 p = "replace_selections_with_clipboard"
+P = "paste_clipboard_before"
 u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
 U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
 y = ["yank", "flip_selections", "collapse_selection", "normal_mode"]
