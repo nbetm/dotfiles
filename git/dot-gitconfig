@@ -55,7 +55,8 @@
     line-numbers = true
     hyperlinks = true
     hyperlinks-file-link-format = "zed://file/{path}:{line}"
-    side-by-side = false
+    side-by-side = true
+    true-color = always
 
 [color.status]
     added = "green normal bold"
@@ -84,5 +85,5 @@
     autocorrect = prompt
 
 [user]
-	name = Nelson R Monserrate
-	email = nrmonserrate@gmail.com
+    name = Nelson R Monserrate
+    email = nrmonserrate@gmail.com

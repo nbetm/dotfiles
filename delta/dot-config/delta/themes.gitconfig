@@ -1,27 +1,40 @@
 # vim: set ft=conf :
 
 [delta "nord-deep"]
-    blame-palette = "#212732 #2e3440 #3b4252 #434c5e #b8c5d1"
     dark = true
-    commit-decoration-style = "#3b4252" bold box ul
-    file-decoration-style = "#3b4252"
-    file-style = "#b8c5d1"
-    hunk-header-decoration-style = "#3b4252" box ul
-    hunk-header-file-style = bold
-    hunk-header-line-number-style = bold "#b8c5d1"
-    hunk-header-style = file line-number syntax
-    line-numbers-minus-style = bold "#bf616a"
-    line-numbers-plus-style = bold "#a3be8c"
-    line-numbers-left-style = "#434c5e"
-    line-numbers-right-style = "#434c5e"
-    line-numbers-zero-style = "#434c5e"
-    # 10% green (#a3be8c) 90% base (#212732)
-    plus-style = syntax "#2e363b"
-    # 20% green (#a3be8c) 80% base (#212732)
-    plus-emph-style = bold syntax "#3b4544"
-    # 10% red (#bf616a) 90% base (#212732)
-    minus-style = syntax "#302c37"
-    # 20% red (#bf616a) 80% base (#212732)
-    minus-emph-style = bold syntax "#40323d"
-    # Should match the name of the bat theme
+    right-arrow = ❱
     syntax-theme = nord-deep
+    blame-palette = "#212732 #2e3440 #3b4252"
+    blame-code-style = syntax
+    commit-decoration-style = "#3b4252" box ul
+    commit-style = "#ebcb8b" bold
+    keep-plus-minus-markers = true
+    line-numbers = true
+    line-numbers-minus-style = "#bf616a"
+    line-numbers-plus-style = "#a3be8c"
+    line-numbers-left-style = "#3b4252"
+    line-numbers-left-format = " {nm:>3} "
+    line-numbers-right-style = "#3b4252"
+    line-numbers-right-format = "│ {np:>3} "
+    line-numbers-zero-style = "#434c5e"
+    # 20% nord-red (#bf616a) over nord-base (#212732)
+    minus-emph-style = syntax "#40323d"
+    # 10% nord-red (#bf616a) over nord-base (#212732)
+    minus-style = syntax "#302c37"
+    # 20% nord-green (#a3be8c) over nord-base (#212732)
+    plus-emph-style = syntax "#3b4544"
+    # 10% nord-green (#a3be8c) over nord-base (#212732)
+    plus-style = syntax "#2e363b"
+    whitespace-error-style = "#212732" "#b8c5d1"
+    zero-style = syntax
+    file-decoration-style = "#3b4252"
+    file-added-label = ⟮+⟯
+    file-copied-label = ⟮*⟯
+    file-modified-label = ⟮~⟯
+    file-removed-label = ⟮-⟯
+    file-renamed-label = ⟮>⟯
+    file-style = "#5e81ac" italic
+    hunk-header-decoration-style = "#3b4252" box ul
+    hunk-header-file-style = "#b8c5d1" bold
+    hunk-header-line-number-style = "#b8c5d1" bold
+    hunk-header-style = file line-number syntax
