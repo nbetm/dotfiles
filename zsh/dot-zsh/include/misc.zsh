@@ -88,7 +88,7 @@ if [[ $OS_NAME == "Darwin" ]]; then
 fi
 
 # Python
-alias venvrm="find -name .venv -type d -print0 | xargs -0 /bin/rm -fr"
+alias venvrm="find -name .venv -type d -print0 | xargs -0 rm -fr"
 alias pipu="python -m pip install --upgrade pip setuptools wheel"
 alias pipi="python -m pip install"
 pipr() {
@@ -122,10 +122,8 @@ alias tfws="terraform workspace select"
 alias tffmt="terraform fmt"
 alias tfs="terraform state"
 alias tfsl="terraform state list"
-alias tfprovl="terraform providers lock -platform darwin_arm64 -platform darwin_amd64 -platform linux_amd64"
 alias tfprovlock="terraform providers lock -platform darwin_arm64 -platform darwin_amd64 -platform linux_amd64"
-alias tflrm="find -name .terraform -type d -print0 | xargs -0 /bin/rm -fr"
-alias tflocalrm="find -name .terraform -type d -print0 | xargs -0 /bin/rm -fr"
+alias tflocalrm="find -name .terraform -type d -print0 | xargs -0 rm -fr"
 tfp() {
     local _var_file
 
@@ -179,9 +177,6 @@ alias anspc="ansible-playbook --diff --check"
 if [[ $OS_NAME == "Darwin" ]]; then
     alias aws="/opt/homebrew/bin/aws"
     alias aws_completer="/opt/homebrew/bin/aws_completer"
-else
-    alias aws="/usr/local/bin/aws"
-    alias aws_completer="/usr/local/bin/aws_completer"
 fi
 
 alias awspu="unset AWS_PROFILE"
@@ -295,10 +290,5 @@ uv-python-symlinks() {
     echo "${DEST} created."
 }
 
-# Claude Code
-alias c="${HOME}/.claude/local/claude"
-alias claude="${HOME}/.claude/local/claude"
-
 # Yazi
-alias y=yazi
 alias yz=yazi
