@@ -1,0 +1,14 @@
+blacklist = ["scratch"]
+
+[default_session]
+startup_command = "ls"
+
+[[session]]
+name = "Downloads"
+path = "~/Downloads"
+startup_command = "yazi"
+
+[[session]]
+name = "dotfiles"
+path = "~/code/personal/dotfiles"
+startup_command = "hx"

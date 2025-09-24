@@ -159,8 +159,8 @@ globs = [
 dirs = [
   { name = ".cache", text = "󰪺" },
   { name = ".config", text = "󱁿" },
-  # { name = ".git", text = "" },
-  # { name = ".github", text = "" },
+  { name = ".git", text = "" },
+  { name = ".github", text = "" },
   { name = ".local", text = "󰉌" },
   { name = "application", text = "󱧺" },
   { name = "applications", text = "󱧺" },

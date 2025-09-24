@@ -56,6 +56,8 @@ alias sshaD="ssh-add -D"
 alias t="tmux"
 alias tsn="tmux new -As"
 alias tsl="tmux list-sessions"
+alias tsk="tmux kill-session"
+alias tska="tmux kill-session -a"
 alias twr='tmux renamew $(basename $(pwd))'
 
 # vim/nvim

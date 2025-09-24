@@ -73,7 +73,7 @@ zi load zsh-users/zsh-history-substring-search
 # Emacs Mode
 # ------------------------------------------------------------------------------
 
-# Use `bindkey -e` to use emcas line editing mode
+# Use `bindkey -e` to use emacs line editing mode
 bindkey -e
 export KEYTIMEOUT=1
 
@@ -94,9 +94,9 @@ my-backward-delete-word() {
     zle backward-delete-word
 }
 zle -N my-backward-delete-word
-bindkey '^W' my-backward-delete-word
+bindkey "^W" my-backward-delete-word
 # option+delete
-bindkey '^[^?' my-backward-delete-word
+bindkey "^[^?" my-backward-delete-word
 
 my-backward-word() {
     local WORDCHARS=${WORDCHARS/\//}
@@ -106,7 +106,7 @@ my-backward-word() {
     zle backward-word
 }
 zle -N my-backward-word
-bindkey '^[b' my-backward-word
+bindkey "^[b" my-backward-word
 
 my-forward-word() {
     local WORDCHARS=${WORDCHARS/\//}
@@ -116,7 +116,10 @@ my-forward-word() {
     zle forward-word
 }
 zle -N my-forward-word
-bindkey '^[f' my-forward-word
+bindkey "^[f" my-forward-word
+
+# Originally mapped to ctrl-o, but I'm using that for sesh
+bindkey "^[o" accept-line-and-down-history
 
 # ------------------------------------------------------------------------------
 # Miscelaneouns

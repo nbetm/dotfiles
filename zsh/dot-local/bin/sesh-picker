@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+exec </dev/tty
+exec <&1
+session=
+
+# Shared sesh fzf configuration
+sesh_fzf_args=(
+    --border-label " sesh "
+    --preview-window "right:50%"
+    --preview "sesh preview {}"
+    --prompt "❱ "
+    --list-border
+    --header-border
+    --header "<C-a> 󱡠   <C-t> 󰕮   <C-g> 󰒓   <C-f> 󰉋   <C-r> reset  <A-del> kill"
+    --bind "tab:down,btab:up,ctrl-n:down,ctrl-p:up"
+    --bind "ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up"
+    --bind "ctrl-a:change-prompt(󱡠  )+reload(sesh list --hide-duplicates)"
+    --bind "ctrl-t:change-prompt(󰕮  )+reload(sesh list -t --hide-duplicates)"
+    --bind "ctrl-g:change-prompt(󰒓  )+reload(sesh list -c --hide-duplicates)"
+    --bind "ctrl-f:change-prompt(󰉋  )+reload(sesh list -z --hide-duplicates)"
+    --bind "ctrl-r:change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
+    --bind "alt-bspace:execute-silent(tmux kill-session -t {})+change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
+)
+
+# Detect if we're running inside tmux
+if [[ -n "${TMUX:-}" ]]; then
+    session=$(sesh list -t -c --hide-duplicates | fzf-tmux -p 90%,80% "${sesh_fzf_args[@]}")
+else
+    session=$(sesh list -t -c --hide-duplicates | fzf --height 60% "${sesh_fzf_args[@]}")
+fi
+
+if [[ -n "$session" ]]; then
+    sesh connect "$session"
+else
+    true
+fi
