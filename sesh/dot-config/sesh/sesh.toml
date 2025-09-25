@@ -11,4 +11,4 @@ startup_command = "yazi"
 [[session]]
 name = "dotfiles"
 path = "~/code/personal/dotfiles"
-startup_command = "hx"
+startup_command = "hx ."
