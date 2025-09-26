@@ -21,13 +21,13 @@ sesh_fzf_args=(
     --prompt "❱ "
     --list-border
     --header-border
-    --header "<C-a> 󱡠   <C-t> 󰕮   <C-g> 󰒓   <C-f> 󰉋   <C-r> reset  <A-del> kill"
+    --header "<C-t> 󰕮  │ <C-b> 󰃀  │ <C-f> 󰉋  │ <C-a> 󱡠  │ <C-r> reset │ <A-del> kill"
     --bind "tab:down,btab:up,ctrl-n:down,ctrl-p:up"
     --bind "ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up"
-    --bind "ctrl-a:change-prompt(󱡠  )+reload(sesh list --hide-duplicates)"
     --bind "ctrl-t:change-prompt(󰕮  )+reload(sesh list -t --hide-duplicates)"
-    --bind "ctrl-g:change-prompt(󰒓  )+reload(sesh list -c --hide-duplicates)"
+    --bind "ctrl-b:change-prompt(󰃀  )+reload(sesh list -c --hide-duplicates)"
     --bind "ctrl-f:change-prompt(󰉋  )+reload(sesh list -z --hide-duplicates)"
+    --bind "ctrl-a:change-prompt(󱡠  )+reload(sesh list --hide-duplicates)"
     --bind "ctrl-r:change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
     --bind "alt-bspace:execute-silent(tmux kill-session -t {})+change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
 )
