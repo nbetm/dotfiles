@@ -67,17 +67,15 @@ esc = ["collapse_selection", "keep_primary_selection"]
 
 # Nice to have
 "C-," = ":config-open"
-C-r = ":config-reload"
-C-w = { c = ":buffer-close", C = ":buffer-close!", n = { n = ":new" } }
+"C-r" = ":config-reload"
+"C-w" = { x = ":buffer-close", X = ":buffer-close!", n = { n = ":new" } }
 "Meta-/" = "toggle_comments"
 "Meta-A-j" = ["copy_selection_on_next_line"]
 "Meta-A-k" = ["copy_selection_on_prev_line"]
 "Meta-o" = "file_explorer"
 "Meta-p" = "file_picker"
-"Meta-r" = ":reload"
 "Meta-R" = ":reload-all"
 "Meta-s" = ":write"
-"Meta-S" = ":write-all"
 "Meta-S-j" = ["extend_to_file_end"]
 "Meta-S-k" = ["extend_to_file_start"]
 "Meta-z" = ["undo", "collapse_selection"]
@@ -133,7 +131,9 @@ q = ":quit"
 Q = ":quit!"
 R = ":reload-all"
 w = ":write"
-W = ":write!"
+W = ":write-all"
+x = ":buffer-close"
+X = ":buffer-close!"
 
 [keys.insert]
 # No more fighting with the cursor!

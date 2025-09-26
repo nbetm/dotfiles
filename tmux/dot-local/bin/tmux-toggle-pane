@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+if [[ -n "${TMUX:-}" ]]; then
+    float="${1:-}"
+    pane_count="$(tmux list-panes | wc -l)"
+    pane_zoomed="$(tmux list-panes -F '#F' | grep -q Z && echo "true")"
+
+    if [[ -n "${float}" ]]; then
+        if [[ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ]]; then
+            tmux detach-client
+        else
+            tmux popup -d "#{pane_current_path}" -xC -yC -w90% -h80% \
+                -E "tmux new -As scratch \; set detach-on-destroy on \; set status off"
+        fi
+    else
+        if [[ "${pane_count}" == 1 ]]; then
+            tmux split-window -h -l 40% -c "#{pane_current_path}"
+        elif [[ -n "${pane_zoomed}" ]]; then
+            tmux select-pane -t:.-
+        else
+            tmux resize-pane -Z -t1
+        fi
+    fi
+fi

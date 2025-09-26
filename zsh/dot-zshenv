@@ -11,6 +11,13 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export OS_NAME=$(uname -s) # Darwin, Linux
 export OS_ARCH=$(uname -m) # x86_64, arm64
 
+if [[ "$OS_NAME" == "Linux" ]]; then
+    OS_DISTRO=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"'\' | tr '[:upper:]' '[:lower:]' || echo "unknown")
+else
+    OS_DISTRO=
+fi
+export OS_DISTRO
+
 # Editor
 export EDITOR="hx"
 export VISUAL="hx"
