@@ -5,7 +5,9 @@ Python translation of junegunn's Ruby version
 https://github.com/junegunn/tmux-fzf-url/blob/master/fzf-url.rb
 """
 
+import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -13,13 +15,9 @@ import sys
 def find_executable(*commands: str) -> str | None:
     """Find the first available command"""
     for cmd in commands:
-        try:
-            subprocess.run(
-                ["command", "-v", cmd.split()[0]], capture_output=True, check=True
-            )
+        cmd_name = cmd.split()[0]
+        if shutil.which(cmd_name):
             return cmd
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            continue
     return None
 
 
@@ -157,22 +155,9 @@ def run_fzf(urls: list[str]) -> list[str]:
 
 def copy_to_clipboard(text: str) -> None:
     """Copy text to clipboard"""
-    copier = find_executable(
-        "reattach-to-user-namespace pbcopy",
-        "wl-copy",
-        "pbcopy",
-        "xsel --clipboard --input",
-        "xclip -selection clipboard",
-    )
-
-    if not copier:
-        tmux_message("No clipboard tool found")
-        return
-
     try:
-        subprocess.run(
-            copier.split(), input=text, text=True, capture_output=True, check=True
-        )
+        copier = ["tmux", "set-buffer", "-w", text]
+        subprocess.run(copier, text=True, capture_output=True, check=True)
         tmux_message("Copied to clipboard")
     except subprocess.CalledProcessError:
         tmux_message("Failed to copy to clipboard")
@@ -180,6 +165,11 @@ def copy_to_clipboard(text: str) -> None:
 
 def open_urls(urls: list[str]) -> None:
     """Open URLs in default browser"""
+    # Check if we're in a remote SSH session
+    if bool(os.environ.get("SSH_CLIENT") or os.environ.get("SSH_TTY")):
+        tmux_message("Remote Session -- SKIP!")
+        return
+
     opener = find_executable("open", "xdg-open")
 
     if not opener:
@@ -202,7 +192,6 @@ def open_urls(urls: list[str]) -> None:
 
 
 def main() -> None:
-    """Main function - Simple is better than complex"""
     # Get URLs from tmux
     content = get_tmux_content()
     urls = extract_urls(content)
