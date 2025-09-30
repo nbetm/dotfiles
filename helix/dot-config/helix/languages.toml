@@ -119,3 +119,11 @@ args = ["server"]
 [[language]]
 name = "ini"
 indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "nix"
+language-servers = ["nixd"]
+auto-format = true
+formatter = { command = "nixfmt" }
+indent = { tab-width = 2, unit = "  " }
