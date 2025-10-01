@@ -69,6 +69,8 @@ esc = ["collapse_selection", "keep_primary_selection"]
 "C-," = ":config-open"
 "C-r" = ":config-reload"
 "C-w" = { x = ":buffer-close", X = ":buffer-close!", n = { n = ":new" } }
+"A-minus" = "decrement"
+"A-=" = "increment"
 "Meta-/" = "toggle_comments"
 "Meta-A-j" = ["copy_selection_on_next_line"]
 "Meta-A-k" = ["copy_selection_on_prev_line"]
@@ -95,7 +97,6 @@ esc = ["collapse_selection", "keep_primary_selection"]
 
 # Vim-like
 "$" = "goto_line_end"
-"%" = "match_brackets"
 "[" = { b = "goto_previous_buffer" }
 "]" = { b = "goto_next_buffer" }
 "^" = "goto_first_nonwhitespace"
@@ -154,7 +155,6 @@ esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
 
 # Vim-like
 "$" = "goto_line_end"
-"%" = "match_brackets"
 "^" = "goto_first_nonwhitespace"
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]

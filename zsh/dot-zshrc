@@ -121,6 +121,10 @@ bindkey "^[f" my-forward-word
 # Originally mapped to ctrl-o, but I'm using that for sesh
 bindkey "^[o" accept-line-and-down-history
 
+# Use Home/End instead of ctrl-a/ctrl-e
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
+
 # ------------------------------------------------------------------------------
 # Miscelaneouns
 # ------------------------------------------------------------------------------
