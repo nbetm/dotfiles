@@ -2,8 +2,10 @@
 
 theme = nord-deep
 
+# OS-specific settings
+config-file = os.conf
+
 font-family = Iosevka N Term
-font-size = 14
 font-thicken = true
 font-thicken-strength = 0
 adjust-cell-height = 2
