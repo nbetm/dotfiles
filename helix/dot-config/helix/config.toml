@@ -2,18 +2,19 @@
 theme = "nord-deep"
 
 [editor]
-# bufferline = "multiple"
 color-modes = true
 completion-replace = true
 cursorline = true
+default-yank-register = "+"
 end-of-line-diagnostics = "disable"
+insert-final-newline = true
 line-number = "relative"
 popup-border = "all"
 rulers = [80, 120]
 shell = ["zsh", "-c"]
+trim-final-newlines = true
 trim-trailing-whitespace = true
 true-color = true
-default-yank-register = "+"
 
 [editor.inline-diagnostics]
 cursor-line = "hint"

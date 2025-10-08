@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Format Python: isort (imports) -> ruff format (code)
+# Reads from stdin, writes to stdout
+#
+# Options:
+#   e: Exit on error
+#   u: Exit on unset variable
+#   o pipefail: Catch pipe failures
+
+set -euo pipefail
+
+# Validate required tools
+command -v isort &>/dev/null || { echo "Error: isort not found" >&2; exit 1; }
+command -v ruff &>/dev/null || { echo "Error: ruff not found" >&2; exit 1; }
+
+# Run formatter pipeline
+isort - | ruff format --stdin-filename dummy.py -
