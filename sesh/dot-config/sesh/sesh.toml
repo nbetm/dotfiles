@@ -1,7 +1,7 @@
 blacklist = ["scratch"]
 
 [default_session]
-startup_command = "ls"
+disable_startup_command = true
 
 [[session]]
 name = "Downloads"
@@ -11,4 +11,19 @@ startup_command = "yazi"
 [[session]]
 name = "dotfiles"
 path = "~/code/personal/dotfiles"
+startup_command = "hx ."
+
+[[session]]
+name = "px-cli"
+path = "~/code/px/px-cli"
+startup_command = "hx ."
+
+[[session]]
+name = "px-dashx"
+path = "~/code/px/dashx"
+startup_command = "hx ."
+
+[[session]]
+name = "px-webx"
+path = "~/code/px/webx"
 startup_command = "hx ."
