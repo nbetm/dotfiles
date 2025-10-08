@@ -2,36 +2,30 @@
 .DS_Store
 Thumbs.db
 
-# Swap Vim Files
+# swap vim files
 *~
 
-# Log Files
+# log files
 log/
 logs/
 *.log
 *.log.*
 
-# IDEs
-.vscode
-.zed
+# editors
+.helix/
+.vscode/
+.zed/
 
-# General
-.idea
-creds.json
+# generic
+.idea/
+.notes/
 
-# Direnv
+# direnv
 .envrc
+.direnv/
 
-# Terraform
+# terraform
 *tfplan*
 
-# AI
-.*rules
-.aider*
-.claude
-.github/copilot-instructions.md
-.rules
-CLAUDE*.md
-CONVENTIONS*.md
-checkpoint.md
-handoff.md
+# claude
+.claude/settings.local.json

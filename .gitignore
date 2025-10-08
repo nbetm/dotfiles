@@ -1,17 +1,28 @@
-.helix/
+# generic
 .idea/
+.notes/
+
+# editors
+.helix/
 .vscode/
 .zed/
 
+# claude
+.claude/
 claude/
+CLAUDE.md
 
+# helix
 helix/dot-config/helix/runtime/**
 
+# tmux
 tmux/dot-config/tmux/plugins/**
 
+# zed
 zed/dot-config/zed/conversations/**
 zed/dot-config/zed/embeddings/**
 zed/dot-config/zed/prompts/**
 
+# zsh
 zsh/dot-zsh/cache/**
 zsh/dot-zsh/include/_*.zsh
