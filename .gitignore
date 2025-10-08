@@ -25,4 +25,4 @@ zed/dot-config/zed/prompts/**
 
 # zsh
 zsh/dot-zsh/cache/**
-zsh/dot-zsh/include/_*.zsh
+zsh/dot-zsh/include/*local*
