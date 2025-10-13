@@ -5,6 +5,9 @@ theme = nord-deep
 # OS-specific settings
 config-file = os.conf
 
+# Keybindings (macOS-style keybindings across platforms)
+config-file = keybindings.conf
+
 font-family = Iosevka N Term
 font-thicken = true
 font-thicken-strength = 0
@@ -26,18 +29,3 @@ unfocused-split-opacity = 0.90
 
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
-
-keybind = super+backspace=text:\x15
-keybind = shift+enter=text:\n
-
-keybind = super+f=write_scrollback_file:paste
-keybind = super+shift+h=write_scrollback_file:paste
-
-# Jump to beginning and end of word
-keybind = alt+left=text:\x1b\x62
-keybind = alt+right=text:\x1b\x66
-
-# Jump to beginning and end of line
-# Note: Use Home/End instead of ctrl-a/ctrl-e
-keybind = super+left=text:\x1b[H
-keybind = super+right=text:\x1b[F

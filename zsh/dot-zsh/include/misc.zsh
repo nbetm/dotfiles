@@ -33,6 +33,7 @@ alias ssu="sudo su -"
 # Direnv
 alias de="direnv"
 alias dea="direnv allow"
+alias der="direnv reload"
 
 # SSH
 ssh() {
