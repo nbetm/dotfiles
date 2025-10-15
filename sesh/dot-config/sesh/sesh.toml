@@ -14,8 +14,18 @@ path = "~/code/personal/dotfiles"
 startup_command = "hx ."
 
 [[session]]
+name = "nix-config"
+path = "~/code/personal/nix-config"
+startup_command = "hx ."
+
+[[session]]
+name = "claude-config"
+path = "~/code/personal/claude-config"
+startup_command = "hx ."
+
+[[session]]
 name = "px-cli"
-path = "~/code/px/px-cli"
+path = "~/code/px/cli"
 startup_command = "hx ."
 
 [[session]]
@@ -26,4 +36,9 @@ startup_command = "hx ."
 [[session]]
 name = "px-webx"
 path = "~/code/px/webx"
+startup_command = "hx ."
+
+[[session]]
+name = "px-iac"
+path = "~/code/px/iac"
 startup_command = "hx ."
