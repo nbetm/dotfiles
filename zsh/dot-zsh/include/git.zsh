@@ -2,13 +2,14 @@
 
 # Heavily inspired from https://github.com/sorin-ionescu/prezto/blob/master/modules/git/alias.zsh
 # Git aliases
-# Log
+
+# Log Format
 zstyle -s ":prezto:module:git:log:medium" format "_git_log_medium_format" ||
     _git_log_medium_format="%C(bold)Commit:%C(reset) %C(green)%H%C(bold magenta)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%w(80,1,2)%+B"
 zstyle -s ":prezto:module:git:log:oneline" format "_git_log_oneline_format" ||
-    _git_log_oneline_format="%C(green)%h%C(reset) %><(55,trunc)%s%C(bold magenta)%d%C(reset) %C(cyan)[%an]%C(reset) %C(blue)%ad%C(reset)%n"
+    _git_log_oneline_format="%C(green)%h%C(reset) %C(blue)%ad%C(reset) %C(cyan)%an%C(reset) %C(bold magenta)%d%C(reset) %s"
 zstyle -s ":prezto:module:git:log:brief" format "_git_log_brief_format" ||
-    _git_log_brief_format="%C(green)%h%C(reset) %s%n%C(blue)(%ar by %C(cyan)%an%C(blue))%C(bold magenta)%d%C(reset)%n"
+    _git_log_brief_format="%C(green)%h%C(reset) %C(blue)(%ar by %C(cyan)%an%C(blue))%C(bold magenta)%d%C(reset) %n%s%n"
 
 # Status
 zstyle -s ":prezto:module:git:status:ignore" submodules "_git_status_ignore_submodules" ||
@@ -17,6 +18,7 @@ zstyle -s ":prezto:module:git:status:ignore" submodules "_git_status_ignore_subm
 alias g="git"
 alias gui="gitui"
 alias glz="lazygit"
+alias lzg="lazygit"
 
 # Branch (b)
 alias gb="git branch"
