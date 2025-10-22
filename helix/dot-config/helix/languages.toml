@@ -44,10 +44,15 @@ bashIde.shellcheckPath = "shellcheck"
 name = "json"
 language-servers = ["vscode-json-language-server"]
 auto-format = true
-formatter = { command = "jq", args = ["--indent", "4", "."] }
+formatter = { command = "prettier", args = [
+  "--parser",
+  "json",
+  "--tab-width",
+  "4",
+] }
 indent = { tab-width = 4, unit = "    " }
 
-# JSONC (JSON with Comments) - prettier handles comments better
+# JSONC (JSON with Comments)
 [[language]]
 name = "jsonc"
 language-servers = ["vscode-json-language-server"]
@@ -67,13 +72,17 @@ args = ["--stdio"]
 # YAML
 [[language]]
 name = "yaml"
-language-servers = ["yaml-language-server"]
+language-servers = ["yaml-language-server", "ansible-language-server"]
 auto-format = true
-formatter = { command = "yq", args = ["."] }
+formatter = { command = "yamlfmt", args = ['-'] }
 indent = { tab-width = 2, unit = "  " }
 
 [language-server.yaml-language-server]
 command = "yaml-language-server"
+args = ["--stdio"]
+
+[language-server.ansible-language-server]
+command = "ansible-language-server"
 args = ["--stdio"]
 
 # TOML
