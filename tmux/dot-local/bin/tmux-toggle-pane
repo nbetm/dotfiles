@@ -18,7 +18,7 @@ if [[ -n "${TMUX:-}" ]]; then
         if [[ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ]]; then
             tmux detach-client
         else
-            tmux popup -d "#{pane_current_path}" -xC -yC -w90% -h80% \
+            tmux popup -d "#{pane_current_path}" -xC -yC -w80% -h80% \
                 -E "tmux new -As scratch \; set detach-on-destroy on \; set status off"
         fi
     else
