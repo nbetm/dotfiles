@@ -111,13 +111,13 @@ pipr() {
 }
 
 # Terraform
-# Set `tf` to use to autocompletes for `terraform`.
-# compdef tf=terraform
+compdef tf=terraform
 alias tf="terraform"
 alias tfi="terraform init"
 alias tfiu="terraform init -upgrade"
-alias tfpa="terraform apply plan.tfplan && rm -f plan.tfplan"
-alias tfpar="terraform apply -refresh-only plan.tfplan && rm -f plan.tfplan"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfar="terraform apply -refresh-only"
 alias tfw="terraform workspace"
 alias tfwl="terraform workspace list"
 alias tfwn="terraform workspace new"
@@ -125,48 +125,9 @@ alias tfws="terraform workspace select"
 alias tffmt="terraform fmt"
 alias tfs="terraform state"
 alias tfsl="terraform state list"
+alias tfdestroy="terraform destroy"
 alias tfprovlock="terraform providers lock -platform darwin_arm64 -platform darwin_amd64 -platform linux_amd64"
 alias tflocalrm="find -name .terraform -type d -print0 | xargs -0 rm -fr"
-tfp() {
-    local _var_file
-
-    _var_file="$(terraform workspace show).tfvars"
-    if [[ -f $_var_file ]]; then
-        terraform plan -var-file="$_var_file" -out=plan.tfplan
-    else
-        terraform plan -out=plan.tfplan
-    fi
-}
-tfa() {
-    local _var_file
-
-    _var_file="$(terraform workspace show).tfvars"
-    if [[ -f $_var_file ]]; then
-        terraform apply -var-file="$_var_file"
-    else
-        terraform apply
-    fi
-}
-tfar() {
-    local _var_file
-
-    _var_file="$(terraform workspace show).tfvars"
-    if [[ -f $_var_file ]]; then
-        terraform apply -refresh-only -var-file="$_var_file"
-    else
-        terraform apply -refresh-only
-    fi
-}
-tfdestroy() {
-    local _var_file
-
-    _var_file="$(terraform workspace show).tfvars"
-    if [[ -f $_var_file ]]; then
-        terraform destroy -var-file="$_var_file"
-    else
-        terraform destroy
-    fi
-}
 
 # Nomad
 alias nm="nomad"
@@ -295,3 +256,6 @@ uv-python-symlinks() {
 
 # Yazi
 alias yz=yazi
+
+# LazyDocker
+alias lzd="lazydocker"

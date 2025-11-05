@@ -6,7 +6,7 @@ color-modes = true
 completion-replace = true
 cursorline = true
 default-yank-register = "+"
-end-of-line-diagnostics = "disable"
+end-of-line-diagnostics = "hint"
 insert-final-newline = true
 line-number = "relative"
 popup-border = "all"
@@ -17,7 +17,7 @@ trim-trailing-whitespace = true
 true-color = true
 
 [editor.inline-diagnostics]
-cursor-line = "hint"
+cursor-line = "warning"
 other-lines = "disable"
 prefix-len = 2
 
