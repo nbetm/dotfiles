@@ -137,3 +137,15 @@ language-servers = ["nixd"]
 auto-format = true
 formatter = { command = "nixfmt" }
 indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "env"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "git-rebase"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "git-config"
+indent = { tab-width = 4, unit = "    " }
