@@ -1,5 +1,13 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
+#
+# ------------------------------------------------------------------------------
+# ZSHENV - Universal Environment Variables
+# ------------------------------------------------------------------------------
+# Sourced by: ALL shells (login, non-login, interactive, non-interactive)
+# Purpose: Define environment variables needed everywhere
+# Keep lean: Avoid expensive operations (subprocess spawning, heavy computation)
+# ------------------------------------------------------------------------------
 
 # XDG
 export XDG_CONFIG_HOME="${HOME}/.config"

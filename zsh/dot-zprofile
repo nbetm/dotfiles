@@ -1,5 +1,17 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
+#
+# ------------------------------------------------------------------------------
+# ZPROFILE - Login Shell PATH Configuration
+# ------------------------------------------------------------------------------
+# Sourced by: LOGIN shells only (SSH, terminal launch, explicit zsh -l)
+# Purpose: Expensive PATH setup and platform-specific initialization
+# Why not zshenv: Keeps env lean, runs once per login instead of every subshell
+# ------------------------------------------------------------------------------
+
+# Guard against re-sourcing (safe to manually source if needed)
+[[ -n "$_ZPROFILE_SOURCED" ]] && return
+typeset -g _ZPROFILE_SOURCED=1
 
 if [[ $OS_NAME == "Darwin" ]]; then
     # Initiate Homebrew
@@ -31,24 +43,29 @@ if [[ $OS_NAME == "Darwin" ]]; then
     export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
 
 elif [[ $OS_NAME = "Linux" ]]; then
-    # Additional Paths -> FIX: NixOS vs Debian
-    typeset -U path
-    path=(
-        "$XDG_BIN_HOME"
-        "${XDG_DATA_HOME}/google-cloud-sdk/bin"
-        "${HOME}/.fzf/bin"
-        "/usr/libexec/docker/cli-plugins"
-        $path
-    )
+    # Additional Paths (Debian/Ubuntu manual installs)
+    if [[ ! "$OS_DISTRO" == "nixos" ]]; then
+        typeset -U path
+        path=(
+            "$XDG_BIN_HOME"
+            "${XDG_DATA_HOME}/google-cloud-sdk/bin"
+            "${HOME}/.fzf/bin"
+            "/usr/libexec/docker/cli-plugins"
+            $path
+        )
+    fi
 
     # Docker Rootless
     export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
-    # NixOS -> FIX: NixOS vs Debian
-    if [ -n "${commands[fzf - share]}" ]; then
-        source "$(fzf-share)/key-bindings.zsh"
-        source "$(fzf-share)/completion.zsh"
+    # FZF shell integration path (distro-specific)
+    if [[ "$OS_DISTRO" == "nixos" ]]; then
+        if [[ -n "${commands[fzf - share]}" ]]; then
+            source "$(fzf-share)/key-bindings.zsh"
+            source "$(fzf-share)/completion.zsh"
+        fi
     else
+        # Debian/Ubuntu: manual install to ~/.fzf
         export FZF_SHELL_DIR="${HOME}/.fzf/shell"
     fi
 fi
