@@ -1,6 +1,28 @@
 # shellcheck disable=all
 
+# ------------------------------------------------------------------------------
+# Zsh Plugin Management
+# ------------------------------------------------------------------------------
+
+# Update all zsh plugins
+update-zsh-plugins() {
+    local plugin_dir="${HOME}/.zsh/plugins"
+    if [[ ! -d "$plugin_dir" ]]; then
+        echo "No plugins directory found at $plugin_dir"
+        return 1
+    fi
+
+    for plugin in "$plugin_dir"/*/; do
+        if [[ -d "$plugin/.git" ]]; then
+            echo "Updating $(basename "$plugin")..."
+            git -C "$plugin" pull
+        fi
+    done
+}
+
+# ------------------------------------------------------------------------------
 # Directories Listings
+# ------------------------------------------------------------------------------
 alias ls="ls --color=auto"
 alias ll="ls --all --human-readable --classify -l"
 alias l1="ls --almost-all -1"

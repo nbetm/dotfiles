@@ -1,6 +1,9 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
 
+# Enable profiling (comment out when not benchmarking)
+zmodload zsh/zprof
+
 # ------------------------------------------------------------------------------
 # Options :: https://zsh.sourceforge.io/Doc/Release/Options.html
 # ------------------------------------------------------------------------------
@@ -33,41 +36,48 @@ setopt AUTO_LIST                # Automatically list choices on ambiguous comple
 setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
 
 # ------------------------------------------------------------------------------
-# Plugin Manager :: https://github.com/zplug/zplug
+# Plugin Management
 # ------------------------------------------------------------------------------
 
-# Check if Zinit is not installed, then init!
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
+# Auto-install missing plugins on shell start
+install-zsh-plugins() {
+    local plugin_dir="${HOME}/.zsh/plugins"
+    local plugins=(
+        "zsh-users/zsh-autosuggestions"
+        "zsh-users/zsh-completions"
+        "zdharma-continuum/fast-syntax-highlighting"
+    )
 
-# https://www.github.com/zsh-users/zsh-autosuggestions
-# Fish-like fast/unobtrusive autosuggestions for zsh. When you type a command a
-# second time it shows up but is shaded, use the right arrow to fully complete
-# the command
-zi light zsh-users/zsh-autosuggestions
+    mkdir -p "$plugin_dir"
+    for repo in $plugins; do
+        local name=${repo##*/}
+        if [[ ! -d "$plugin_dir/$name" ]]; then
+            echo "Installing $name..."
+            git clone --quiet --depth=1 "https://github.com/$repo" "$plugin_dir/$name"
+        fi
+    done
+}
+
+install-zsh-plugins
+
+# zsh-autosuggestions
+# Fish-like autosuggestions for zsh
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#798094"
 
-# https://www.github.com/zsh-users/zsh-completions
-# Additional completions for common command line tools
-zi light zsh-users/zsh-completions
+# zsh-completions
+# Additional completion definitions
+fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
 
-# https://www.github.com/zsh-users/zsh-syntax-highlighting
-# Fish shell-like syntax highlighting for Zsh.
-zi light zsh-users/zsh-syntax-highlighting
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern)
-ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=red"
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]="fg=#81a1c1"
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
-
-# https://www.github.com/zsh-users/zsh-history-substring-search
-# You can type the beginning of a command and then use arrow keys to filter
-# previous commands in your history that share the same beginning
-zi snippet OMZ::plugins/git/git.plugin.zsh
-zi load zsh-users/zsh-history-substring-search
+# fast-syntax-highlighting
+# Fast syntax highlighting with Nord Deep colors
+source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+typeset -A FAST_HIGHLIGHT_STYLES
+FAST_HIGHLIGHT_STYLES[unknown-token]="fg=red"
+FAST_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
+FAST_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
+FAST_HIGHLIGHT_STYLES[bracket-level-3]="fg=#81a1c1"
+FAST_HIGHLIGHT_STYLES[bracket-level-4]="fg=#5e81ac"
 
 # ------------------------------------------------------------------------------
 # Emacs Mode
@@ -249,3 +259,6 @@ if [[ -d "${HOME}/.zsh/include" ]]; then
         [[ -s $item ]] && source $item
     done
 fi
+
+# Display profiling results (comment out when not benchmarking)
+zprof
