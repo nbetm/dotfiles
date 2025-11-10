@@ -1,9 +1,6 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
 
-# Enable profiling (comment out when not benchmarking)
-zmodload zsh/zprof
-
 # ------------------------------------------------------------------------------
 # Options :: https://zsh.sourceforge.io/Doc/Release/Options.html
 # ------------------------------------------------------------------------------
@@ -43,8 +40,8 @@ setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
 install-zsh-plugins() {
     local plugin_dir="${HOME}/.zsh/plugins"
     local plugins=(
-        "zsh-users/zsh-autosuggestions"
         "zsh-users/zsh-completions"
+        "zsh-users/zsh-autosuggestions"
         "zdharma-continuum/fast-syntax-highlighting"
     )
 
@@ -56,21 +53,19 @@ install-zsh-plugins() {
             git clone --quiet --depth=1 "https://github.com/$repo" "$plugin_dir/$name"
         fi
     done
-}
+} && install-zsh-plugins
 
-install-zsh-plugins
+# zsh-completions
+# Installed as a library for selective symlinking via add-zsh-completion
+# Not added to fpath to keep completion count minimal (performance)
 
 # zsh-autosuggestions
 # Fish-like autosuggestions for zsh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#798094"
 
-# zsh-completions
-# Additional completion definitions
-fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
-
 # fast-syntax-highlighting
-# Fast syntax highlighting with Nord Deep colors
+# Syntax highlighting with Nord Deep colors
 source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 typeset -A FAST_HIGHLIGHT_STYLES
 FAST_HIGHLIGHT_STYLES[unknown-token]="fg=red"
@@ -259,6 +254,3 @@ if [[ -d "${HOME}/.zsh/include" ]]; then
         [[ -s $item ]] && source $item
     done
 fi
-
-# Display profiling results (comment out when not benchmarking)
-zprof

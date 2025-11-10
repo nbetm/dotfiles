@@ -20,6 +20,47 @@ update-zsh-plugins() {
     done
 }
 
+# Browse and link completions from zsh-completions plugin using FZF
+add-zsh-completion() {
+    local _plugin_dir="${HOME}/.zsh/plugins/zsh-completions/src"
+    local _completions_dir="${HOME}/.zsh/completions"
+
+    [[ ! -d "$_plugin_dir" ]] && echo "zsh-completions plugin not found" && return 1
+
+    # Build list with status markers
+    local -a _choices
+    for comp in "$_plugin_dir"/_*; do
+        local name=$(basename "$comp")
+        if [[ -L "$_completions_dir/$name" ]] || [[ -f "$_completions_dir/$name" ]]; then
+            _choices+=("✓ $name")
+        else
+            _choices+=("  $name")
+        fi
+    done
+
+    # FZF multi-select
+    local -a _selected=("${(@f)$(printf '%s\n' "${_choices[@]}" | \
+        fzf --multi --reverse \
+            --prompt="Select completions: " \
+            --header="✓=linked | Tab=multi-select | Ctrl-A=select-all" \
+            --bind="ctrl-a:select-all,ctrl-d:deselect-all")}")
+
+    [[ ${#_selected} -eq 0 ]] && return
+
+    # Link selections
+    for line in "${_selected[@]}"; do
+        local name=${line:2}  # Skip first 2 chars (marker + space)
+        if [[ "$line" == "✓"* ]]; then
+            echo "Already linked: $name"
+        else
+            ln -sf "$_plugin_dir/$name" "$_completions_dir/$name"
+            echo "Linked: $name"
+        fi
+    done
+
+    echo "\nReload shell to activate: exec zsh"
+}
+
 # ------------------------------------------------------------------------------
 # Directories Listings
 # ------------------------------------------------------------------------------
