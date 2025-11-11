@@ -36,7 +36,7 @@ setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
 # Plugin Management
 # ------------------------------------------------------------------------------
 
-# Auto-install missing plugins on shell start
+# Install missing plugins (only runs if plugins directory doesn't exist)
 install-zsh-plugins() {
     local plugin_dir="${HOME}/.zsh/plugins"
     local plugins=(
@@ -53,7 +53,10 @@ install-zsh-plugins() {
             git clone --quiet --depth=1 "https://github.com/$repo" "$plugin_dir/$name"
         fi
     done
-} && install-zsh-plugins
+}
+
+# Auto-install on first run only (when plugins directory is empty or missing)
+[[ ! -d "${HOME}/.zsh/plugins" ]] || [[ -z "$(ls -A "${HOME}/.zsh/plugins" 2>/dev/null)" ]] && install-zsh-plugins
 
 # zsh-completions
 # Installed as a library for selective symlinking via add-zsh-completion
@@ -187,13 +190,13 @@ eval "$(uv generate-shell-completion zsh)"
 eval "$(uvx --generate-shell-completion zsh)"
 eval "$(ruff generate-shell-completion zsh)"
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 # SkyPilot
 if [[ -f "${HOME}/.sky/.sky-complete.zsh" ]]; then
     source "${HOME}/.sky/.sky-complete.zsh"
 fi
-
-# zoxide
-eval "$(zoxide init zsh)"
 
 # ------------------------------------------------------------------------------
 # zstyles :: https://zsh.sourceforge.io/Doc/Release/Zsh-Modules.html#The-zsh_002fzutil-Module
