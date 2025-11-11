@@ -8,12 +8,9 @@ config-file = os.conf
 # Keybindings (macOS-style keybindings across platforms)
 config-file = keybindings.conf
 
-font-family = Iosevka N Term
-font-thicken = true
-font-thicken-strength = 0
-# background-opacity = 0.8
-
 title = " "
+
+font-family = Iosevka N Term
 
 shell-integration = zsh
 shell-integration-features = true
@@ -25,6 +22,7 @@ quick-terminal-autohide = true
 
 mouse-hide-while-typing = true
 
+# background-opacity = 0.8
 unfocused-split-opacity = 0.90
 
 clipboard-trim-trailing-spaces = true
