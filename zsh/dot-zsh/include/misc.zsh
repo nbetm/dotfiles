@@ -53,7 +53,8 @@ add-zsh-completion() {
         if [[ "$line" == "✓"* ]]; then
             echo "Already linked: $name"
         else
-            ln -sf "$_plugin_dir/$name" "$_completions_dir/$name"
+            # Use relative path for cross-platform compatibility
+            ln -sf "../plugins/zsh-completions/src/$name" "$_completions_dir/$name"
             echo "Linked: $name"
         fi
     done
