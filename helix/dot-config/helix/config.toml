@@ -15,6 +15,8 @@ shell = ["zsh", "-c"]
 trim-final-newlines = true
 trim-trailing-whitespace = true
 true-color = true
+text-width = 120
+soft-wrap = { enable = false, wrap-at-text-width = true, max-wrap = 25, wrap-indicator = "" }
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
@@ -136,6 +138,7 @@ w = ":write"
 W = ":write-all"
 x = ":buffer-close"
 X = ":buffer-close!"
+z = ":toggle-option soft-wrap.enable"
 
 [keys.insert]
 # No more fighting with the cursor!
