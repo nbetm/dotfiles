@@ -32,6 +32,8 @@ setopt MENU_COMPLETE            # Automatically highlight first element of compl
 setopt AUTO_LIST                # Automatically list choices on ambiguous completion.
 setopt COMPLETE_IN_WORD         # Complete from both ends of a word.
 
+setopt INTERACTIVE_COMMENTS     # Enable interactive comments
+
 # ------------------------------------------------------------------------------
 # Plugin Management
 # ------------------------------------------------------------------------------
@@ -71,6 +73,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#798094"
 # Syntax highlighting with Nord Deep colors
 source ~/.zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 typeset -A FAST_HIGHLIGHT_STYLES
+FAST_HIGHLIGHT_STYLES[comment]="fg=#798094"
 FAST_HIGHLIGHT_STYLES[unknown-token]="fg=red"
 FAST_HIGHLIGHT_STYLES[bracket-level-1]="fg=#8fbcbb"
 FAST_HIGHLIGHT_STYLES[bracket-level-2]="fg=#88c0d0"
