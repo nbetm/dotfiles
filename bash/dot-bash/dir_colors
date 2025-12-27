@@ -1,0 +1,266 @@
+# Nord Deep dircolors
+
+COLOR tty
+
+TERM alacritty
+TERM ansi
+TERM color_xterm
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM dvtm
+TERM dvtm-256color
+TERM Eterm
+TERM eterm-color
+TERM fbterm
+TERM foot
+TERM gnome
+TERM gnome-256color
+TERM jfbterm
+TERM konsole
+TERM konsole-256color
+TERM kterm
+TERM linux
+TERM linux-16color
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM nxterm
+TERM putty
+TERM putty-256color
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode256
+TERM rxvt-unicode-256color
+TERM screen
+TERM screen-16color
+TERM screen-16color-bce
+TERM screen-16color-s
+TERM screen-16color-bce-s
+TERM screen-256color
+TERM screen-256color-bce
+TERM screen-256color-s
+TERM screen-256color-bce-s
+TERM screen-256color-italic
+TERM screen-bce
+TERM screen-w
+TERM screen.linux
+TERM screen.xterm-256color
+TERM screen.xterm-new
+TERM st
+TERM st-meta
+TERM st-256color
+TERM st-meta-256color
+TERM tmux
+TERM tmux-256color
+TERM vt100
+TERM xterm
+TERM xterm-new
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-256color-italic
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian
+TERM xterm-ghostty
+TERM xterm-kitty
+TERM xterm-termite
+
+## Below are the color init strings for the basic file types. A color init
+## string consists of one or more of the following numeric codes
+## Attribute codes
+##   00=none 01=bold 02=dim 03=italic 04=underscore 05=blink 07=reverse 08=concealed
+## Text color codes
+##   30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+## Background color codes
+##   40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+## Global Defaults
+
+NORMAL 00
+RESET  0
+
+FILE 00
+DIR  01;34
+
+LINK 03;36
+MULTIHARDLINK 04;36
+
+FIFO 04;01;36
+SOCK 04;01;36
+DOOR 04;01;36
+BLK  01;33,44
+CHR  33
+
+ORPHAN  31
+MISSING 01;37;41
+
+SETUID     01;04;37
+SETGID     01;04;37
+CAPABILITY 01;37
+
+STICKY                01;04;37;44
+STICKY_OTHER_WRITABLE 01;37;44
+OTHER_WRITABLE        01;04;34
+
+## By extension
+
+# Compression/Archives | bold-magenta
+.7z   01;35
+.br   01;35
+.bz   01;35
+.bz2  01;35
+.bz3  01;35
+.gz   01;35
+.lz4  01;35
+.lzma 01;35
+.rar  01;35
+.sit  01;35
+.tar  01;35
+.tbz  01;35
+.tbz2 01;35
+.tgz  01;35
+.txz  01;35
+.xz   01;35
+.z    01;35
+.zip  01;35
+.zst  01;35
+.zstd 01;35
+
+# Packages | bold-magenta
+.apk 01;35
+.deb 01;35
+.dmg 01;35
+.jar 01;35
+.msi 01;35
+.rpm 01;35
+
+# Encryption/Security | bold-magenta
+.aes 01;35
+.asc 01;35
+.enc 01;35
+.gpg 01;35
+.pgp 01;35
+.p12 01;35
+.pfx 01;35
+.pem 01;35
+.crt 01;35
+.cer 01;35
+.key 01;35
+.pub 01;35
+
+# Databases | bold-magenta
+.accdb   01;35
+.db      01;35
+.dbf     01;35
+.mdb     01;35
+.sqlite  01;35
+.sqlite3 01;35
+
+# Unimportant | dim-italic-white
+*#        02;03;37
+*~        02;03;37
+.BAK      02;03;37
+.DIST     02;03;37
+.DS_Store 02;03;37
+.OFF      02;03;37
+.OLD      02;03;37
+.ORIG     02;03;37
+.backup   02;03;37
+.bak      02;03;37
+.dist     02;03;37
+.log      02;03;37
+.off      02;03;37
+.old      02;03;37
+.orig     02;03;37
+.swo      02;03;37
+.swp      02;03;37
+
+# Executables | bold-cyan
+EXEC 01;36
+.app 01;36
+.bat 01;36
+.btm 01;36
+.cmd 01;36
+.com 01;36
+.exe 01;36
+.reg 01;36
+
+# Audio | yellow
+.aac  33
+.flac 33
+.m4a  33
+.mp3  33
+.ogg  33
+.opus 33
+.wav  33
+
+# Image | yellow
+.avif 33
+.bpm  33
+.gif  33
+.heic 33
+.HEIC 33
+.jpeg 33
+.JPEG 33
+.jpg  33
+.JPG  33
+.jxl  33
+.png  33
+.PNG  33
+.svg  33
+.tif  33
+.tiff 33
+.webp 33
+
+# Video | yellow
+.avi  33
+.flv  33
+.m4v  33
+.mkv  33
+.mov  33
+.mp4  33
+.mp4v 33
+.mpeg 33
+.mpg  33
+.webm 33
+.wmv  33
+
+# Documents | green
+.doc  32
+.docx 32
+.dot  32
+.dotx 32
+.epub 32
+.mkd  32
+.odg  32
+.odp  32
+.ods  32
+.odt  32
+.otg  32
+.otp  32
+.ots  32
+.ott  32
+.pdf  32
+.ppt  32
+.pptx 32
+.rst  32
+.rtf  32
+.tex  32
+.xls  32
+.xlsx 32

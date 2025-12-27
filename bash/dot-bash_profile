@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+# vim: set ft=bash :
+#
+# ------------------------------------------------------------------------------
+# BASH_PROFILE - Login Shell Configuration
+# ------------------------------------------------------------------------------
+# Sourced by: LOGIN shells only (SSH, terminal launch, explicit bash -l)
+# Purpose: PATH setup and platform-specific initialization
+# ------------------------------------------------------------------------------
+
+# Guard against re-sourcing
+[[ -n "$_BASH_PROFILE_SOURCED" ]] && return
+_BASH_PROFILE_SOURCED=1
+
+# shellcheck source=dot-bashrc
+[[ -f "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"
+
+# ------------------------------------------------------------------------------
+# Platform Detection
+# ------------------------------------------------------------------------------
+
+OS_NAME=$(uname -s)
+OS_ARCH=$(uname -m)
+export OS_NAME OS_ARCH
+
+if [[ "$OS_NAME" == "Linux" ]]; then
+    OS_DISTRO=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"'\' | tr '[:upper:]' '[:lower:]' || echo "unknown")
+else
+    OS_DISTRO=
+fi
+export OS_DISTRO
+
+# ------------------------------------------------------------------------------
+# PATH Configuration
+# ------------------------------------------------------------------------------
+
+if [[ $OS_NAME == "Darwin" ]]; then
+    # Homebrew
+    if [[ $OS_ARCH == "arm64" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+
+    # Additional paths (prepend to PATH)
+    path_prepend=(
+        "${HOME}/.local/bin"
+        "${XDG_DATA_HOME:-$HOME/.local/share}/google-cloud-sdk/bin"
+        "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/curl/bin"
+        "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/fzf/bin"
+    )
+
+    for p in "${path_prepend[@]}"; do
+        [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
+    done
+    unset path_prepend p
+
+    export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
+
+elif [[ $OS_NAME == "Linux" ]]; then
+    if [[ "$OS_DISTRO" != "nixos" ]]; then
+        path_prepend=(
+            "${HOME}/.local/bin"
+            "${XDG_DATA_HOME:-$HOME/.local/share}/google-cloud-sdk/bin"
+            "${HOME}/.fzf/bin"
+            "/usr/libexec/docker/cli-plugins"
+        )
+
+        for p in "${path_prepend[@]}"; do
+            [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
+        done
+        unset path_prepend p
+
+        export FZF_SHELL_DIR="${HOME}/.fzf/shell"
+    fi
+
+    # Docker Rootless
+    export DOCKER_HOST=unix:///run/user/1000/docker.sock
+fi
+
+export PATH

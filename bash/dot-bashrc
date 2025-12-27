@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+# vim: set ft=bash :
+#
+# ------------------------------------------------------------------------------
+# BASHRC - Interactive Shell Configuration
+# ------------------------------------------------------------------------------
+# Sourced by: Interactive non-login shells
+# Purpose: Shell options, environment, aliases, functions, tool init
+# ------------------------------------------------------------------------------
+
+# Exit if not interactive
+[[ $- != *i* ]] && return
+
+# ------------------------------------------------------------------------------
+# ble.sh - Bash Line Editor (attach early)
+# ------------------------------------------------------------------------------
+
+# shellcheck disable=SC1091
+if [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/blesh/ble.sh" ]]; then
+    source "${XDG_DATA_HOME:-$HOME/.local/share}/blesh/ble.sh" --attach=none
+fi
+
+# ------------------------------------------------------------------------------
+# XDG Base Directories
+# ------------------------------------------------------------------------------
+
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_BIN_HOME="${HOME}/.local/bin"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+# ------------------------------------------------------------------------------
+# Shell Options
+# ------------------------------------------------------------------------------
+
+# Navigation
+shopt -s autocd      # cd into directory by typing its name
+shopt -s cdspell     # Autocorrect typos in cd
+shopt -s dirspell    # Autocorrect directory names during completion
+shopt -s cdable_vars # cd into variable values
+
+# Globbing
+shopt -s extglob    # Extended pattern matching
+shopt -s globstar   # ** matches all files and directories recursively
+shopt -s nocaseglob # Case-insensitive globbing
+shopt -s dotglob    # Include hidden files in glob
+
+# History
+shopt -s histappend # Append to history instead of overwriting
+shopt -s cmdhist    # Save multi-line commands as single entry
+
+# Misc
+shopt -s checkwinsize            # Update LINES and COLUMNS after each command
+shopt -s no_empty_cmd_completion # Don't complete on empty line
+
+# ------------------------------------------------------------------------------
+# History Configuration
+# ------------------------------------------------------------------------------
+
+export HISTFILE="${HOME}/.bash_history"
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoreboth:erasedups # Ignore space-prefixed and duplicates
+export HISTIGNORE="ls:ll:cd:pwd:exit:clear:history"
+
+# ------------------------------------------------------------------------------
+# Environment Variables
+# ------------------------------------------------------------------------------
+
+export EDITOR="hx"
+export VISUAL="hx"
+export PAGER="less"
+export LANG=en_US.UTF-8
+
+# Less options
+export LESS="-F -g -i -M -R -S -w -X -z-4"
+
+# FZF Color Scheme | Nord Deep
+export FZF_DEFAULT_OPTS='
+    --color=fg:#b8c5d1,fg+:#b8c5d1,bg:#212732,bg+:#3b4252
+    --color=hl:#88c0d0,hl+:#88c0d0,info:#798094,marker:#b48ead
+    --color=prompt:#a3be8c,spinner:#ebcb8b,pointer:#88c0d0,header:#81a1c1
+    --color=border:#3b4252,label:#b8c5d1,query:#b8c5d1
+    --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
+    --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
+
+# AWS
+export AWS_SDK_LOAD_CONFIG=true
+export AWS_PAGER=""
+
+# Cheat
+export CHEAT_USE_FZF=true
+
+# Google Cloud SDK
+export CLOUDSDK_PYTHON="${HOME}/.local/bin/python3.12"
+
+# Man pager with bat
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+# Libvirt
+export LIBVIRT_DEFAULT_URI=qemu:///system
+
+# Truecolor
+export COLORTERM=truecolor
+
+# PDSH
+export PDSH_RCMD_TYPE=ssh
+
+# ------------------------------------------------------------------------------
+# LS_COLORS
+# ------------------------------------------------------------------------------
+
+if [[ -f "${HOME}/.bash/dir_colors" ]]; then
+    eval "$(dircolors -b "${HOME}/.bash/dir_colors")"
+elif [[ -f "${HOME}/.zsh/dir_colors" ]]; then
+    # Fallback to zsh dir_colors during transition
+    eval "$(dircolors -b "${HOME}/.zsh/dir_colors")"
+fi
+
+# ------------------------------------------------------------------------------
+# Tool Initialization
+# ------------------------------------------------------------------------------
+
+# FZF
+# shellcheck disable=SC1091
+if [[ -n "${FZF_SHELL_DIR:-}" && -f "${FZF_SHELL_DIR}/key-bindings.bash" ]]; then
+    # Note: When using ble.sh, FZF is loaded via blesh-contrib instead
+    # This is a fallback for non-ble.sh sessions
+    if [[ -z "${BLE_VERSION:-}" ]]; then
+        source "${FZF_SHELL_DIR}/key-bindings.bash"
+        source "${FZF_SHELL_DIR}/completion.bash"
+    fi
+fi
+
+# Zoxide
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+# Direnv
+if command -v direnv &>/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+# Starship prompt
+if command -v starship &>/dev/null; then
+    eval "$(starship init bash)"
+fi
+
+# ------------------------------------------------------------------------------
+# Source Includes
+# ------------------------------------------------------------------------------
+
+if [[ -d "${HOME}/.bash/includes" ]]; then
+    for file in "${HOME}"/.bash/includes/*.sh; do
+        # shellcheck disable=SC1090
+        [[ -f "$file" ]] && source "$file"
+    done
+fi
+
+# ------------------------------------------------------------------------------
+# ble.sh - Attach (must be at the end)
+# ------------------------------------------------------------------------------
+
+# shellcheck disable=SC2154
+[[ ${BLE_VERSION-} ]] && ble-attach

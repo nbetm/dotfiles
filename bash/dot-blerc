@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+# vim: set ft=bash :
+#
+# ------------------------------------------------------------------------------
+# BLERC - ble.sh Configuration
+# ------------------------------------------------------------------------------
+# ble.sh config file: colors, keybindings, FZF integration
+# Reference: https://github.com/akinomyoga/ble.sh
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Colors (Nord Deep)
+# ------------------------------------------------------------------------------
+
+# Syntax highlighting colors
+ble-face -s syntax_default fg=#b8c5d1
+ble-face -s syntax_command fg=#81a1c1
+ble-face -s syntax_quoted fg=#a3be8c
+ble-face -s syntax_quotation fg=#a3be8c
+ble-face -s syntax_escape fg=#ebcb8b
+ble-face -s syntax_expr fg=#88c0d0
+ble-face -s syntax_error fg=#bf616a,bold
+ble-face -s syntax_varname fg=#d08770
+ble-face -s syntax_delimiter fg=#798094
+ble-face -s syntax_param_expansion fg=#88c0d0
+ble-face -s syntax_history_expansion fg=#b48ead
+ble-face -s syntax_function_name fg=#b48ead
+ble-face -s syntax_comment fg=#798094
+ble-face -s syntax_glob fg=#ebcb8b
+ble-face -s syntax_brace fg=#88c0d0
+ble-face -s syntax_tilde fg=#88c0d0
+ble-face -s syntax_document fg=#a3be8c
+ble-face -s syntax_document_begin fg=#a3be8c
+
+# Command types
+ble-face -s command_builtin fg=#81a1c1
+ble-face -s command_alias fg=#8fbcbb
+ble-face -s command_function fg=#b48ead
+ble-face -s command_file fg=#a3be8c
+ble-face -s command_keyword fg=#81a1c1,bold
+ble-face -s command_jobs fg=#ebcb8b
+ble-face -s command_directory fg=#88c0d0,underline
+
+# Filename colors (inherit from LS_COLORS)
+bleopt filename_ls_colors="$LS_COLORS"
+
+# Auto-complete suggestion (dimmed)
+ble-face -s auto_complete fg=#798094
+
+# Region/selection
+ble-face -s region bg=#3b4252
+ble-face -s region_insert bg=#434c5e
+
+# Disabled/overwritten text
+ble-face -s disabled fg=#4c566a
+ble-face -s overwrite_mode fg=#bf616a
+
+# ------------------------------------------------------------------------------
+# Behavior Options
+# ------------------------------------------------------------------------------
+
+# Share history across all sessions
+bleopt history_share=1
+
+# Disable exit status marker (use starship for this)
+bleopt exec_errexit_mark=
+
+# Don't show hidden files by default in completion
+bind 'set match-hidden-files off'
+
+# Enable visible bell instead of audible
+bleopt decode_error_cseq_abell=
+
+# ------------------------------------------------------------------------------
+# Keybindings
+# ------------------------------------------------------------------------------
+
+# Word navigation (Cody's config)
+# Alt-b/f: Move by word (ignoring punctuation)
+ble-bind -f 'M-b' backward-sword
+ble-bind -f 'M-f' forward-sword
+
+# Ctrl-Alt-b/f: Move by word (including punctuation)
+ble-bind -f 'C-M-b' backward-cword
+ble-bind -f 'C-M-f' forward-cword
+
+# Ctrl-w: Delete word (stops at /)
+# Ctrl-Alt-w: Delete word including punctuation
+ble-bind -f 'C-M-w' kill-backward-cword
+
+# Edit command in $EDITOR
+ble-bind -f 'C-x C-e' edit-and-execute-command
+
+# ------------------------------------------------------------------------------
+# FZF Integration (via blesh-contrib)
+# ------------------------------------------------------------------------------
+
+# Load FZF integration if available
+# This provides Ctrl-R (history), Ctrl-T (files), Alt-C (cd)
+_ble_contrib_fzf_base="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/fzf"
+
+# Async load for faster startup
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
+
+# ------------------------------------------------------------------------------
+# Sesh Integration (Ctrl-O for tmux session picker)
+# ------------------------------------------------------------------------------
+
+function ble/widget/sesh-sessions {
+    ble/widget/.hide-current-line
+    sesh-picker
+    ble/widget/.show-current-line
+    ble/textarea#invalidate
+}
+ble-bind -f 'C-o' sesh-sessions
