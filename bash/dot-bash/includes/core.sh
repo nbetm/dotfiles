@@ -4,6 +4,12 @@
 # Core aliases and functions - essential shell utilities
 
 # ------------------------------------------------------------------------------
+# Navigation
+# ------------------------------------------------------------------------------
+
+alias c="cd"
+
+# ------------------------------------------------------------------------------
 # Directory Listings
 # ------------------------------------------------------------------------------
 
@@ -86,3 +92,28 @@ sslinfo() {
     echo | openssl s_client -servername "$1" -connect "$1":443 2>/dev/null |
         openssl x509 -noout -text -inform pem
 }
+
+# ------------------------------------------------------------------------------
+# Alias Completions
+# ------------------------------------------------------------------------------
+# Completions don't auto-inherit when aliasing commands.
+# Eagerly load completions for frequently-used aliases.
+
+# Load specific completions we need for aliases
+_completion_loader git 2>/dev/null
+_completion_loader sudo 2>/dev/null
+_completion_loader tmux 2>/dev/null
+
+# git (alias g in git.sh)
+if declare -F __git_complete &>/dev/null; then
+    __git_complete g __git_main
+fi
+
+# sudo (alias s above)
+declare -F _sudo &>/dev/null && complete -F _sudo s
+
+# tmux (alias t in tools.sh)
+declare -F _tmux &>/dev/null && complete -F _tmux t
+
+# cd (alias c above)
+complete -o nospace -F _cd c
