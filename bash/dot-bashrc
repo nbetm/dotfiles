@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 # vim: set ft=bash :
 #
-# ------------------------------------------------------------------------------
-# BASHRC - Interactive Shell Configuration
-# ------------------------------------------------------------------------------
+# Interactive Shell Configuration
 # Sourced by: Interactive shells (via bash_profile for login, directly for non-login)
-# Purpose: Shell options, tool initialization, ble.sh setup
-# ------------------------------------------------------------------------------
 
 # Exit if not interactive
 [[ $- != *i* ]] && return

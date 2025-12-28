@@ -80,8 +80,9 @@ ble-bind -f 'M-f' forward-sword
 ble-bind -f 'C-M-b' backward-cword
 ble-bind -f 'C-M-f' forward-cword
 
-# Alt-backspace: Delete word backward (Option+Delete on macOS)
-ble-bind -f 'M-backspace' kill-backward-sword
+# Alt/Option+Delete: Delete word backward
+ble-bind -f 'M-DEL' kill-backward-sword
+ble-bind -f 'M-C-?' kill-backward-sword
 
 # Ctrl-Alt-w: Delete word including punctuation
 ble-bind -f 'C-M-w' kill-backward-cword

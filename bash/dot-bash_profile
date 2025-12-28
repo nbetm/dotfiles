@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 # vim: set ft=bash :
 #
-# ------------------------------------------------------------------------------
-# BASH_PROFILE - Login Shell Configuration
-# ------------------------------------------------------------------------------
+# Login Shell Configuration
 # Sourced by: LOGIN shells only (SSH, terminal launch, explicit bash -l)
-# Purpose: Environment variables, PATH setup, platform-specific initialization
-# ------------------------------------------------------------------------------
 
 # Guard against re-sourcing
 [[ -n "$_BASH_PROFILE_SOURCED" ]] && return
