@@ -103,4 +103,4 @@ fi
 # ------------------------------------------------------------------------------
 
 # shellcheck disable=SC2154
-[[ ${BLE_VERSION-} ]] && ble-attach
+[[ ! ${BLE_VERSION-} ]] || ble-attach

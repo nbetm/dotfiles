@@ -68,7 +68,11 @@ if [[ $OS_NAME == "Darwin" ]]; then
     export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
 
 elif [[ $OS_NAME == "Linux" ]]; then
-    if [[ "$OS_DISTRO" != "nixos" ]]; then
+    if [[ "$OS_DISTRO" == "nixos" ]]; then
+        # NixOS: Packages managed via Nix, minimal PATH additions
+        export FZF_SHELL_DIR="/run/current-system/sw/share/fzf"
+    else
+        # Debian/Ubuntu: Manual package installations
         path_prepend=(
             "${HOME}/.local/bin"
             "${XDG_DATA_HOME}/google-cloud-sdk/bin"

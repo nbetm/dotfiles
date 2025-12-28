@@ -61,6 +61,9 @@ bleopt history_share=1
 # Disable exit status marker (use starship for this)
 bleopt exec_errexit_mark=
 
+# Disable exit message
+bleopt exec_exit_mark=
+
 # Don't show hidden files by default in completion
 bind 'set match-hidden-files off'
 
@@ -97,7 +100,14 @@ ble-bind -f 'C-x C-e' edit-and-execute-command
 # FZF: Provides Ctrl-R (history), Ctrl-T (files), Alt-C (cd)
 # Set base path per platform, or let blesh-contrib auto-detect from PATH
 if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+    # macOS: Homebrew structure has shell/ subdirectory
     _ble_contrib_fzf_base="${HOMEBREW_PREFIX}/opt/fzf"
+elif [[ "${OS_DISTRO:-}" == "nixos" ]]; then
+    # NixOS: Files are directly in share/fzf/ (no shell/ subdirectory)
+    _ble_contrib_fzf_base="/run/current-system/sw/share/fzf"
+elif [[ -d "${HOME}/.fzf" ]]; then
+    # Debian/Ubuntu: Manual installation with shell/ subdirectory
+    _ble_contrib_fzf_base="${HOME}/.fzf"
 fi
 
 # Async load for faster startup
