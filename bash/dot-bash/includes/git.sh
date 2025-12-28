@@ -214,21 +214,6 @@ alias gsS="git stash push --patch --no-keep-index"
 alias gsw="git stash push --include-untracked --keep-index"
 
 # ------------------------------------------------------------------------------
-# Submodule (S)
-# ------------------------------------------------------------------------------
-
-alias gS="git submodule"
-alias gSa="git submodule add"
-alias gSf="git submodule foreach"
-alias gSi="git submodule init"
-alias gSI="git submodule update --init --recursive"
-alias gSl="git submodule status"
-alias gSm="git-submodule-move"
-alias gSs="git submodule sync"
-alias gSu="git submodule update --remote --recursive"
-alias gSx="git-submodule-remove"
-
-# ------------------------------------------------------------------------------
 # Tag (t)
 # ------------------------------------------------------------------------------
 

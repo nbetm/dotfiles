@@ -70,6 +70,20 @@ if command -v starship &>/dev/null; then
 fi
 
 # ------------------------------------------------------------------------------
+# Bash Completion (lazy-loads from Homebrew/system dirs)
+# ------------------------------------------------------------------------------
+
+# shellcheck disable=SC1091
+if [[ -f "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+elif [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+fi
+
+# AWS (not in bash-completion, uses built-in completer)
+command -v aws_completer &>/dev/null && complete -C aws_completer aws
+
+# ------------------------------------------------------------------------------
 # Source Includes
 # ------------------------------------------------------------------------------
 
