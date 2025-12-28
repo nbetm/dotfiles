@@ -104,7 +104,7 @@ fi
 # Async load for faster startup
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
-ble-import -d integration/zoxide
+# Note: zoxide loaded in bashrc (needs to be at the very end)
 
 # ------------------------------------------------------------------------------
 # Sesh Integration (Ctrl-O for tmux session picker)
