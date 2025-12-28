@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 # vim: set ft=bash :
 #
-# ------------------------------------------------------------------------------
-# BLERC - ble.sh Configuration
-# ------------------------------------------------------------------------------
 # ble.sh config file: colors, keybindings, FZF integration
 # Reference: https://github.com/akinomyoga/ble.sh
-# ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
 # Colors (Nord Deep)
@@ -84,7 +80,9 @@ ble-bind -f 'M-f' forward-sword
 ble-bind -f 'C-M-b' backward-cword
 ble-bind -f 'C-M-f' forward-cword
 
-# Ctrl-w: Delete word (stops at /)
+# Alt-backspace: Delete word backward (Option+Delete on macOS)
+ble-bind -f 'M-backspace' kill-backward-sword
+
 # Ctrl-Alt-w: Delete word including punctuation
 ble-bind -f 'C-M-w' kill-backward-cword
 
@@ -104,7 +102,6 @@ fi
 # Async load for faster startup
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
-# Note: zoxide loaded in bashrc (needs to be at the very end)
 
 # ------------------------------------------------------------------------------
 # Sesh Integration (Ctrl-O for tmux session picker)
