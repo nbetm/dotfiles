@@ -92,16 +92,19 @@ ble-bind -f 'C-M-w' kill-backward-cword
 ble-bind -f 'C-x C-e' edit-and-execute-command
 
 # ------------------------------------------------------------------------------
-# FZF Integration (via blesh-contrib)
+# Integrations (via blesh-contrib)
 # ------------------------------------------------------------------------------
 
-# Load FZF integration if available
-# This provides Ctrl-R (history), Ctrl-T (files), Alt-C (cd)
-_ble_contrib_fzf_base="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/fzf"
+# FZF: Provides Ctrl-R (history), Ctrl-T (files), Alt-C (cd)
+# Set base path per platform, or let blesh-contrib auto-detect from PATH
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+    _ble_contrib_fzf_base="${HOMEBREW_PREFIX}/opt/fzf"
+fi
 
 # Async load for faster startup
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
+ble-import -d integration/zoxide
 
 # ------------------------------------------------------------------------------
 # Sesh Integration (Ctrl-O for tmux session picker)

@@ -4,8 +4,8 @@
 # ------------------------------------------------------------------------------
 # BASHRC - Interactive Shell Configuration
 # ------------------------------------------------------------------------------
-# Sourced by: Interactive non-login shells
-# Purpose: Shell options, environment, aliases, functions, tool init
+# Sourced by: Interactive shells (via bash_profile for login, directly for non-login)
+# Purpose: Shell options, tool initialization, ble.sh setup
 # ------------------------------------------------------------------------------
 
 # Exit if not interactive
@@ -19,15 +19,6 @@
 if [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/blesh/ble.sh" ]]; then
     source "${XDG_DATA_HOME:-$HOME/.local/share}/blesh/ble.sh" --attach=none
 fi
-
-# ------------------------------------------------------------------------------
-# XDG Base Directories
-# ------------------------------------------------------------------------------
-
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_BIN_HOME="${HOME}/.local/bin"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CACHE_HOME="${HOME}/.cache"
 
 # ------------------------------------------------------------------------------
 # Shell Options
@@ -54,70 +45,6 @@ shopt -s checkwinsize            # Update LINES and COLUMNS after each command
 shopt -s no_empty_cmd_completion # Don't complete on empty line
 
 # ------------------------------------------------------------------------------
-# History Configuration
-# ------------------------------------------------------------------------------
-
-export HISTFILE="${HOME}/.bash_history"
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-export HISTCONTROL=ignoreboth:erasedups # Ignore space-prefixed and duplicates
-export HISTIGNORE="ls:ll:cd:pwd:exit:clear:history"
-
-# ------------------------------------------------------------------------------
-# Environment Variables
-# ------------------------------------------------------------------------------
-
-export EDITOR="hx"
-export VISUAL="hx"
-export PAGER="less"
-export LANG=en_US.UTF-8
-
-# Less options
-export LESS="-F -g -i -M -R -S -w -X -z-4"
-
-# FZF Color Scheme | Nord Deep
-export FZF_DEFAULT_OPTS='
-    --color=fg:#b8c5d1,fg+:#b8c5d1,bg:#212732,bg+:#3b4252
-    --color=hl:#88c0d0,hl+:#88c0d0,info:#798094,marker:#b48ead
-    --color=prompt:#a3be8c,spinner:#ebcb8b,pointer:#88c0d0,header:#81a1c1
-    --color=border:#3b4252,label:#b8c5d1,query:#b8c5d1
-    --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
-    --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
-
-# AWS
-export AWS_SDK_LOAD_CONFIG=true
-export AWS_PAGER=""
-
-# Cheat
-export CHEAT_USE_FZF=true
-
-# Google Cloud SDK
-export CLOUDSDK_PYTHON="${HOME}/.local/bin/python3.12"
-
-# Man pager with bat
-export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-
-# Libvirt
-export LIBVIRT_DEFAULT_URI=qemu:///system
-
-# Truecolor
-export COLORTERM=truecolor
-
-# PDSH
-export PDSH_RCMD_TYPE=ssh
-
-# ------------------------------------------------------------------------------
-# LS_COLORS
-# ------------------------------------------------------------------------------
-
-if [[ -f "${HOME}/.bash/dir_colors" ]]; then
-    eval "$(dircolors -b "${HOME}/.bash/dir_colors")"
-elif [[ -f "${HOME}/.zsh/dir_colors" ]]; then
-    # Fallback to zsh dir_colors during transition
-    eval "$(dircolors -b "${HOME}/.zsh/dir_colors")"
-fi
-
-# ------------------------------------------------------------------------------
 # Tool Initialization
 # ------------------------------------------------------------------------------
 
@@ -133,7 +60,8 @@ if [[ -n "${FZF_SHELL_DIR:-}" && -f "${FZF_SHELL_DIR}/key-bindings.bash" ]]; the
 fi
 
 # Zoxide
-if command -v zoxide &>/dev/null; then
+# Note: When using ble.sh, zoxide is loaded via blesh-contrib integration
+if [[ -z "${BLE_VERSION:-}" ]] && command -v zoxide &>/dev/null; then
     eval "$(zoxide init bash)"
 fi
 
