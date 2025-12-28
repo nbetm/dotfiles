@@ -25,8 +25,8 @@ zed/dot-config/zed/prompts/**
 
 # zsh
 zsh/dot-zsh/cache/**
-zsh/dot-zsh/include/*local*
+zsh/dot-zsh/include/*.local.zsh
 zsh/dot-zsh/plugins/**
 
 # bash
-bash/dot-bash/includes/*.local.sh
+bash/dot-bash/include/*.local.sh

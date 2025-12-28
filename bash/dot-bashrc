@@ -83,8 +83,8 @@ command -v aws_completer &>/dev/null && complete -C aws_completer aws
 # Source Includes
 # ------------------------------------------------------------------------------
 
-if [[ -d "${HOME}/.bash/includes" ]]; then
-    for file in "${HOME}"/.bash/includes/*.sh; do
+if [[ -d "${HOME}/.bash/include" ]]; then
+    for file in "${HOME}"/.bash/include/*.sh; do
         # shellcheck disable=SC1090
         [[ -f "$file" ]] && source "$file"
     done
