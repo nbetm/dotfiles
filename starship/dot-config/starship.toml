@@ -10,14 +10,36 @@ add_newline = true
 # Color Palette
 palette = "nord_deep"
 
+[palettes.nord_deep]
+nord_base = "#212732"
+nord_surface = "#2e3440"
+nord_elevated = "#3b4252"
+nord_subtle = "#434c5e"
+nord_dim = "#798094"
+nord_text = "#b8c5d1"
+nord_bright = "#d4dce6"
+nord_aqua = "#8fbcbb"
+nord_cyan = "#88c0d0"
+nord_blue = "#81a1c1"
+nord_navy = "#5e81ac"
+nord_red = "#bf616a"
+nord_orange = "#d08770"
+nord_yellow = "#ebcb8b"
+nord_green = "#a3be8c"
+nord_magenta = "#b48ead"
+
+# Disabled modules
+[username]
+disabled = true
+
+[package]
+disabled = true
+
 # Modules Settings
 [character]
 success_symbol = "[❱](bold nord_green)"
 error_symbol = "[❱](bold nord_red)"
 vimcmd_symbol = "[❰](bold nord_green)"
-
-[username]
-disabled = true
 
 [hostname]
 ssh_only = true
@@ -25,16 +47,16 @@ style = "bold nord_green"
 format = "[$hostname]($style) "
 
 [directory]
+read_only = "  "
+read_only_style = "nord_red"
 style = "bold nord_blue"
 truncation_symbol = "../"
 truncation_length = 3
 truncate_to_repo = false
-read_only = "  "
-read_only_style = "nord_red"
 
 [git_branch]
-style = "bold nord_magenta"
 symbol = " "
+style = "bold nord_magenta"
 truncation_symbol = "‥"
 truncation_length = 25
 format = "[$symbol$branch]($style) "
@@ -57,59 +79,54 @@ staged = "✚"
 stashed = "Ֆ"
 untracked = "?"
 
-[package]
-symbol = "󰋘 "
-format = "[$symbol$version]($style) "
-style = "bold nord_text"
-
 [python]
-style = "bold nord_yellow"
 symbol = "󰌠 "
+style = "bold nord_yellow"
 format = "[$symbol(${version})( ⟮$virtualenv⟯)]($style) "
 pyenv_version_name = false
 
 [terraform]
-style = "bold #9d91c7"
 symbol = "󱁢 "
+style = "bold #9d91c7"
 format = "[$symbol($workspace)]($style) "
 
 [lua]
-style = "bold nord_yellow"
 symbol = "󰢱 "
+style = "bold nord_yellow"
 format = "[$symbol($version)]($style) "
 
 [rust]
-style = "bold nord_yellow"
 symbol = "󱘗 "
+style = "bold nord_yellow"
 format = "[$symbol($version)]($style) "
 
 [nodejs]
-style = "bold nord_green"
 symbol = "󰌞 "
+style = "bold nord_green"
 format = "[$symbol($version)]($style) "
 disabled = true
 
 [vagrant]
-style = "bold nord_cyan"
 symbol = "󰒓 "
+style = "bold nord_cyan"
 format = "[$symbol($version)]($style) "
 disabled = true
 
 [nix_shell]
-style = "bold nord_aqua"
 symbol = "󱄅 "
+style = "bold nord_aqua"
 format = "[$symbol$state( ⟮$name⟯)]($style) "
 
 [docker_context]
-style = "bold nord_blue"
 symbol = "󰡨 "
+style = "bold nord_blue"
 format = "[$symbol$context]($style) "
 
-# symbols: 󰛸 󰅟 󰒍 󰹻 󰇅 󰢤 󰖟 󰆼 󰡨 󰅭
 [aws]
+symbol = "󰛸 "
 style = "bold nord_orange"
 format = "[$symbol($profile)( ⟮$region⟯)]($style) "
-symbol = "󰛸 "
+
 [aws.region_aliases]
 us-east-1 = "ue1"
 us-east-2 = "ue2"
@@ -122,12 +139,15 @@ eu-central-1 = "ec1"
 ca-central-1 = "cc1"
 
 [gcloud]
-style = "bold nord_navy"
 symbol = "󰛸 "
+style = "bold nord_navy"
 format = "[$symbol($project)( ⟮$region⟯)]($style) "
 detect_env_vars = ["CLOUDSDK_ACTIVE_CONFIG_NAME"]
+
 [gcloud.project_aliases]
-sacred-reactor-416022 = "px-dev"
+development-476017 = "px-dev"
+staging-476019 = "px-staging"
+
 [gcloud.region_aliases]
 europe-central2 = "ec2"
 europe-north1 = "en1"
@@ -175,20 +195,4 @@ RockyLinux = "󱄛 "
 Ubuntu = "󰕈 "
 Windows = "󰖳 "
 
-[palettes.nord_deep]
-nord_base = "#212732"
-nord_surface = "#2e3440"
-nord_elevated = "#3b4252"
-nord_subtle = "#434c5e"
-nord_dim = "#798094"
-nord_text = "#b8c5d1"
-nord_bright = "#d4dce6"
-nord_aqua = "#8fbcbb"
-nord_cyan = "#88c0d0"
-nord_blue = "#81a1c1"
-nord_navy = "#5e81ac"
-nord_red = "#bf616a"
-nord_orange = "#d08770"
-nord_yellow = "#ebcb8b"
-nord_green = "#a3be8c"
-nord_magenta = "#b48ead"
+# symbols: 󰛸 󰅟 󰒍 󰹻 󰇅 󰢤 󰖟 󰆼 󰡨 󰅭
