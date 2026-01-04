@@ -1,26 +1,24 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
 #
-# ------------------------------------------------------------------------------
-# ZSHENV - Universal Environment Variables
-# ------------------------------------------------------------------------------
+# Universal Environment Variables
 # Sourced by: ALL shells (login, non-login, interactive, non-interactive)
 # Purpose: Define environment variables needed everywhere
 # Keep lean: Avoid expensive operations (subprocess spawning, heavy computation)
-# ------------------------------------------------------------------------------
 
-# XDG
+# XDG Base Directories
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_BIN_HOME="${HOME}/.local/bin"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
 
-# OS
+# Platform Detection
 export OS_NAME=$(uname -s) # Darwin, Linux
 export OS_ARCH=$(uname -m) # x86_64, arm64
 
 if [[ "$OS_NAME" == "Linux" ]]; then
     OS_DISTRO=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"'\' | tr '[:upper:]' '[:lower:]' || echo "unknown")
+    export DOCKER_HOST=unix:///run/user/1000/docker.sock
 else
     OS_DISTRO=
 fi
@@ -31,15 +29,15 @@ export EDITOR="hx"
 export VISUAL="hx"
 export PAGER="less"
 
-# You may need to manually set your language environment
+# JIC
 export LANG=en_US.UTF-8
 
-# Set the default Less options.
+# Less
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS="-F -g -i -M -R -S -w -X -z-4"
 
-# History file configuration
+# History
 export HISTFILE="${HOME}/.zsh_history" # History filepath
 export HISTSIZE=10000                  # Maximum events for internal history
 export SAVEHIST=10000                  # Maximum events in history file
@@ -53,15 +51,8 @@ export FZF_DEFAULT_OPTS='
     --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="❱ "
     --marker="❱" --pointer="❱" --separator="─" --scrollbar="│"'
 
-# PDSH
-export PDSH_RCMD_TYPE=ssh
-
-# AWS ECR Credential Helper
-# https://github.com/awslabs/amazon-ecr-credential-helper#aws-credentials
+# AWS
 export AWS_SDK_LOAD_CONFIG=true
-
-# AWS CLI no pager
-# https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-pagination.html
 export AWS_PAGER=""
 
 # Cheat
@@ -70,14 +61,14 @@ export CHEAT_USE_FZF=true
 # Google Cloud SDK
 export CLOUDSDK_PYTHON="${HOME}/.local/bin/python3.12"
 
-# Use bat as a colorizing pager for man
+# Man pager with bat
 export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-
-# Zinit
-export ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 
 # Libvirt
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
-# Enforce Truecolor on Terminal
+# Truecolor
 export COLORTERM=truecolor
+
+# PDSH
+export PDSH_RCMD_TYPE=ssh

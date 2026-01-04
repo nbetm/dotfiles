@@ -23,10 +23,8 @@ zed/dot-config/zed/conversations/**
 zed/dot-config/zed/embeddings/**
 zed/dot-config/zed/prompts/**
 
-# zsh
+# shell
+**/*.local.sh
+**/*.local.zsh
 zsh/dot-zsh/cache/**
-zsh/dot-zsh/include/*.local.zsh
 zsh/dot-zsh/plugins/**
-
-# bash
-bash/dot-bash/include/*.local.sh
