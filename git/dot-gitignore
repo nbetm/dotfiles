@@ -12,7 +12,6 @@ logs/
 *.log.*
 
 # editors
-.helix/
 .vscode/
 .zed/
 

@@ -1,0 +1,24 @@
+[[language]]
+name = "bash"
+file-types = [
+  { glob = "dot-dir*" },
+  { glob = "*/completions/_*" },
+  { glob = "*/dot-b*" },
+  { glob = "*/dot-z*" },
+  { glob = "*.sh" },
+  { glob = "*.zsh" },
+  { glob = "env" },
+]
+
+[[language]]
+name = "ini"
+file-types = [
+  { glob = "*.conf" },
+  { glob = "*/git/*" },
+  { glob = "nord-deep.theme" },
+  { glob = "themes.gitconfig" },
+]
+
+[[language]]
+name = "ghostty"
+file-types = [{ glob = "*/ghostty*/*" }]
