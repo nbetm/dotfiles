@@ -1,0 +1,17 @@
+# vim: set ft=zsh :
+# shellcheck disable=all
+
+# ------------------------------------------------------------------------------
+# Shared Environment Variables
+# ------------------------------------------------------------------------------
+
+[[ -f "${HOME}/.local/share/shell/env" ]] && source "${HOME}/.local/share/shell/env"
+
+# ------------------------------------------------------------------------------
+# Zsh-specific Environment
+# ------------------------------------------------------------------------------
+
+# History
+export HISTFILE="${HOME}/.zsh_history" # History filepath
+export HISTSIZE=10000                  # Maximum events for internal history
+export SAVEHIST=10000                  # Maximum events in history file

@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-# vim: set ft=bash :
+# vim: set ft=sh :
 #
-# ble.sh config file: colors, keybindings, FZF integration
-# Reference: https://github.com/akinomyoga/ble.sh
+# ble.sh: https://github.com/akinomyoga/ble.sh
 
 # ------------------------------------------------------------------------------
 # Colors (Nord Deep)

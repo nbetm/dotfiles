@@ -1,3 +1,4 @@
+# vim: set ft=sh :
 # Tool aliases and functions - SSH, tmux, editors, system utilities
 
 # ------------------------------------------------------------------------------

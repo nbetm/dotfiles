@@ -1,7 +1,4 @@
-# vim: set ft=bash :
-#
-# Interactive Shell Configuration
-# Sourced by: Interactive shells (via bash_profile for login, directly for non-login)
+# vim: set ft=sh :
 
 # Exit if not interactive
 [[ $- != *i* ]] && return
@@ -79,11 +76,11 @@ fi
 command -v aws_completer &>/dev/null && complete -C aws_completer aws
 
 # ------------------------------------------------------------------------------
-# Source Includes
+# Shared Shell Config
 # ------------------------------------------------------------------------------
 
-if [[ -d "${HOME}/.bash/include" ]]; then
-    for file in "${HOME}"/.bash/include/*.sh; do
+if [[ -d "${XDG_DATA_HOME}/shell" ]]; then
+    for file in "${XDG_DATA_HOME}"/shell/*.sh; do
         # shellcheck disable=SC1090
         [[ -f "$file" ]] && source "$file"
     done

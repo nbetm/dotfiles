@@ -9,7 +9,6 @@
 
 # claude
 .claude/
-claude/
 CLAUDE.md
 
 # helix
@@ -26,5 +25,5 @@ zed/dot-config/zed/prompts/**
 # shell
 **/*.local.sh
 **/*.local.zsh
-zsh/dot-zsh/cache/**
-zsh/dot-zsh/plugins/**
+**/dot-zsh/cache/**
+**/dot-zsh/plugins/**

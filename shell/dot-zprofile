@@ -1,23 +1,14 @@
 # vim: set ft=zsh :
 # shellcheck disable=all
-#
-# Login Shell Configuration
-# Sourced by: LOGIN shells only (SSH, terminal launch, explicit zsh -l)
-# Purpose: Expensive PATH setup and platform-specific initialization
-# Why not zshenv: Keeps env lean, runs once per login instead of every subshell
 
-# Guard against re-sourcing (safe to manually source if needed)
+# Guard against re-sourcing
 [[ -n "$_ZPROFILE_SOURCED" ]] && return
 typeset -g _ZPROFILE_SOURCED=1
 
 # PATH Configuration
 if [[ $OS_NAME == "Darwin" ]]; then
     # Initiate Homebrew
-    if [[ $OS_ARCH == "arm64" ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    else
-        eval "$(/usr/local/bin/brew shellenv)"
-    fi
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # Additional Paths
     typeset -U path
@@ -27,13 +18,13 @@ if [[ $OS_NAME == "Darwin" ]]; then
         "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/curl/bin"
         "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/fzf/bin"
         "${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
         "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/fzf/bin"
         $path
     )
 
@@ -41,7 +32,7 @@ if [[ $OS_NAME == "Darwin" ]]; then
     export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
 
 elif [[ $OS_NAME = "Linux" ]]; then
-    # Additional Paths (Debian/Ubuntu manual installs)
+    # Debian/Ubuntu: Manual package installations
     if [[ ! "$OS_DISTRO" == "nixos" ]]; then
         typeset -U path
         path=(
@@ -60,12 +51,11 @@ elif [[ $OS_NAME = "Linux" ]]; then
             source "$(fzf-share)/completion.zsh"
         fi
     else
-        # Debian/Ubuntu: manual install to ~/.fzf
         export FZF_SHELL_DIR="${HOME}/.fzf/shell"
     fi
 fi
 
-# LS_COLORS (used by ls and completion colors)
+# LS_COLORS
 if [[ -f "${HOME}/.dir_colors" ]]; then
     eval "$(dircolors -b "${HOME}/.dir_colors")"
 fi

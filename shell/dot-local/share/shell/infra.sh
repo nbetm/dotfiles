@@ -1,3 +1,4 @@
+# vim: set ft=sh :
 # Infrastructure tools - Python, AWS, Terraform, Nomad, Ansible
 
 # ------------------------------------------------------------------------------

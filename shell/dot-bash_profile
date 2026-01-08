@@ -1,0 +1,90 @@
+# vim: set ft=sh :
+
+# Guard against re-sourcing
+[[ -n "$_BASH_PROFILE_SOURCED" ]] && return
+_BASH_PROFILE_SOURCED=1
+
+# ------------------------------------------------------------------------------
+# Shared Environment Variables
+# ------------------------------------------------------------------------------
+
+# shellcheck source=dot-local/share/shell/env
+[[ -f "${HOME}/.local/share/shell/env" ]] && source "${HOME}/.local/share/shell/env"
+
+# ------------------------------------------------------------------------------
+# Bash-specific Environment
+# ------------------------------------------------------------------------------
+
+# History
+export HISTFILE="${HOME}/.bash_history"
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="ls:ll:cd:pwd:exit:clear:history"
+
+# ------------------------------------------------------------------------------
+# PATH Configuration
+# ------------------------------------------------------------------------------
+
+if [[ $OS_NAME == "Darwin" ]]; then
+    # Homebrew (arm64 only)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # Additional paths (prepend to PATH)
+    path_prepend=(
+        "$XDG_BIN_HOME"
+        "${XDG_DATA_HOME}/google-cloud-sdk/bin"
+        "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/curl/bin"
+        "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/fzf/bin"
+        "${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
+        "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
+    )
+
+    for p in "${path_prepend[@]}"; do
+        [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
+    done
+    unset path_prepend p
+
+    export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
+
+elif [[ $OS_NAME == "Linux" ]]; then
+    if [[ "$OS_DISTRO" == "nixos" ]]; then
+        # NixOS: Packages managed via Nix, minimal PATH additions
+        export FZF_SHELL_DIR="/run/current-system/sw/share/fzf"
+    else
+        # Debian/Ubuntu: Manual package installations
+        path_prepend=(
+            "$XDG_BIN_HOME"
+            "${XDG_DATA_HOME}/google-cloud-sdk/bin"
+            "${HOME}/.fzf/bin"
+            "/usr/libexec/docker/cli-plugins"
+        )
+
+        for p in "${path_prepend[@]}"; do
+            [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
+        done
+        unset path_prepend p
+
+        export FZF_SHELL_DIR="${HOME}/.fzf/shell"
+    fi
+fi
+
+export PATH
+
+# LS_COLORS
+if [[ -f "${HOME}/.dir_colors" ]]; then
+    eval "$(dircolors -b "${HOME}/.dir_colors")"
+fi
+
+# ------------------------------------------------------------------------------
+# Source bashrc for interactive shell setup
+# ------------------------------------------------------------------------------
+
+# shellcheck source=dot-bashrc
+[[ -f "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"

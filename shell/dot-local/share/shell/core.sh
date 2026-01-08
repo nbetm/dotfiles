@@ -1,3 +1,4 @@
+# vim: set ft=sh :
 # Core aliases and functions - essential shell utilities
 
 # ------------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+# vim: set ft=sh :
 # Git aliases - inspired by prezto git module
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/git/alias.zsh
 
