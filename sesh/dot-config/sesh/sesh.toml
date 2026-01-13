@@ -11,34 +11,51 @@ startup_command = "yazi"
 [[session]]
 name = "dotfiles"
 path = "~/code/personal/dotfiles"
-startup_command = "hx ."
 
 [[session]]
 name = "nix-config"
 path = "~/code/personal/nix-config"
-startup_command = "hx ."
 
 [[session]]
 name = "claude-config"
 path = "~/code/personal/claude-config"
-startup_command = "hx ."
 
 [[session]]
 name = "px-cli"
 path = "~/code/px/cli"
-startup_command = "hx ."
+
+[[session]]
+name = "px-cli1"
+path = "~/code/px/cli1"
+
+[[session]]
+name = "px-cli2"
+path = "~/code/px/cli2"
 
 [[session]]
 name = "px-dashx"
 path = "~/code/px/dashx"
-startup_command = "hx ."
+
+[[session]]
+name = "px-dashx1"
+path = "~/code/px/dashx1"
+
+[[session]]
+name = "px-dashx2"
+path = "~/code/px/dashx2"
 
 [[session]]
 name = "px-webx"
 path = "~/code/px/webx"
-startup_command = "hx ."
 
 [[session]]
 name = "px-iac"
 path = "~/code/px/iac"
-startup_command = "hx ."
+
+[[session]]
+name = "px-iac1"
+path = "~/code/px/iac1"
+
+[[session]]
+name = "px-iac2"
+path = "~/code/px/iac2"
