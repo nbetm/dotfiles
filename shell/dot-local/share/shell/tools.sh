@@ -86,3 +86,12 @@ if [[ $OS_NAME == "Darwin" ]]; then
     alias bbclean="brew bundle cleanup --global"
     alias bbcleanup="brew bundle cleanup --global"
 fi
+
+# ------------------------------------------------------------------------------
+# Markdown to PDF
+# ------------------------------------------------------------------------------
+
+md2pdf() {
+    pandoc "$1" -o "${1%.md}.pdf" --pdf-engine=weasyprint \
+        --css="$XDG_CONFIG_HOME"/md2pdf.css
+}

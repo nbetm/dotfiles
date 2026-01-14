@@ -1,0 +1,83 @@
+/* Print stylesheet for markdown documentation */
+
+/* Page margins and numbering */
+@page {
+  margin: 0.5in;
+  @bottom-center {
+    content: counter(page);
+    font-size: 9pt;
+    color: #666;
+  }
+}
+
+/* Prevent code blocks from being split across pages */
+pre, code {
+  page-break-inside: avoid;
+}
+
+/* Keep headings with their following content */
+h1, h2, h3, h4, h5, h6 {
+  page-break-after: avoid;
+}
+
+/* Keep tables together */
+table, figure {
+  page-break-inside: avoid;
+}
+
+/* Keep paragraphs with at least 3 lines before a break */
+p {
+  orphans: 3;
+  widows: 3;
+}
+
+/* Basic typography */
+body {
+  font-family: "Iosevka N Quasi-Proportional", sans-serif;
+  font-size: 11pt;
+  line-height: 1.5;
+  max-width: 100%;
+}
+
+/* Code styling */
+pre {
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 9pt;
+}
+
+code {
+  font-family: "Iosevka N Term", monospace;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: #f6f8fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 90%;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background: #f6f8fa;
+}
+
+/* ASCII diagrams - use monospace, prevent wrapping */
+pre code {
+  white-space: pre;
+}
