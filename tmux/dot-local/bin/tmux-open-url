@@ -21,6 +21,14 @@ def find_executable(*commands: str) -> str | None:
     return None
 
 
+def can_open_urls() -> bool:
+    """Check if we can open URLs in a browser."""
+    ssh_vars = ("SSH_CLIENT", "SSH_TTY", "SSH_CONNECTION")
+    if any(os.environ.get(var) for var in ssh_vars):
+        return False
+    return find_executable("open", "xdg-open") is not None
+
+
 def tmux_message(message: str) -> None:
     """Display message in tmux"""
     try:
@@ -112,9 +120,12 @@ def get_fzf_dimensions(urls: list[str], header: str) -> str:
     return f"{width},{height}"
 
 
-def run_fzf(urls: list[str]) -> list[str]:
+def run_fzf(urls: list[str], can_open: bool) -> list[str]:
     """Run fzf to select URLs"""
-    header = "Press C-y to copy URL to clipboard"
+    if can_open:
+        header = "Enter: open | ctrl-y: copy"
+    else:
+        header = "Enter: copy | ctrl-y: copy"
     size = get_fzf_dimensions(urls, header)
 
     cmd = [
@@ -125,6 +136,8 @@ def run_fzf(urls: list[str]) -> list[str]:
         "--no-margin",
         "--no-padding",
         "--wrap",
+        "--bind",
+        "ctrl-p:up,ctrl-n:down",
         "--expect",
         "ctrl-y",
         "--style",
@@ -164,31 +177,18 @@ def copy_to_clipboard(text: str) -> None:
 
 
 def open_urls(urls: list[str]) -> None:
-    """Open URLs in default browser"""
-    # Check if we're in a remote SSH session
-    if bool(os.environ.get("SSH_CLIENT") or os.environ.get("SSH_TTY")):
-        tmux_message("Remote Session -- SKIP!")
-        return
-
+    """Open URLs in default browser. Only called when opener exists."""
     opener = find_executable("open", "xdg-open")
-
-    if not opener:
-        tmux_message("No URL opener found")
-        return
-
-    opened_count = 0
-    for url in urls:
-        try:
-            result = subprocess.run([opener, url], capture_output=True, check=False)
-            if result.returncode == 0:
-                opened_count += 1
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            continue
-
-    if opened_count > 0:
-        tmux_message(f"Opened {opened_count} URL(s)")
-    else:
-        tmux_message("Failed to open URLs")
+    assert opener is not None  # Guaranteed by can_open_urls() check
+    opened_count = sum(
+        1
+        for url in urls
+        if subprocess.run([opener, url], capture_output=True, check=False).returncode
+        == 0
+    )
+    tmux_message(
+        f"Opened {opened_count} URL(s)" if opened_count else "Failed to open URLs"
+    )
 
 
 def main() -> None:
@@ -200,18 +200,24 @@ def main() -> None:
         tmux_message("No URLs found")
         return
 
-    selected = run_fzf(urls)
+    can_open = can_open_urls()
+    selected = run_fzf(urls, can_open)
     if not selected:
         return
 
     # Handle fzf output
     if selected[0] == "ctrl-y":
+        # ctrl-y always copies
         if len(selected) > 1:
             copy_to_clipboard("\n".join(selected[1:]))
         else:
             tmux_message("No URLs selected for copying")
-    else:
+    elif can_open:
+        # Enter opens when local with opener
         open_urls(selected)
+    else:
+        # Enter copies when SSH or no opener
+        copy_to_clipboard("\n".join(selected))
 
 
 if __name__ == "__main__":
