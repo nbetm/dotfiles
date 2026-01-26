@@ -1,0 +1,352 @@
+#!/usr/bin/env bash
+#
+# Description: Download music using yt-dlp from various input formats
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+INPUT_FILE="${1:-}"
+OUTPUT_DIR="${2:-$HOME/Music/ytdl}"
+FORMAT="${FORMAT:-mp3}"
+VERIFY="${VERIFY:-0}"
+MIN_DURATION="${MIN_DURATION:-0}"
+
+show_usage() {
+    cat <<'EOF'
+Usage: ytdl <input-file> [output-dir]
+
+Supported input formats:
+  - CSV (Exportify): Must have 'Track Name' and 'Artist Name(s)' columns
+  - Text file: "Artist - Title" per line
+  - Text file: "Artist;Title" per line (semicolon separated)
+
+Examples:
+  ytdl playlist.csv
+  ytdl missing-tracks.txt ~/Music/downloads
+  FORMAT=flac ytdl tracks.txt
+
+  # Interactive mode - confirm each download
+  VERIFY=1 ytdl tracks.txt
+
+  # Only download tracks longer than 5 minutes (300 seconds)
+  MIN_DURATION=300 ytdl tracks.txt
+
+Environment variables:
+  FORMAT       - output format (default: mp3, options: mp3, m4a, opus, flac, wav)
+  VERIFY       - set to 1 for interactive mode (confirm each download)
+  MIN_DURATION - minimum duration in seconds (useful for extended mixes)
+
+Output files:
+  download-log.txt  - Full log of requested vs downloaded
+  needs-review.txt  - Tracks where title didn't match (possible wrong version)
+
+Get Exportify CSV from: https://exportify.net
+
+Requirements: yt-dlp, ffmpeg
+  brew install yt-dlp ffmpeg
+EOF
+    exit 1
+}
+
+detect_format() {
+    local file="$1"
+    local first_line
+    first_line=$(head -1 "$file")
+
+    # Check for Exportify CSV headers
+    if [[ "$first_line" == *"Track Name"* && "$first_line" == *"Artist"* ]]; then
+        echo "csv"
+    # Check for semicolon separator
+    elif [[ "$first_line" == *";"* ]]; then
+        echo "semicolon"
+    # Check for " - " separator (Artist - Title format)
+    elif [[ "$first_line" == *" - "* ]]; then
+        echo "dash"
+    else
+        echo "unknown"
+    fi
+}
+
+parse_csv() {
+    local file="$1"
+    python3 -c "
+import csv
+import sys
+
+with open(sys.argv[1], 'r', encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        track = row.get('Track Name', row.get('track_name', ''))
+        artist = row.get('Artist Name(s)', row.get('artist_name', row.get('Artist', '')))
+        if track and artist:
+            print(f'{artist}\t{track}')
+" "$file"
+}
+
+parse_semicolon() {
+    local file="$1"
+    while IFS=';' read -r artist title || [[ -n "$artist" ]]; do
+        # Skip empty lines
+        [[ -z "$artist" ]] && continue
+        # Trim whitespace
+        artist="${artist#"${artist%%[![:space:]]*}"}"
+        artist="${artist%"${artist##*[![:space:]]}"}"
+        title="${title#"${title%%[![:space:]]*}"}"
+        title="${title%"${title##*[![:space:]]}"}"
+        [[ -n "$artist" && -n "$title" ]] && printf '%s\t%s\n' "$artist" "$title"
+    done <"$file"
+}
+
+parse_dash() {
+    local file="$1"
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" == \#* ]] && continue
+        # Split on " - " (first occurrence only)
+        artist="${line%% - *}"
+        title="${line#* - }"
+        # Trim whitespace
+        artist="${artist#"${artist%%[![:space:]]*}"}"
+        artist="${artist%"${artist##*[![:space:]]}"}"
+        title="${title#"${title%%[![:space:]]*}"}"
+        title="${title%"${title##*[![:space:]]}"}"
+        [[ -n "$artist" && -n "$title" ]] && printf '%s\t%s\n' "$artist" "$title"
+    done <"$file"
+}
+
+# Validate arguments
+[[ -z "$INPUT_FILE" ]] && show_usage
+
+if [[ ! -f "$INPUT_FILE" ]]; then
+    echo "Error: File not found: $INPUT_FILE"
+    exit 1
+fi
+
+if ! command -v yt-dlp &>/dev/null; then
+    echo "Error: yt-dlp not found. Install with: brew install yt-dlp"
+    exit 1
+fi
+
+if ! command -v ffmpeg &>/dev/null; then
+    echo "Error: ffmpeg not found. Install with: brew install ffmpeg"
+    exit 1
+fi
+
+# Detect input format
+FILE_FORMAT=$(detect_format "$INPUT_FILE")
+echo "Detected format: $FILE_FORMAT"
+
+if [[ "$FILE_FORMAT" == "unknown" ]]; then
+    echo "Error: Could not detect file format."
+    echo "Supported formats:"
+    echo "  - CSV with 'Track Name' and 'Artist Name(s)' columns"
+    echo "  - Text file with 'Artist - Title' per line"
+    echo "  - Text file with 'Artist;Title' per line"
+    exit 1
+fi
+
+mkdir -p "$OUTPUT_DIR"
+
+# Setup logging
+LOG_FILE="$OUTPUT_DIR/download-log.txt"
+REVIEW_FILE="$OUTPUT_DIR/needs-review.txt"
+echo "Download Log - $(date)" >"$LOG_FILE"
+echo "========================================" >>"$LOG_FILE"
+echo "" >>"$LOG_FILE"
+: >"$REVIEW_FILE" # Clear review file
+
+# Track progress
+FAILED_TRACKS=""
+
+# Parse based on detected format
+case "$FILE_FORMAT" in
+csv) TRACKS=$(parse_csv "$INPUT_FILE") ;;
+semicolon) TRACKS=$(parse_semicolon "$INPUT_FILE") ;;
+dash) TRACKS=$(parse_dash "$INPUT_FILE") ;;
+esac
+
+TOTAL=$(echo "$TRACKS" | grep -c . || echo 0)
+
+echo "Output directory: $OUTPUT_DIR"
+echo "Format: $FORMAT"
+echo "Total tracks: $TOTAL"
+[[ "$VERIFY" == "1" ]] && echo "Mode: Interactive (verify each)"
+[[ "$MIN_DURATION" -gt 0 ]] && echo "Min duration: ${MIN_DURATION}s"
+echo ""
+echo "Log file: $LOG_FILE"
+echo ""
+
+# Process tracks
+while IFS=$'\t' read -r artist title; do
+    [[ -z "$artist" || -z "$title" ]] && continue
+
+    # Clean filename (remove characters that cause issues)
+    clean_artist=$(echo "$artist" | sed 's/[<>:"/\\|?*]/-/g')
+    clean_title=$(echo "$title" | sed 's/[<>:"/\\|?*]/-/g')
+    OUTPUT_FILE="$OUTPUT_DIR/$clean_artist - $clean_title.$FORMAT"
+    SEARCH_QUERY="$artist $title"
+
+    # Skip if already downloaded
+    if [[ -f "$OUTPUT_FILE" ]]; then
+        echo "SKIP: $artist - $title"
+        echo "[SKIP] $artist - $title (already exists)" >>"$LOG_FILE"
+        continue
+    fi
+
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "GET:  $artist - $title"
+    echo "" >>"$LOG_FILE"
+    echo "Requested: $artist - $title" >>"$LOG_FILE"
+
+    # Get search results info
+    SEARCH_RESULTS=$(yt-dlp --print $'%(title)s\t%(duration_string)s\t%(duration)s\t%(webpage_url)s' "ytsearch5:$SEARCH_QUERY" 2>/dev/null || true)
+
+    if [[ -z "$SEARCH_RESULTS" ]]; then
+        echo "  ✗ No results found"
+        echo "Status:    FAILED - No results" >>"$LOG_FILE"
+        FAILED_TRACKS="$FAILED_TRACKS\n  - $artist - $title"
+        continue
+    fi
+
+    # Show what we found
+    echo "  Found:"
+    INDEX=1
+    while IFS=$'\t' read -r yt_title yt_duration yt_seconds _; do
+        DURATION_FLAG=""
+        if [[ "$MIN_DURATION" -gt 0 && "$yt_seconds" =~ ^[0-9]+$ && "$yt_seconds" -lt "$MIN_DURATION" ]]; then
+            DURATION_FLAG=" (too short)"
+        fi
+        echo "    $INDEX. $yt_title [$yt_duration]$DURATION_FLAG"
+        ((INDEX++))
+    done <<<"$SEARCH_RESULTS"
+
+    # Get first result details for logging
+    FIRST_RESULT=$(echo "$SEARCH_RESULTS" | head -1)
+    FIRST_TITLE=$(echo "$FIRST_RESULT" | cut -f1)
+    FIRST_DURATION=$(echo "$FIRST_RESULT" | cut -f2)
+    FIRST_URL=$(echo "$FIRST_RESULT" | cut -f4)
+
+    SELECTED_URL="$FIRST_URL"
+    SELECTED_TITLE="$FIRST_TITLE"
+    SELECTED_DURATION="$FIRST_DURATION"
+
+    # Interactive mode
+    if [[ "$VERIFY" == "1" ]]; then
+        echo ""
+        read -rp "  Download which? [1-5, s=skip, q=quit]: " choice </dev/tty
+        case "$choice" in
+        q | Q)
+            echo "Quitting..."
+            exit 0
+            ;;
+        s | S)
+            echo "  → Skipped"
+            echo "Status:    SKIPPED by user" >>"$LOG_FILE"
+            continue
+            ;;
+        [2-5])
+            # Get the selected result
+            SELECTED=$(echo "$SEARCH_RESULTS" | sed -n "${choice}p")
+            SELECTED_TITLE=$(echo "$SELECTED" | cut -f1)
+            SELECTED_DURATION=$(echo "$SELECTED" | cut -f2)
+            SELECTED_URL=$(echo "$SELECTED" | cut -f4)
+            ;;
+        *)
+            # Default to first result
+            ;;
+        esac
+    fi
+
+    # Build yt-dlp command
+    YT_CMD=(
+        yt-dlp
+        --quiet
+        --no-warnings
+        --extract-audio
+        --audio-format "$FORMAT"
+        --audio-quality 0
+        --output "$OUTPUT_DIR/$clean_artist - $clean_title.%(ext)s"
+        --no-playlist
+    )
+
+    # Download
+    if [[ "$VERIFY" == "1" ]]; then
+        # In verify mode, download specific URL
+        if "${YT_CMD[@]}" "$SELECTED_URL"; then
+            echo "  ✓ Done"
+            echo "Got:       $SELECTED_TITLE [$SELECTED_DURATION]" >>"$LOG_FILE"
+            echo "Status:    OK" >>"$LOG_FILE"
+        else
+            echo "  ✗ Failed"
+            echo "Status:    FAILED" >>"$LOG_FILE"
+            FAILED_TRACKS="$FAILED_TRACKS\n  - $artist - $title"
+        fi
+    else
+        # Auto mode
+        if [[ "$MIN_DURATION" -gt 0 ]]; then
+            # With duration filter, search more results to find a match
+            YT_CMD+=(--match-filter "duration>=$MIN_DURATION")
+            if "${YT_CMD[@]}" "ytsearch5:$SEARCH_QUERY" --max-downloads 1; then
+                echo "  ✓ Done"
+                echo "Got:       (first match >=${MIN_DURATION}s)" >>"$LOG_FILE"
+                echo "Status:    OK" >>"$LOG_FILE"
+            else
+                echo "  ✗ Failed (no results match duration filter)"
+                echo "Status:    FAILED - No match for duration filter" >>"$LOG_FILE"
+                FAILED_TRACKS="$FAILED_TRACKS\n  - $artist - $title"
+            fi
+        else
+            # Standard auto download - use URL from search to avoid race condition
+            if "${YT_CMD[@]}" "$FIRST_URL"; then
+                echo "  ✓ Done"
+                echo "Got:       $FIRST_TITLE [$FIRST_DURATION]" >>"$LOG_FILE"
+                echo "Status:    OK" >>"$LOG_FILE"
+
+                # Flag for review if title looks different (case-insensitive check)
+                TITLE_LOWER="${title,,}"
+                FIRST_LOWER="${FIRST_TITLE,,}"
+                # Extract just the main title part (before any brackets/parens) for comparison
+                TITLE_MAIN="${TITLE_LOWER%% (*}"
+                TITLE_MAIN="${TITLE_MAIN%% [*}"
+                if [[ "$FIRST_LOWER" != *"$TITLE_MAIN"* ]]; then
+                    echo "  ⚠ Title mismatch - flagged for review"
+                    echo "$artist - $title" >>"$REVIEW_FILE"
+                    echo "  Got: $FIRST_TITLE [$FIRST_DURATION]" >>"$REVIEW_FILE"
+                    echo "" >>"$REVIEW_FILE"
+                fi
+            else
+                echo "  ✗ Failed"
+                echo "Status:    FAILED" >>"$LOG_FILE"
+                FAILED_TRACKS="$FAILED_TRACKS\n  - $artist - $title"
+            fi
+        fi
+    fi
+
+    sleep 1
+done <<<"$TRACKS"
+
+echo ""
+echo "========================================"
+echo "Complete!"
+echo "Downloaded to: $OUTPUT_DIR"
+echo ""
+echo "Log file: $LOG_FILE"
+
+# Check if review file has content
+if [[ -s "$REVIEW_FILE" ]]; then
+    REVIEW_COUNT=$(grep -c "^[^[:space:]]" "$REVIEW_FILE" 2>/dev/null || echo 0)
+    echo ""
+    echo "⚠ $REVIEW_COUNT tracks flagged for review: $REVIEW_FILE"
+    echo "  (Title mismatch - may have downloaded wrong version)"
+fi
+
+if [[ -n "$FAILED_TRACKS" ]]; then
+    echo ""
+    echo "Failed tracks:$FAILED_TRACKS"
+fi
