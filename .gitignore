@@ -1,27 +1,80 @@
-# generic
-.idea/
-.notes/
+# OS
+.DS_Store
+Thumbs.db
 
-# editors
+# Swap Vim Files
+*~
+
+# Editors
 .vscode/
 .zed/
 
-# claude
-.claude/
+# Notes
+.idea/
+.notes/
+
+# Claude Code
+.claude/settings.local.json
 CLAUDE.md
 
-# helix
+# Direnv
+.envrc
+.direnv/
+
+# Python
+*$py.class
+*.egg
+*.egg-info/
+*.py[cod]
+*.so
+.Python
+.breakpoint
+.coverage
+.eggs/
+.env/
+.hypothesis/
+.installed.cfg
+.ipynb_checkpoints
+.lsp
+.mypy_cache/
+.nox/
+.pytest_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+.venv/
+/devenv
+/z-local
+ENV/
+MANIFEST
+__pycache__/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+env/
+htmlcov/
+lib/
+lib64/
+parts/
+sdist/
+var/
+venv/
+wheels/
+
+# Helix
 helix/dot-config/helix/runtime/**
 
-# tmux
+# Tmux
 tmux/dot-config/tmux/plugins/**
 
-# zed
+# Zed
 zed/dot-config/zed/conversations/**
 zed/dot-config/zed/embeddings/**
 zed/dot-config/zed/prompts/**
 
-# shell
+# Shell
 **/*.local.sh
 **/*.local.zsh
 **/dot-zsh/cache/**
