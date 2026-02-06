@@ -2,6 +2,7 @@
 theme = "nord-deep"
 
 [editor]
+clipboard-provider = "termcode"
 color-modes = true
 completion-replace = true
 cursorline = true
