@@ -9,13 +9,11 @@ Thumbs.db
 .vscode/
 .zed/
 
-# Notes
-.idea/
+# Notes and plans
 .notes/
 
 # Claude Code
 .claude/settings.local.json
-CLAUDE.md
 
 # Direnv
 .envrc
