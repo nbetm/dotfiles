@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 #
+# Interactive session picker using sesh and fzf.
+#
+# Supports switching between tmux sessions, config dirs, and zoxide paths.
+# Float sessions (ending in -float) are hidden from all listings.
+#
 # Set options:
 #   e: Stop script if command fails
 #   u: Stop script if unset variable is referenced
@@ -24,19 +29,19 @@ sesh_fzf_args=(
     --header "<C-t> 󰕮  │ <C-b> 󰃀  │ <C-f> 󰉋  │ <C-a> 󱡠  │ <C-r> reset │ <A-del> kill"
     --bind "tab:down,btab:up,ctrl-n:down,ctrl-p:up"
     --bind "ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up"
-    --bind "ctrl-t:change-prompt(󰕮  )+reload(sesh list -t --hide-duplicates)"
+    --bind "ctrl-t:change-prompt(󰕮  )+reload(sesh list -t --hide-duplicates | grep -v '\-float$')"
     --bind "ctrl-b:change-prompt(󰃀  )+reload(sesh list -c --hide-duplicates)"
     --bind "ctrl-f:change-prompt(󰉋  )+reload(sesh list -z --hide-duplicates)"
-    --bind "ctrl-a:change-prompt(󱡠  )+reload(sesh list --hide-duplicates)"
-    --bind "ctrl-r:change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
-    --bind "alt-bspace:execute-silent(tmux kill-session -t {})+change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates)"
+    --bind "ctrl-a:change-prompt(󱡠  )+reload(sesh list --hide-duplicates | grep -v '\-float$')"
+    --bind "ctrl-r:change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates | grep -v '\-float$')"
+    --bind "alt-bspace:execute-silent(tmux kill-session -t {})+change-prompt(❱ )+reload(sesh list -t -c --hide-duplicates | grep -v '\-float$')"
 )
 
 # Detect if we're running inside tmux
 if [[ -n "${TMUX:-}" ]]; then
-    session=$(sesh list -t -c --hide-duplicates | fzf-tmux -p 90%,80% "${sesh_fzf_args[@]}")
+    session=$(sesh list -t -c --hide-duplicates | grep -v '\-float$' | fzf-tmux -p 90%,80% "${sesh_fzf_args[@]}")
 else
-    session=$(sesh list -t -c --hide-duplicates | fzf --height 60% "${sesh_fzf_args[@]}")
+    session=$(sesh list -t -c --hide-duplicates | grep -v '\-float$' | fzf --height 60% "${sesh_fzf_args[@]}")
 fi
 
 if [[ -n "$session" ]]; then

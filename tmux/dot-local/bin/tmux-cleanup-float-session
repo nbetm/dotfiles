@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# Clean up orphaned float sessions.
+#
+# Scans all tmux windows for @float_session references and kills any
+# float session (ending in -float) that no window references.
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+# Get all float session names
+float_sessions="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -- '-float$')"
+[[ -z "${float_sessions}" ]] && exit 0
+
+# Collect all referenced float sessions from window options
+referenced=""
+while IFS= read -r target; do
+    val="$(tmux show-option -wqv -t "${target}" @float_session 2>/dev/null)"
+    [[ -n "${val}" ]] && referenced="${referenced}${val}"$'\n'
+done < <(tmux list-windows -a -F '#{session_name}:#{window_index}' 2>/dev/null)
+
+# Kill orphaned float sessions
+while IFS= read -r float; do
+    [[ -z "${float}" ]] && continue
+    if ! printf '%s' "${referenced}" | grep -qxF "${float}"; then
+        tmux kill-session -t "=${float}" 2>/dev/null
+    fi
+done <<<"${float_sessions}"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# Toggle a side pane: split, select, or zoom.
+#
+# - 1 pane: split horizontal at 40%
+# - Zoomed: select previous pane
+# - Otherwise: zoom pane 1
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+if [[ -n "${TMUX:-}" ]]; then
+    width="${1:-40%}"
+    pane_count="$(tmux list-panes | wc -l)"
+    pane_zoomed="$(tmux list-panes -F '#F' | grep -q Z && echo "true")"
+
+    if [[ "${pane_count}" == 1 ]]; then
+        tmux split-window -h -l "${width}" -c "#{pane_current_path}"
+    elif [[ -n "${pane_zoomed}" ]]; then
+        tmux select-pane -t:.-
+    else
+        tmux resize-pane -Z -t1
+    fi
+fi

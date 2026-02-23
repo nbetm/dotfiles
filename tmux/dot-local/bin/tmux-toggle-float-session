@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# Toggle a per-window floating pane session.
+#
+# Each tmux window gets its own float session, tracked via the @float_session
+# window option. Sessions are named <parent_session>-<random_hex>-float.
+#
+# Set options:
+#   e: Stop script if command fails
+#   u: Stop script if unset variable is referenced
+#   x: Debug, print commands as they are executed
+#   f: Disable file name generation (globbing).
+#   o pipefail: If any command in a pipeline fails it all fails
+#
+set -ufo pipefail
+
+[[ -z "${TMUX:-}" ]] && exit 0
+
+width="${1:-80%}"
+height="${2:-80%}"
+session_name="$(tmux display-message -p -F '#{session_name}')"
+
+# If already inside a float session, detach
+if [[ "${session_name}" =~ -float$ ]]; then
+    tmux detach-client
+    exit 0
+fi
+
+# Check if current window has an associated float session
+float_session="$(tmux show-option -wqv @float_session)"
+
+# If option is set but session is dead, clear it
+if [[ -n "${float_session}" ]] && ! tmux has-session -t "=${float_session}" 2>/dev/null; then
+    tmux set-option -wu @float_session
+    float_session=""
+fi
+
+# Generate new float session name if needed
+if [[ -z "${float_session}" ]]; then
+    float_session="${session_name}-$(printf '%04x' ${RANDOM})-float"
+    tmux set-option -w @float_session "${float_session}"
+fi
+
+# Toggle float: attach-or-create with session options
+tmux popup -d "#{pane_current_path}" -xC -yC -w"${width}" -h"${height}" \
+    -E "tmux new -As '${float_session}' \; set detach-on-destroy on \; set status off"
