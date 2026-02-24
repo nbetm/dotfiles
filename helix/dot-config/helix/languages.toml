@@ -113,8 +113,6 @@ name = "markdown"
 language-servers = ["marksman"]
 auto-format = true
 rulers = [120]
-text-width = 120
-soft-wrap = { enable = true, wrap-at-text-width = true, max-wrap = 25, wrap-indicator = "" }
 formatter = { command = "prettier", args = [
   "--parser",
   "markdown",

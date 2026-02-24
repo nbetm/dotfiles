@@ -17,7 +17,7 @@ trim-final-newlines = true
 trim-trailing-whitespace = true
 true-color = true
 text-width = 120
-soft-wrap = { enable = false, wrap-at-text-width = true, max-wrap = 25, wrap-indicator = "" }
+soft-wrap = { enable = true, wrap-at-text-width = true, max-wrap = 25, wrap-indicator = "" }
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
@@ -136,10 +136,10 @@ q = ":quit"
 Q = ":quit!"
 R = ":reload-all"
 w = ":write"
-W = ":write-all"
+W = ":write --no-format"
 x = ":buffer-close"
 X = ":buffer-close!"
-z = ":toggle-option soft-wrap.enable"
+z = ":toggle-option soft-wrap.wrap-at-text-width"
 
 [keys.insert]
 # No more fighting with the cursor!
