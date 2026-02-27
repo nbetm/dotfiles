@@ -48,9 +48,9 @@ formatter = { command = "prettier", args = [
   "--parser",
   "json",
   "--tab-width",
-  "4",
+  "2",
 ] }
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 2, unit = "  " }
 
 # JSONC (JSON with Comments)
 [[language]]
@@ -61,9 +61,9 @@ formatter = { command = "prettier", args = [
   "--parser",
   "json",
   "--tab-width",
-  "4",
+  "2",
 ] }
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 2, unit = "  " }
 
 [language-server.vscode-json-language-server]
 command = "vscode-json-language-server"
@@ -128,7 +128,6 @@ args = ["server"]
 name = "ini"
 indent = { tab-width = 2, unit = "  " }
 
-
 [[language]]
 name = "nix"
 language-servers = ["nixd"]
@@ -146,4 +145,4 @@ indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "git-config"
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 2, unit = "  " }
