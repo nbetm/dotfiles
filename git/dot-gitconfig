@@ -1,89 +1,89 @@
 [column]
-    ui = auto
+  ui = auto
 
 [branch]
-    sort = -committerdate
+  sort = -committerdate
 
 [tag]
-    sort = version:refname
+  sort = version:refname
 
 [init]
-    defaultBranch = main
+  defaultBranch = main
 
 [diff]
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [push]
-    default = simple
-    autoSetupRemote = true
-    followTags = true
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 
 [fetch]
-    purne = true
-    pruneTags = true
-    all = true
+  purne = true
+  pruneTags = true
+  all = true
 
 [commit]
-    verbose = true
+  verbose = true
 
 [rerere]
-    enabled = true
-    autoupdate = true
+  enabled = true
+  autoupdate = true
 
 [core]
-    excludesfile = ~/.gitignore
-    pager = delta
+  excludesfile = ~/.gitignore
+  pager = delta
 
 [rebase]
-    autoSquash = true
-    autoStash = true
-    updateRefs = true
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [include]
-    path = ~/.config/delta/themes.gitconfig
+  path = ~/.config/delta/themes.gitconfig
 
 [delta]
-    features = nord-deep
-    navigate = true
-    dark = true
-    line-numbers = true
-    hyperlinks = true
-    hyperlinks-file-link-format = "zed://file/{path}:{line}"
-    side-by-side = true
-    true-color = always
+  features = nord-deep
+  navigate = true
+  dark = true
+  line-numbers = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "zed://file/{path}:{line}"
+  side-by-side = true
+  true-color = always
 
 [color.status]
-    added = "green normal bold"
-    updated = "green normal bold"
-    changed = "yellow normal bold"
-    untracked = "red normal bold"
-    branch = "magenta normal bold"
-    nobranch = "normal normal bold"
-    unmerged = "red normal bold"
+  added = "green normal bold"
+  updated = "green normal bold"
+  changed = "yellow normal bold"
+  untracked = "red normal bold"
+  branch = "magenta normal bold"
+  nobranch = "normal normal bold"
+  unmerged = "red normal bold"
 
 [color.branch]
-    current = "magenta normal bold"
-    local = "white normal"
-    remote = "cyan normal"
+  current = "magenta normal bold"
+  local = "white normal"
+  remote = "cyan normal"
 
 [pull]
-    rebase = false
+  rebase = false
 
 [color]
-    ui = true
+  ui = true
 
 [merge]
-    conflictstyle = zdiff3
+  conflictstyle = zdiff3
 
 [help]
-    autocorrect = prompt
+  autocorrect = prompt
 
 [user]
-    name = Nelson R Monserrate
-    email = nrmonserrate@gmail.com
+  name = Nelson R Monserrate
+  email = nrmonserrate@gmail.com
