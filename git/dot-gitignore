@@ -28,3 +28,4 @@ logs/
 
 # claude
 .claude/settings.local.json
+.worktrees/

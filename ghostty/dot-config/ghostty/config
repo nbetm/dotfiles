@@ -5,9 +5,6 @@ theme = nord-deep
 # OS-specific settings
 config-file = os.conf
 
-# Keybindings (macOS-style keybindings across platforms)
-config-file = keybindings.conf
-
 title = " "
 
 font-family = Iosevka N Term
@@ -26,3 +23,23 @@ unfocused-split-opacity = 0.90
 
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
+
+# -----------------------------------------------------------------------------
+# Keybindings
+# -----------------------------------------------------------------------------
+
+# Insert new line
+keybind = shift+enter=text:\n
+
+# Jump to beginning and end of line
+# Note: Use Home|End instead of ctrl-a(\x01)|ctrl-e(\x05)
+keybind = super+arrow_left=text:\x1b[H
+keybind = super+arrow_right=text:\x1b[F
+
+# Jump to beginning and end of word
+keybind = alt+arrow_left=text:\x1b\x62
+keybind = alt+arrow_right=text:\x1b\x66
+
+# Delete line
+keybind = alt+backspace=text:\x1b\x7f
+keybind = super+backspace=text:\x15
