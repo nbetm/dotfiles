@@ -29,7 +29,7 @@ args = ["server"]
 name = "bash"
 language-servers = ["bash-language-server"]
 auto-format = true
-formatter = { command = "shfmt", args = ["-i", "4", "-"] }
+formatter = { command = "shfmt", args = ["-i", "4", "-ci", "-"] }
 indent = { tab-width = 4, unit = "    " }
 
 [language-server.bash-language-server]
