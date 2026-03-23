@@ -61,31 +61,6 @@ alias xpping="xpanes -s -c 'ping -n {}'"
 alias xppingv="xpanes -l ev -s -c 'ping -n {}'"
 alias xppingh="xpanes -l eh -s -c 'ping -n {}'"
 
-# ------------------------------------------------------------------------------
-# Homebrew (macOS only)
-# ------------------------------------------------------------------------------
-
-if [[ $OS_NAME == "Darwin" ]]; then
-    alias bupd="brew update"
-    alias bupdate="brew update"
-    alias bupg="brew upgrade --greedy-auto-updates"
-    alias bupgrade="brew upgrade --greedy-auto-updates"
-    alias bclean="brew cleanup"
-    alias bcleanup="brew cleanup"
-
-    # Homebrew Bundle
-    alias bb="brew bundle --global"
-    alias bbd="brew bundle dump --global --brews --taps --casks --no-vscode --force"
-    alias bbdump="brew bundle dump --global --brews --taps --casks --no-vscode --force"
-    alias bbc="brew bundle check --global"
-    alias bbcheck="brew bundle check --global"
-    alias bbi="brew bundle install --global"
-    alias bbinstall="brew bundle install --global"
-    alias bbupg="brew bundle upgrade --global"
-    alias bbupgrade="brew bundle upgrade --global"
-    alias bbclean="brew bundle cleanup --global"
-    alias bbcleanup="brew bundle cleanup --global"
-fi
 
 # ------------------------------------------------------------------------------
 # Markdown to PDF

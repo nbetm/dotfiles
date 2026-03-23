@@ -49,7 +49,7 @@ Output files:
 Get Exportify CSV from: https://exportify.net
 
 Requirements: yt-dlp, ffmpeg
-  brew install yt-dlp ffmpeg
+  nix: yt-dlp, ffmpeg (via base.nix)
 EOF
     exit 1
 }
@@ -129,12 +129,12 @@ if [[ ! -f "$INPUT_FILE" ]]; then
 fi
 
 if ! command -v yt-dlp &>/dev/null; then
-    echo "Error: yt-dlp not found. Install with: brew install yt-dlp"
+    echo "Error: yt-dlp not found. Install via nix (base.nix)"
     exit 1
 fi
 
 if ! command -v ffmpeg &>/dev/null; then
-    echo "Error: ffmpeg not found. Install with: brew install ffmpeg"
+    echo "Error: ffmpeg not found. Install via nix (base.nix)"
     exit 1
 fi
 

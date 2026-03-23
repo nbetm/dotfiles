@@ -97,11 +97,8 @@ ble-bind -f 'C-x C-e' edit-and-execute-command
 
 # FZF: Provides Ctrl-R (history), Ctrl-T (files), Alt-C (cd)
 # Set base path per platform, or let blesh-contrib auto-detect from PATH
-if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
-    # macOS: Homebrew structure has shell/ subdirectory
-    _ble_contrib_fzf_base="${HOMEBREW_PREFIX}/opt/fzf"
-elif [[ "${OS_DISTRO:-}" == "nixos" ]]; then
-    # NixOS: Files are directly in share/fzf/ (no shell/ subdirectory)
+if [[ -d /run/current-system/sw/share/fzf ]]; then
+    # nix-darwin/NixOS: Files are directly in share/fzf/ (no shell/ subdirectory)
     _ble_contrib_fzf_base="/run/current-system/sw/share/fzf"
 elif [[ -d "${HOME}/.fzf" ]]; then
     # Debian/Ubuntu: Manual installation with shell/ subdirectory

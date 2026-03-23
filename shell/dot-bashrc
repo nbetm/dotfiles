@@ -62,7 +62,7 @@ if command -v starship &>/dev/null; then
 fi
 
 # ------------------------------------------------------------------------------
-# Bash Completion (lazy-loads from Homebrew/system dirs)
+# Bash Completion
 # ------------------------------------------------------------------------------
 
 # nix-darwin/NixOS handle bash completion via programs.bash.completion.enable

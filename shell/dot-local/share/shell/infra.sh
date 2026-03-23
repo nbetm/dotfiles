@@ -79,11 +79,6 @@ uv-python-symlinks() {
 # AWS
 # ------------------------------------------------------------------------------
 
-if [[ $OS_NAME == "Darwin" ]]; then
-    alias aws="/opt/homebrew/bin/aws"
-    alias aws_completer="/opt/homebrew/bin/aws_completer"
-fi
-
 alias awspu="unset AWS_PROFILE"
 
 awsl() {
