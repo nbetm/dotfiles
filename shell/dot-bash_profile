@@ -1,4 +1,5 @@
 # vim: set ft=sh :
+# shellcheck shell=bash disable=SC1091
 
 # Guard against re-sourcing
 [[ -n "$_BASH_PROFILE_SOURCED" ]] && return
