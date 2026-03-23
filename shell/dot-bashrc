@@ -65,10 +65,8 @@ fi
 # Bash Completion (lazy-loads from Homebrew/system dirs)
 # ------------------------------------------------------------------------------
 
-# shellcheck disable=SC1091
-if [[ -f "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-elif [[ -f /usr/share/bash-completion/bash_completion ]]; then
+# nix-darwin/NixOS handle bash completion via programs.bash.completion.enable
+if [[ ! -d /run/current-system ]] && [[ -f /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
 fi
 

@@ -189,13 +189,6 @@ bindkey "^O" sesh-sessions
 
 # fpath
 typeset -U fpath
-if [[ $OS_NAME == "Darwin" ]]; then
-    fpath=(
-        "${HOMEBREW_PREFIX}/share/zsh/site-functions"
-        "${HOMEBREW_PREFIX}/opt/curl/share/zsh/site-functions"
-        $fpath
-    )
-fi
 fpath=("${HOME}/.zsh/completions" $fpath)
 
 # Modules (before compinit)

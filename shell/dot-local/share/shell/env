@@ -15,6 +15,8 @@ export OS_NAME OS_ARCH
 
 if [[ "$OS_NAME" == "Linux" ]]; then
     OS_DISTRO=$(grep '^ID=' /etc/os-release 2>/dev/null | cut -d'=' -f2 | tr -d '"'\' | tr '[:upper:]' '[:lower:]' || echo "unknown")
+elif [[ "$OS_NAME" == "Darwin" ]]; then
+    OS_DISTRO="darwin"
 else
     OS_DISTRO=
 fi

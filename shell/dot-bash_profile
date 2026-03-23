@@ -27,37 +27,14 @@ export HISTIGNORE="ls:ll:cd:pwd:exit:clear:history"
 # ------------------------------------------------------------------------------
 
 if [[ $OS_NAME == "Darwin" ]]; then
-    # Homebrew (arm64 only)
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-
-    # Additional paths (prepend to PATH)
-    path_prepend=(
-        "$XDG_BIN_HOME"
-        "${XDG_DATA_HOME}/google-cloud-sdk/bin"
-        "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/curl/bin"
-        "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/fzf/bin"
-        "${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
-        "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
-    )
-
-    for p in "${path_prepend[@]}"; do
-        [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
-    done
-    unset path_prepend p
-
-    export FZF_SHELL_DIR="${HOMEBREW_PREFIX}/opt/fzf/shell"
+    # Restore nix PATH priority (macOS path_helper reorders it in /etc/profile)
+    if [[ -d /run/current-system/sw/bin ]]; then
+        PATH="$HOME/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
+    fi
+    [[ -d "$XDG_BIN_HOME" && ":$PATH:" != *":$XDG_BIN_HOME:"* ]] && PATH="$XDG_BIN_HOME:$PATH"
 
 elif [[ $OS_NAME == "Linux" ]]; then
-    if [[ "$OS_DISTRO" == "nixos" ]]; then
-        # NixOS: Packages managed via Nix, minimal PATH additions
-        export FZF_SHELL_DIR="/run/current-system/sw/share/fzf"
-    else
+    if [[ "$OS_DISTRO" != "nixos" ]]; then
         # Debian/Ubuntu: Manual package installations
         path_prepend=(
             "$XDG_BIN_HOME"
@@ -70,11 +47,11 @@ elif [[ $OS_NAME == "Linux" ]]; then
             [[ -d "$p" && ":$PATH:" != *":$p:"* ]] && PATH="$p:$PATH"
         done
         unset path_prepend p
-
-        export FZF_SHELL_DIR="${HOME}/.fzf/shell"
     fi
 fi
 
+# Deduplicate PATH (keeps first occurrence)
+PATH="$(printf '%s\n' "${PATH//:/$'\n'}" | awk '!seen[$0]++' | paste -sd: -)"
 export PATH
 
 # LS_COLORS
