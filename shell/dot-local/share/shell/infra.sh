@@ -1,4 +1,5 @@
 # vim: set ft=sh :
+# shellcheck shell=bash disable=SC1091
 # Infrastructure tools - Python, AWS, Terraform, Nomad, Ansible
 
 # ------------------------------------------------------------------------------

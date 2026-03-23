@@ -1,4 +1,5 @@
 # vim: set ft=sh :
+# shellcheck shell=bash disable=SC1091
 # Tool aliases and functions - SSH, tmux, editors, system utilities
 
 # ------------------------------------------------------------------------------
@@ -60,7 +61,6 @@ alias xpsshh="xpanes -l eh -s -c 'ssh -o StrictHostKeyChecking=no {}'"
 alias xpping="xpanes -s -c 'ping -n {}'"
 alias xppingv="xpanes -l ev -s -c 'ping -n {}'"
 alias xppingh="xpanes -l eh -s -c 'ping -n {}'"
-
 
 # ------------------------------------------------------------------------------
 # Markdown to PDF

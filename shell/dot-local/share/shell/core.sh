@@ -1,4 +1,5 @@
 # vim: set ft=sh :
+# shellcheck shell=bash disable=SC1091
 # Core aliases and functions - essential shell utilities
 
 # ------------------------------------------------------------------------------

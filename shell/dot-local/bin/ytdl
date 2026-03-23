@@ -166,9 +166,9 @@ FAILED_TRACKS=""
 
 # Parse based on detected format
 case "$FILE_FORMAT" in
-csv) TRACKS=$(parse_csv "$INPUT_FILE") ;;
-semicolon) TRACKS=$(parse_semicolon "$INPUT_FILE") ;;
-dash) TRACKS=$(parse_dash "$INPUT_FILE") ;;
+    csv) TRACKS=$(parse_csv "$INPUT_FILE") ;;
+    semicolon) TRACKS=$(parse_semicolon "$INPUT_FILE") ;;
+    dash) TRACKS=$(parse_dash "$INPUT_FILE") ;;
 esac
 
 TOTAL=$(echo "$TRACKS" | grep -c . || echo 0)
@@ -241,25 +241,25 @@ while IFS=$'\t' read -r artist title; do
         echo ""
         read -rp "  Download which? [1-5, s=skip, q=quit]: " choice </dev/tty
         case "$choice" in
-        q | Q)
-            echo "Quitting..."
-            exit 0
-            ;;
-        s | S)
-            echo "  → Skipped"
-            echo "Status:    SKIPPED by user" >>"$LOG_FILE"
-            continue
-            ;;
-        [2-5])
-            # Get the selected result
-            SELECTED=$(echo "$SEARCH_RESULTS" | sed -n "${choice}p")
-            SELECTED_TITLE=$(echo "$SELECTED" | cut -f1)
-            SELECTED_DURATION=$(echo "$SELECTED" | cut -f2)
-            SELECTED_URL=$(echo "$SELECTED" | cut -f4)
-            ;;
-        *)
-            # Default to first result
-            ;;
+            q | Q)
+                echo "Quitting..."
+                exit 0
+                ;;
+            s | S)
+                echo "  → Skipped"
+                echo "Status:    SKIPPED by user" >>"$LOG_FILE"
+                continue
+                ;;
+            [2-5])
+                # Get the selected result
+                SELECTED=$(echo "$SEARCH_RESULTS" | sed -n "${choice}p")
+                SELECTED_TITLE=$(echo "$SELECTED" | cut -f1)
+                SELECTED_DURATION=$(echo "$SELECTED" | cut -f2)
+                SELECTED_URL=$(echo "$SELECTED" | cut -f4)
+                ;;
+            *)
+                # Default to first result
+                ;;
         esac
     fi
 
@@ -316,9 +316,11 @@ while IFS=$'\t' read -r artist title; do
                 TITLE_MAIN="${TITLE_MAIN%% [*}"
                 if [[ "$FIRST_LOWER" != *"$TITLE_MAIN"* ]]; then
                     echo "  ⚠ Title mismatch - flagged for review"
-                    echo "$artist - $title" >>"$REVIEW_FILE"
-                    echo "  Got: $FIRST_TITLE [$FIRST_DURATION]" >>"$REVIEW_FILE"
-                    echo "" >>"$REVIEW_FILE"
+                    {
+                        echo "$artist - $title"
+                        echo "  Got: $FIRST_TITLE [$FIRST_DURATION]"
+                        echo ""
+                    } >>"$REVIEW_FILE"
                 fi
             else
                 echo "  ✗ Failed"

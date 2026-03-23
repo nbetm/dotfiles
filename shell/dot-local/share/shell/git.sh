@@ -1,4 +1,5 @@
 # vim: set ft=sh :
+# shellcheck shell=bash disable=SC1091
 # Git aliases - inspired by prezto git module
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/git/alias.zsh
 
