@@ -40,15 +40,9 @@ shopt -s no_empty_cmd_completion # Don't complete on empty line
 # Tool Initialization
 # ------------------------------------------------------------------------------
 
-# FZF
-# shellcheck disable=SC1091
-if [[ -n "${FZF_SHELL_DIR:-}" && -f "${FZF_SHELL_DIR}/key-bindings.bash" ]]; then
-    # Note: When using ble.sh, FZF is loaded via blesh-contrib instead
-    # This is a fallback for non-ble.sh sessions
-    if [[ -z "${BLE_VERSION:-}" ]]; then
-        source "${FZF_SHELL_DIR}/key-bindings.bash"
-        source "${FZF_SHELL_DIR}/completion.bash"
-    fi
+# FZF (ble.sh loads its own fzf integration via blesh-contrib)
+if [[ -z "${BLE_VERSION:-}" ]] && command -v fzf &>/dev/null; then
+    eval "$(fzf --bash)"
 fi
 
 # Direnv
